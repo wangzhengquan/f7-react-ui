@@ -1,0 +1,26 @@
+/* === Statusbar overlay === */
+@import url('_mixins.less');
+@import url('_colors-vars.less');
+@panelsDuration: 400ms;
+@toolbarBg : #f7f7f8;
+html.with-statusbar-overlay body{
+    padding-top: 20px;
+    box-sizing: border-box;
+    .statusbar-overlay {
+        display: block;
+    }
+    .panel {
+        padding-top: 20px;
+    }
+}
+.statusbar-overlay {
+    background: @toolbarBg;
+    z-index: 10000; // A bit lower than .modals-overlay
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 20px;
+    width: 100%;
+    display: none;
+    .transition(@panelsDuration);
+}
