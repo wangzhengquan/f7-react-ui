@@ -1,0 +1,35 @@
+{
+  "name": "f7-react-ui",
+  "version": "1.0.8",
+  "description": "a ui framework with reactjs",
+  "main": "index.js",
+   
+  "directories": {
+    "examples": "examples",
+    "src": "source codes"
+  },
+   
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangzhengquan/react-ui.git"
+  },
+  "keywords": [
+    "react-ui"
+  ],
+  "author": "wangzhengquan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangzhengquan/react-ui/issues"
+  },
+  
+  "dependencies": {
+    "classnames": "^2.2.4",
+    "core-js": "^2.0.0",
+    "flux": "^2.1.1",
+    "normalize.css": "^4.0.0",
+    "react": "^15.0.2",
+    "react-addons-css-transition-group": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-router": "^2.0.0"
+  }
+}

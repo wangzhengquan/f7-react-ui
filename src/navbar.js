@@ -1,8 +1,8 @@
 import React  from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'react-ui/dom'
+import $ from './dom'
 import history from './history'
-const animateNavBackIcon = false;
+const animateNavBackIcon = true;
 const transitionDuration= 400;
 const rtl = false
 
@@ -12,15 +12,11 @@ export default  class Navbar extends React.Component{
     constructor(props) {
       super(props);
     }
+    
 
-    componentDidMount(){
-      console.log('Navbar', this)
-      var navbar = $(ReactDOM.findDOMNode(this));
-      this.sizeNavbar(navbar)
-    }
 
-    sizeNavbar(_navbar){
-      var n = $(_navbar);
+    sizeNavbar(navbarinner){
+      var n = $(navbarinner);
 
       if (n.hasClass('cached')) return;
       var left = rtl ? n.find('.right') : n.find('.left'),
@@ -118,17 +114,22 @@ export default  class Navbar extends React.Component{
     * @return {[type]}                   [description]
     */
     prepareNavbar (newNavbarInner, newNavbarPosition) {
-        $(newNavbarInner).find('.sliding').each(function () {
-            var sliding = $(this);
-            var slidingOffset = newNavbarPosition === 'right' ? this.f7NavbarRightOffset : this.f7NavbarLeftOffset;
+      if(newNavbarPosition === 'right'){
+        newNavbarInner.addClass('navbar-on-right')
+      } else if(newNavbarPosition === 'left'){
+        newNavbarInner.addClass('navbar-on-left')
+      }
 
-            if (animateNavBackIcon) {
-                if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
-                    sliding.find('.back .icon').transform('translate3d(' + (-slidingOffset) + 'px,0,0)');
-                }
-            }
-            sliding.transform('translate3d(' + slidingOffset + 'px,0,0)');
-        });
+      $(newNavbarInner).find('.sliding').each(function () {
+          var sliding = $(this);
+          var slidingOffset = newNavbarPosition === 'right' ? this.f7NavbarRightOffset : this.f7NavbarLeftOffset;
+          if (animateNavBackIcon) {
+              if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
+                  sliding.find('.back .icon').transform('translate3d(' + (-slidingOffset) + 'px,0,0)');
+              }
+          }
+          sliding.transform('translate3d(' + slidingOffset + 'px,0,0)');
+      });
     }
     /**
      * Set navbars classess for animation
@@ -166,6 +167,8 @@ export default  class Navbar extends React.Component{
                navbarInner.removeClass('navbar-from-center-to-left').addClass('navbar-on-left');
                finishCallback()
             }, transitionDuration);
+
+            let rightNavbarInner = navbarInner.closest('.navbar').find('.navbar-inner:first-child')
             navbarInner.find('.sliding').each(function () {
                 var sliding = $(this);
                 var rightText;
@@ -178,6 +181,7 @@ export default  class Navbar extends React.Component{
                         sliding.find('.back .icon').transform('translate3d(' + (-this.f7NavbarLeftOffset) + 'px,0,0)');
                     }
                 }
+                // console.log('leave', this, this.f7NavbarLeftOffset)
                 sliding.transform('translate3d(' + (this.f7NavbarLeftOffset) + 'px,0,0)');
             });
             
@@ -187,6 +191,11 @@ export default  class Navbar extends React.Component{
       if (direction === 'to-right') {
         if(action === 'enter'){
           navbarInner.removeClass(removeClasses).addClass('navbar-from-left-to-center');
+          window.setTimeout(function (e) {
+             navbarInner.removeClass('navbar-from-left-to-center').addClass('navbar-on-center');
+             finishCallback()
+          }, transitionDuration);
+
           navbarInner.find('.sliding').each(function () {
               var sliding = $(this);
               sliding.transform('translate3d(0px,0,0)');
@@ -196,12 +205,13 @@ export default  class Navbar extends React.Component{
                   }
               }
           });
-          window.setTimeout(function (e) {
-             navbarInner.removeClass('navbar-from-left-to-center').addClass('navbar-on-center');
-             finishCallback()
-          }, transitionDuration);
+          
         } else if(action === 'leave'){
           navbarInner.removeClass(removeClasses).addClass('navbar-from-center-to-right');
+          window.setTimeout(function (e) {
+             navbarInner.removeClass('navbar-from-center-to-right').addClass('navbar-on-right');
+             finishCallback()
+          }, transitionDuration);
           navbarInner.find('.sliding').each(function () {
               var sliding = $(this);
               if (animateNavBackIcon) {
@@ -211,14 +221,28 @@ export default  class Navbar extends React.Component{
               }
               sliding.transform('translate3d(' + (this.f7NavbarRightOffset) + 'px,0,0)');
           });
-          window.setTimeout(function (e) {
-             navbarInner.removeClass('navbar-from-center-to-right').addClass('navbar-on-right');
-             finishCallback()
-          }, transitionDuration);
+          
         }
       }
   }
 
+  componentDidMount(){
+    console.log("componentDidMount", this.props.location && this.props.location.pathname)
+    var node = this.node = $(ReactDOM.findDOMNode(this));
+    var onResize =  (event) => {
+      this.sizeNavbar(node)
+    }
+    $(window).on('resize', onResize);
+    this.destroy = () => {
+      $(window).off('resize', onResize)
+    }
+    this.sizeNavbar(node)
+  }
+
+  componentWillUnMount(){
+    this.destroy()
+  }
+  
   componentWillAppear(done) {
     console.log('componentWillAppear', this.props.location && this.props.location.pathname);
     done()
@@ -229,19 +253,27 @@ export default  class Navbar extends React.Component{
     //this._enterStyle();
   }
   componentWillEnter (done) {
-    console.log('componentWillEnter', this.props.location && this.props.location.pathname, history.paths);
-    if( !Navbar.anim ){
-       
+    console.log('componentWillEnter', this.props.location && this.props.location.pathname);
+    if (!Navbar.anim ){
+      setTimeout(function(){
+        Navbar.anim = true
+      }, transitionDuration)
       done()
       return;
     }
-    var navbarinner = $(ReactDOM.findDOMNode(this));
+    var node = this.node || $(ReactDOM.findDOMNode(this));
     if(history.inBack){
-      this.prepareNavbar (navbarinner, 'left')
-      this.animateNavbars(navbarinner, 'enter', 'to-right', done)
+      this.prepareNavbar (node, 'left')
+      setTimeout( () => {
+        this.animateNavbars(node, 'enter', 'to-right', done)
+      },17)
+      
     }else{
-      this.prepareNavbar (navbarinner, 'right')
-      this.animateNavbars(navbarinner, 'enter', 'to-left', done)
+      this.prepareNavbar (node, 'right')
+      setTimeout( () => {
+        this.animateNavbars(node, 'enter', 'to-left', done)
+      }, 17)
+      
     }
     
     
@@ -252,19 +284,16 @@ export default  class Navbar extends React.Component{
   }
 
   componentWillLeave (done) {
-    console.log('componentWillLeave', this.props.location && this.props.location.pathname , history.paths);
+    console.log('componentWillLeave', this.props.location && this.props.location.pathname );
     if( !Navbar.anim ){
-       Navbar.anim = true
       done()
       return;
     }
-    var navbarinner = $(ReactDOM.findDOMNode(this));
+    var node = this.node || $(ReactDOM.findDOMNode(this));
     if(history.inBack){
-      this.animateNavbars(navbarinner, 'leave', 'to-right', done)
-
+      this.animateNavbars(node, 'leave', 'to-right', done)
     } else {
-      this.animateNavbars(navbarinner, 'leave', 'to-left', done)
-
+      this.animateNavbars(node, 'leave', 'to-left', done)
     }
     
   }
@@ -273,10 +302,26 @@ export default  class Navbar extends React.Component{
     console.log('componentDidLeave', this.props.location && this.props.location.pathname);
   }
 
+  handleBackClick(e){
+    e.preventDefault()
+    history.go(-1)
+  }
+
   render(){
+    if(this.canBack === undefined){
+      this.canBack = history.canBack;
+    }
+    
     return (
-      <div className="navbar-inner" ref="navbarinner"></div>
+       <div className="navbar-inner" >
+          {
+          this.canBack ? 
+          <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
+          }
+            
+          <div className="center sliding">{this.props.title || ''}</div>
+        </div>
     )
   }
 }
- Navbar.anim = true
+Navbar.anim = true

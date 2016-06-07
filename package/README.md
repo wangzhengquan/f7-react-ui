@@ -1,0 +1,1 @@
+npm install f7-react-ui
