@@ -32,7 +32,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router} from 'react-router'
-import history from './history'
+import history from 'react-ui/history'
 import rootRoute from './router'
 import 'react-ui/fast-clicks'
 require('react-ui/resources/less/intro.less');

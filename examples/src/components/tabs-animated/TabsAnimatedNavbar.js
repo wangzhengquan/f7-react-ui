@@ -4,7 +4,7 @@ import Navbar from '../Navbar'
 import $ from 'react-ui/dom'
 import Panels from 'react-ui/panels'
 import Tabs from 'react-ui/tabs'
-import history from '../../history'
+import history from 'react-ui/history'
 
 import LeftPanelContent from '../panels/LeftPanel'
 

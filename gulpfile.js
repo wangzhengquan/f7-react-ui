@@ -21,18 +21,18 @@ var paths = {
       'src/**/*.js'
        
     ],
-    lib: 'build/modules',
+    lib: 'build',
 };
 
  
 
  
 
-gulp.task('react:clean', function() {
+gulp.task('clean', function() {
   return del([paths.lib]);
 });
 
-gulp.task('react:modules', function() {
+gulp.task('modules', function() {
   // return gulp
   //       .src(paths.react.src)
   //       .transform("babelify", {presets: ["es2015", "react"]})
@@ -50,4 +50,4 @@ gulp.task('react:modules', function() {
 });
 
 
-gulp.task('default', [ 'react:modules']);
+gulp.task('default', [ 'modules']);

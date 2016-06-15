@@ -3,6 +3,7 @@
 =============================================================================== */
 import $ from './dom'
 import Swiper from './swiper'
+import MicroEvent from './microevent'
 require('./resources/less/tabs.less')
 class Tabs {
 	/**
@@ -178,11 +179,13 @@ class Tabs {
 	        }
 	    }
 	    if (oldTabLink && oldTabLink.length > 0) oldTabLink.removeClass('active');
-
+	    
+	    this.fire('show', newTab, tabLink)
 	    return true;
 	}
 }
 
+MicroEvent.mixin(Tabs)
 export default Tabs
 /*
 var Tabs = {

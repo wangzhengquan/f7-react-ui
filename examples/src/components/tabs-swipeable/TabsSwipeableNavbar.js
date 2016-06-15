@@ -4,7 +4,7 @@ import Navbar from '../Navbar'
 import $ from 'react-ui/dom'
 import Panels from 'react-ui/panels'
 import Tabs from 'react-ui/tabs'
-import history from '../../history'
+import history from 'react-ui/history'
 
 import LeftPanelContent from '../panels/LeftPanel'
 require('react-ui/resources/less/forms.less')
@@ -25,6 +25,9 @@ class TabsNavBar extends Navbar{
     componentDidMount(){
       super.componentDidMount()
       this.tabs = new Tabs({tabbar: this.refs.tabbar})
+      this.tabs.on('show', (tab, tablink) => {
+        console.log('tab', tab)
+      })
     }
 
     handleClickOpenLeftPanel(event){

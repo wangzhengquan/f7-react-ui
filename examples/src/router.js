@@ -100,6 +100,19 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
+        },  { 
+          path: 'infinite-scroll',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/infinite-scroll/InfiniteScrollNavbar'),
+                  page: require('./components/infinite-scroll/InfiniteScrollPage')
+                })
+                document.querySelector('title').innerHTML='Infinite scroll'
+                Modals.hideIndicator()
+            })
+          }
         }]
 
 

@@ -8,7 +8,7 @@ class List extends React.Component{
   
   render(){
     return (
-    	<div className="list-block" style={this.props.style}>
+    	<div className={classNames("list-block", this.props.className)} style={this.props.style}>
         <ul>
       	{
   	      React.Children.map(this.props.children, function (child) {

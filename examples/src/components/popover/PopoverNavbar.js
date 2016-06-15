@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Link} from 'react-router'
 
 import Navbar from '../Navbar'
-import history from '../../history'
+import history from 'react-ui/history'
 import Modals from 'react-ui/modals'
 import List from 'react-ui/lists'
 

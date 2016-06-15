@@ -1,7 +1,7 @@
 import React  from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router'
-import history from '../../history'
+import history from 'react-ui/history'
 
 import AnimationPage from '../Page'
 import classNames from 'classnames';

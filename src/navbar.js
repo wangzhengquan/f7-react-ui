@@ -7,13 +7,9 @@ const transitionDuration= 400;
 const rtl = false
 
 export default  class Navbar extends React.Component{
-  
-
     constructor(props) {
       super(props);
     }
-    
-
 
     sizeNavbar(navbarinner){
       var n = $(navbarinner);

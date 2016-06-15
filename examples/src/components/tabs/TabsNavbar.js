@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Navbar from '../Navbar'
 import $ from 'react-ui/dom'
 import Panels from 'react-ui/panels'
-import history from '../../history'
+import history from 'react-ui/history'
 
 import LeftPanelContent from '../panels/LeftPanel'
 
@@ -36,7 +36,7 @@ class TabsNavBar extends Navbar{
         this.canBack ? 
         <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
         }
-        <div className="center sliding">ReactUI</div>
+        <div className="center sliding">Tabs</div>
         <div className="right">
           <a href="#" onClick={this.handleClickOpenLeftPanel.bind(this)} className="open-panel link icon-only"><i className="icon icon-bars"></i></a>
         </div>

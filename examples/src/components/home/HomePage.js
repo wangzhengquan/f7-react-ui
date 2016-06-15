@@ -22,7 +22,7 @@ class AboutPage extends AnimationPage{
         <div className="content-block"><Link to="about.html" className="button">About ReactUI</Link></div>
         <div className="content-block-title">ReactUI Kitchen Sink</div>
         <List>
-          <Link to="accordion.html" className="item-link">
+          <Link to="accordion" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -30,7 +30,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="autocomplete.html" className="item-link">
+          <Link to="autocomplete" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -39,7 +39,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="calendar.html" className="item-link">
+          <Link to="calendar" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -48,7 +48,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="cards.html" className="item-link">
+          <Link to="cards" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -56,7 +56,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="contacts.html" className="item-link">
+          <Link to="contacts" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -64,7 +64,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="forms.html" className="item-link">
+          <Link to="forms" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -72,7 +72,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="grid.html" className="item-link">
+          <Link to="grid" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -80,7 +80,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="infinite-scroll.html" className="item-link">
+          <Link to="infinite-scroll" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -88,7 +88,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="lazy-load.html" className="item-link">
+          <Link to="lazy-load" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -96,7 +96,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="list-view.html" className="item-link">
+          <Link to="list-view" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -104,7 +104,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="login-screen.html" className="item-link">
+          <Link to="login-screen" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -112,7 +112,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="media-lists.html" className="item-link">
+          <Link to="media-lists" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -120,7 +120,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="messages.html" className="item-link">
+          <Link to="messages" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -136,7 +136,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="bars.html" className="item-link">
+          <Link to="bars" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -144,7 +144,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="notifications.html" className="item-link">
+          <Link to="notifications" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -152,7 +152,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="photo-browser.html" className="item-link">
+          <Link to="photo-browser" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -160,7 +160,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="picker.html" className="item-link">
+          <Link to="picker" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -176,7 +176,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="preloader.html" className="item-link">
+          <Link to="preloader" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -184,7 +184,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="progressbar.html" className="item-link">
+          <Link to="progressbar" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -193,7 +193,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="pull-to-refresh.html" className="item-link">
+          <Link to="pull-to-refresh" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -201,7 +201,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="searchbar.html" className="item-link">
+          <Link to="searchbar" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -209,7 +209,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="panels.html" className="item-link">
+          <Link to="panels" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -217,7 +217,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="sortable-list.html" className="item-link">
+          <Link to="sortable-list" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -225,7 +225,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="swipe-delete.html" className="item-link">
+          <Link to="swipe-delete" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -233,7 +233,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="swiper.html" className="item-link">
+          <Link to="swiper" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -251,7 +251,7 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
-          <Link to="virtual-list.html" className="item-link">
+          <Link to="virtual-list" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
