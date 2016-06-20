@@ -113,6 +113,72 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
+        },
+        { 
+          path: 'grid',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/grid/GridNavbar'),
+                  page: require('./components/grid/GridPage')
+                })
+                document.querySelector('title').innerHTML='Grid'
+                Modals.hideIndicator()
+            })
+          }
+        }, { 
+          path: 'picker',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/picker/PickerNavbar'),
+                  page: require('./components/picker/PickerPage')
+                })
+                document.querySelector('title').innerHTML='Picker'
+                Modals.hideIndicator()
+            })
+          }
+        }, { 
+          path: 'forms',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/forms/FormsNavbar'),
+                  page: require('./components/forms/FormsPage')
+                })
+                document.querySelector('title').innerHTML='Forms'
+                Modals.hideIndicator()
+            })
+          }
+        }, { 
+          path: 'forms-elements',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/forms-elements/FormsElementsNavbar'),
+                  page: require('./components/forms-elements/FormsElementsPage')
+                })
+                document.querySelector('title').innerHTML='Forms Elements'
+                Modals.hideIndicator()
+            })
+          }
+        }, { 
+          path: 'list-view',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/list-view/ListViewNavbar'),
+                  page: require('./components/list-view/ListViewPage')
+                })
+                document.querySelector('title').innerHTML='List View'
+                Modals.hideIndicator()
+            })
+          }
         }]
 
 

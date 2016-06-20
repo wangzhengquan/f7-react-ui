@@ -44,6 +44,8 @@ require('react-ui/resources/less/toolbars.less');
 require('react-ui/resources/less/toolbars-pages.less');
 require('react-ui/resources/less/tabs.less');
 require('react-ui/resources/less/badges.less');
+require('./resources/less/app.less');
+
 
 
 // require('react-ui/resources/less/react-ui.ios.less')

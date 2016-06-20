@@ -487,8 +487,10 @@ var Modals = {
 	}
 }
 
-$(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay', function(e){
+$(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay, .close-picker', function(e){
+
 	var clicked = $(this);
+	var isLink = clicked[0].nodeName.toLowerCase() === 'a';
 	// Close Modal
     if (clicked.hasClass('modal-overlay')) {
         if ($('.modal.modal-in').length > 0 && Modals.params.modalCloseByOutside)
@@ -506,6 +508,25 @@ $(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay',
         if ($('.picker-modal.modal-in').length > 0)
             Modals.closeModal('.picker-modal.modal-in');
     }
+
+    // Picker
+    if (clicked.hasClass('close-picker')) {
+    	if(isLink){
+    		e.preventDefault()
+    	}
+        var pickerToClose = $('.picker-modal.modal-in');
+        if (pickerToClose.length > 0) {
+            Modals.closeModal(pickerToClose);
+        }
+        else {
+            pickerToClose = $('.popover.modal-in .picker-modal');
+            if (pickerToClose.length > 0) {
+                Modals.closeModal(pickerToClose.parents('.popover'));
+            }
+        }
+    }
 });
+
+
 
 export default Modals
