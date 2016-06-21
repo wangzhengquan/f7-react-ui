@@ -463,5 +463,26 @@ var Template = window.Template = (function () {
     return t7;
 })();
 
+/*===========================
+Compile Template7 Templates On App Init
+===========================*/
+var initTemplate7Templates  = function () {
+    Template.templates = Template.templates || {};
+    Template.data = Template.data || {};
+    Template.cache = Template.cache || {};
+
+    // app.templates = Template.templates;
+    // app.templateData = Template.data;
+    // app.templateCache = Template.cache;
+
+    // Precompile templates on app init
+    // if (!app.params.precompileTemplates) return;
+    // $('script[type="text/template"]').each(function () {
+    //     var id = $(this).attr('id');
+    //     if (!id) return;
+    //     Template.templates[id] = Template.compile($(this).html());
+    // });
+};
+initTemplate7Templates();
 
 export default Template

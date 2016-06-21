@@ -1,4 +1,5 @@
-var params = {
+import reactUI from './react-ui'
+var params = reactUI.params = {
     cache: true,
     cacheIgnore: [],
     cacheIgnoreGetParameters: false,

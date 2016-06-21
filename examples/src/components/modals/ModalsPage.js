@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Modals from 'react-ui/modals'
 import MessageBox from 'react-ui/message-box'
 import ActionSheet from 'react-ui/action-sheet'
+import Views from 'react-ui/views'
 require('react-ui/resources/less/content-block.less')
 
 require('react-ui/resources/less/forms.less')
@@ -17,10 +18,46 @@ class AboutPage extends AnimationPage{
     super(props);
   }
    
+
+  handleSlideInModalClick(event){
+    event.preventDefault()
+
+    var mainView = Views.addView('.view-main', {
+        // Enable Dynamic Navbar for this view
+        dynamicNavbar: true,
+    });
+    var dynamicPageIndex = 1;
+    mainView.router.loadContent(
+        '<!-- Top Navbar-->' +
+        '<div class="navbar">' +
+        '  <div class="navbar-inner">' +
+        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
+        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
+        '  </div>' +
+        '</div>' +
+        '<div class="pages">' +
+        '  <!-- Page, data-page contains page name-->' +
+        '  <div data-page="dynamic-pages" class="page">' +
+        '    <!-- Scrollable page content-->' +
+        '    <div class="page-content">' +
+        '      <div class="content-block">' +
+        '        <div class="content-block-inner">' +
+        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
+        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
+        '        </div>' +
+        '      </div>' +
+        '    </div>' +
+        '  </div>' +
+        '</div>'
+    );
+  }
+
   handleAlertClick(event) {
     event.preventDefault()
     Modals.alert('Hello', 'ReactUI')
   }
+
+
 
   handleConfirmClick(event) {
     event.preventDefault()
@@ -232,6 +269,13 @@ class AboutPage extends AnimationPage{
             <div className="content-block-inner">
               <p>This feature doesn't allow to open multiple modals at the same time, and will automatically open next modal when you close the current one. Such behavior is similar to browser native alerts: </p>
               <p><a href="#" onClick={this.handleAlertsClick.bind(this)} className="button demo-modals-stack">Open Multiple Alerts</a></p>
+            </div>
+          </div>
+          <div className="content-block-title">Modals Page</div>
+          <div className="content-block">
+            <div className="content-block-inner">
+              <p>Modal slide in</p>
+              <p><a href="#" onClick={this.handleSlideInModalClick.bind(this)} className="button demo-modals-stack">Open Modal</a></p>
             </div>
           </div>
         </div>

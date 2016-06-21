@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactTransitionGroup from 'react/lib/ReactTransitionGroup'
-import ReactUI from 'react-ui/ReactUI'
+import ReactUI from 'react-ui/react-ui'
 // import HomePage from './home/HomePage'
 import classNames from 'classnames';
 
@@ -18,7 +18,7 @@ class App extends React.Component{
 
     return (
 
-        <div className={classNames("view", this.props.className)} >
+        <div className={classNames("view view-main", this.props.className)} >
           {/*-----navbar------*/}
           <ReactTransitionGroup component="div" className={classNames("navbar", {'navbar-hidden': !!!navbar})}>
              {navbar ? React.cloneElement(navbar, {
