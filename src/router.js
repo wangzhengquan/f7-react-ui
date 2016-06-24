@@ -4,7 +4,6 @@
 import $ from './dom'
 import PARAMS from './params'
 import t7 from './template'
-// import Views from './views'
 // Size Navbars
 var sizeNavbar = function(navbarinner) {
   var n = $(navbarinner);
@@ -302,7 +301,6 @@ var router = {
 
 
 router._load = function (view, options) {
-    // debugger
     options = options || {};
 
     var url = options.url,
@@ -376,7 +374,6 @@ router._load = function (view, options) {
         if (pagesInView.length > 1) {
             for (i = 0; i < pagesInView.length - 2; i++) {
                 if (!view.params.domCache) {
-                    //reactUI.pageRemoveCallback(view, pagesInView[i], 'left');
                     $(pagesInView[i]).remove();
                 }
                 else {
@@ -384,7 +381,6 @@ router._load = function (view, options) {
                 }
             }
             if (!view.params.domCache) {
-                //reactUI.pageRemoveCallback(view, pagesInView[i], 'left');
                 $(pagesInView[i]).remove();
             }
             else {
@@ -477,8 +473,6 @@ router._load = function (view, options) {
             if (dynamicNavbar) oldNavbarInner.addClass('cached');
         }
         else {
-            // reactUI.pageRemoveCallback(view, oldPage[0], reloadPosition);
-            // if (dynamicNavbar) reactUI.navbarRemoveCallback(view, oldPage[0], navbar[0], oldNavbarInner[0]);
             oldPage.remove();
             if (dynamicNavbar) oldNavbarInner.remove();
         }
@@ -487,8 +481,12 @@ router._load = function (view, options) {
 
     sizeNavbar(newNavbarInner[0]);
     newNavbarInner.on('click', '.back', function(event){
-        event.preventDefault();
-        view.router.back()
+        var clicked = $(this);
+        var isLink = clicked[0].nodeName.toLowerCase() === 'a';
+        if(isLink)
+            event.preventDefault();
+
+        view.back()
     })
 
     if (options.reload) {
@@ -502,8 +500,6 @@ router._load = function (view, options) {
     }
     // Force reLayout
     var clientLeft = newPage[0].clientLeft;
-
-    
 
     function afterAnimation() {
         view.allowPageChange = true;
@@ -558,12 +554,13 @@ router._load = function (view, options) {
         if (dynamicNavbar) newNavbarInner.find('.sliding, .sliding .back .icon').transform('');
         afterAnimation();
     }
-
-    return [newNavbarInner, newPage]
+    console.log("============new page ", newPage)
+    return [newNavbarInner[0], newPage[0]]
 
 };
 
 router.load = function (view, options) {
+  debugger
     if (router.preroute(view, options)) {
         return false;
     }
@@ -633,12 +630,10 @@ router._back = function (view, options) {
 
     // Animation
     function afterAnimation() {
-        
         router.afterBack(view, oldPage[0], newPage[0]);
     }
-    function animateBack() {
-         
 
+    function animateBack() {
         if (animatePages) {
             // Set pages before animation
             router.animatePages(newPage, oldPage, 'to-right', view);
@@ -702,49 +697,7 @@ router._back = function (view, options) {
             navbarInners = viewContainer.find('.navbar-inner:not(.cached)');
             newNavbarInner.addClass('navbar-on-left').removeClass('cached');
         }
-        // Remove/hide previous page in force mode
-        if (force) {
-            var pageToRemove, navbarToRemove;
-            pageToRemove = $(pagesInView[pagesInView.length - 2]);
-
-            if (dynamicNavbar) navbarToRemove = $(pageToRemove[0] && pageToRemove[0].f7RelatedNavbar || navbarInners[navbarInners.length - 2]);
-            if (view.params.domCache && view.initialPages.indexOf(pageToRemove[0]) >= 0) {
-                if (pageToRemove.length && pageToRemove[0] !== newPage[0]) pageToRemove.addClass('cached');
-                if (dynamicNavbar && navbarToRemove.length && navbarToRemove[0] !== newNavbarInner[0]) {
-                    navbarToRemove.addClass('cached');
-                }
-            }
-            else {
-                var removeNavbar = dynamicNavbar && navbarToRemove.length;
-                if (pageToRemove.length) {
-                    // reactUI.pageRemoveCallback(view, pageToRemove[0], 'right');
-                    if (removeNavbar) {
-                        // reactUI.navbarRemoveCallback(view, pageToRemove[0], navbar[0], navbarToRemove[0]);
-                    }
-                    pageToRemove.remove();
-                    if (removeNavbar) navbarToRemove.remove();
-                }
-                else if (removeNavbar) {
-                    // reactUI.navbarRemoveCallback(view, pageToRemove[0], navbar[0], navbarToRemove[0]);
-                    navbarToRemove.remove();
-                }
-            }
-            pagesInView = pagesContainer.children('.page:not(.cached)');
-            if (dynamicNavbar) {
-                navbarInners = viewContainer.find('.navbar-inner:not(.cached)');
-            }
-            if (view.history.indexOf(url) >= 0) {
-                view.history = view.history.slice(0, view.history.indexOf(url) + 2);
-            }
-            else {
-                if (view.history[[view.history.length - 2]]) {
-                    view.history[view.history.length - 2] = url;
-                }
-                else {
-                    view.history.unshift(url);
-                }
-            }
-        }
+         
 
         oldPage = $(pagesInView[pagesInView.length - 1]);
         if (view.params.domCache) {
@@ -826,74 +779,6 @@ router._back = function (view, options) {
         return;
     }
 
-    if (!force) {
-        // Go back when there is no pages on left
-        if (!preloadOnly) {
-            view.url = view.history[view.history.length - 2];
-            url = view.url;
-        }
-
-        if (content) {
-            parseNewPage();
-            setPages();
-            return;
-        }
-        else if (pageName) {
-            // Get dom cached pages
-            newPage = $(viewContainer).find('.page[data-page="' + pageName + '"]');
-            if (view.params.dynamicNavbar) {
-                newNavbarInner = $(viewContainer).find('.navbar-inner[data-page="' + pageName + '"]');
-                if (newNavbarInner.length === 0 && newPage[0].f7RelatedNavbar) {
-                    newNavbarInner = $(newPage[0].f7RelatedNavbar);
-                }
-                if (newNavbarInner.length === 0 && newPage[0].f7PageData) {
-                    newNavbarInner = $(newPage[0].f7PageData.navbarInnerContainer);
-                }
-            }
-            setPages();
-            return;
-        }
-        else {
-            view.allowPageChange = true;
-            return;
-        }
-    }
-    else {
-        if (url && url === view.url || pageName && view.activePage && view.activePage.name === pageName) {
-            view.allowPageChange = true;
-            return;
-        }
-        // Go back with force url
-        if (content) {
-            parseNewPage();
-            setPages();
-            return;
-        }
-        else if (pageName && view.params.domCache) {
-            if (pageName) url = '#' + pageName;
-
-            newPage = $(viewContainer).find('.page[data-page="' + pageName + '"]');
-            if (newPage[0].f7PageData && newPage[0].f7PageData.url) {
-                url = newPage[0].f7PageData.url;
-            }
-            if (view.params.dynamicNavbar) {
-                newNavbarInner = $(viewContainer).find('.navbar-inner[data-page="' + pageName + '"]');
-                if (newNavbarInner.length === 0 && newPage[0].f7RelatedNavbar) {
-                    newNavbarInner = $(newPage[0].f7RelatedNavbar);
-                }
-                if (newNavbarInner.length === 0 && newPage[0].f7PageData) {
-                    newNavbarInner = $(newPage[0].f7PageData.navbarInnerContainer);
-                }
-            }
-            setPages();
-            return;
-        }
-        else {
-            view.allowPageChange = true;
-            return;
-        }
-    }
-
 };
 router.back = function (view, options) {
     if (router.preroute(view, options)) {
@@ -924,38 +809,7 @@ router.back = function (view, options) {
         router._back(view, options);
         return;
     }
-    if (!force) {
-        url = options.url = view.history[view.history.length - 2];
-        if (!url) {
-            view.allowPageChange = true;
-            return;
-        }
-        if (url.indexOf('#') === 0 && view.contentCache[url]) {
-            proceed(view.contentCache[url]);
-            return;
-        }
-        else if (url.indexOf('#') === 0 && view.params.domCache) {
-            if (!pageName) options.pageName = url.split('#')[1];
-            proceed();
-            return;
-        }
-         
-    }
-    else {
-        // Go back with force url
-        if (!url && content) {
-            proceed(content);
-            return;
-        }
-        else if (!url && pageName) {
-            if (pageName) url = '#' + pageName;
-            proceed();
-            return;
-        }
-         
-    }
-    view.allowPageChange = true;
-    return;
+     
 };
 
 router.afterBack = function (view, oldPage, newPage) {
@@ -1019,7 +873,6 @@ router.afterBack = function (view, oldPage, newPage) {
         delete view.contentCache[previousURL];
     }
 
-    // if (PARAMS.pushState && view.main) app.pushStateClearQueue();
 
     // Preload previous page
     if (view.params.preloadPreviousPage) {

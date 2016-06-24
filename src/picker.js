@@ -88,6 +88,7 @@ var Picker = function (params) {
                 valueIndex++;
             }
         }
+        p.updateValue();
     };
     p.updateValue = function (forceValues) {
         var newValue = forceValues || [];
@@ -111,6 +112,16 @@ var Picker = function (params) {
             $(p.input).trigger('change');
         }
     };
+
+    p.clearValue = function() {
+        if (p.params.onChange) {
+            p.params.onChange(p);
+        }
+        if (p.input && p.input.length > 0) {
+            $(p.input).val('');
+            $(p.input).trigger('change');
+        }
+    }
 
     // Columns Handlers
     p.initPickerCol = function (colElement, updateItems) {
@@ -545,7 +556,14 @@ var Picker = function (params) {
                     onPickerClose();
                 });
             }
-
+            p.container.on('click', '.clear-picker', function(event){
+                var clicked = $(this);
+                var isLink = clicked[0].nodeName.toLowerCase() === 'a';
+                if(isLink)
+                    event.preventDefault()
+                p.clearValue()
+                p.close()
+            })
             // Store picker instance
             p.container[0].f7Picker = p;
 
@@ -557,22 +575,31 @@ var Picker = function (params) {
             });
             
             // Set value
-            if (!p.initialized) {
-                if (p.value) p.setValue(p.value, 0);
-                else if (p.params.value) {
-                    p.setValue(p.params.value, 0);
-                }
-            }
-            else {
-                if (p.value) p.setValue(p.value, 0);
-            }
+            // if (!p.initialized) {
+            //     if (p.value) p.setValue(p.value, 0);
+            //     else if (p.params.value) {
+            //         p.setValue(p.params.value, 0);
+            //     }
+            // }
+            // else {
+            //     if (p.value) p.setValue(p.value, 0);
+            // }
 
             // Material Focus
             if (p.input && p.input.length > 0 && gparams.material) {
                 p.input.trigger('focus');
             }
         }
-
+        // Set value
+        if (!p.initialized) {
+            if (p.value) p.setValue(p.value, 0);
+            else if (p.params.value) {
+                p.setValue(p.params.value, 0);
+            }
+        }
+        else {
+            if (p.value) p.setValue(p.value, 0);
+        }
         // Set flag
         p.opened = true;
         p.initialized = true;
@@ -599,6 +626,7 @@ var Picker = function (params) {
         if (p.params.input && p.input.length > 0) {
             p.input.off('click focus', openOnInput);
         }
+        p.container.off('click', '.clear-picker')
         $('html').off('click', closeOnHTMLClick);
         $(window).off('resize', resizeCols);
     };

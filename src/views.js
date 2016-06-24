@@ -1,11 +1,10 @@
 /*======================================================
 ************   Views   ************
 ======================================================*/
-import reactUI from 'react-ui'
 import PARAMS from './params'
 import router from './router'
 import $ from './dom'
-var views = reactUI.views = [];
+var views = [];
 var View = function (selector, params) {
     var defaults = {
         dynamicNavbar: false,
@@ -168,7 +167,7 @@ var View = function (selector, params) {
    
 
     // Add view to app
-    reactUI.views.push(view);
+    views.push(view);
     // if (view.main) reactUI.mainView = view;
 
     // Router 
@@ -265,7 +264,7 @@ var View = function (selector, params) {
 };
 
 View.views = views;
-View.addView = reactUI.addView = function (selector, params) {
+View.addView = function (selector, params) {
     return new View(selector, params);
 };
 

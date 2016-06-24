@@ -35,7 +35,7 @@ class InfiniteScrollPage extends Page{
 
       if(this.state.data.length >= params.maxItems){
         this.setState({
-          loadOver: true
+          reachLastOne: true
         })
         return
       }
@@ -49,6 +49,7 @@ class InfiniteScrollPage extends Page{
   	this.load(() => {
       loading = false
     })
+    
   }
 
   load ( cb ) {
@@ -88,7 +89,7 @@ class InfiniteScrollPage extends Page{
 	          	
 	        </List>
 
-	        {this.state.loadOver ? '' : <InfiniteScrollPreloader/>}
+	        {this.state.reachLastOne ? '' : <InfiniteScrollPreloader/>}
 	    </div>
 	  </div>
   	)

@@ -13,6 +13,8 @@ require('react-ui/resources/less/content-block.less')
 require('react-ui/resources/less/forms.less')
 require('react-ui/resources/less/grid.less')
 
+var dynamicPageIndex = 1;
+
 class AboutPage extends AnimationPage{
   constructor(props) {
     super(props);
@@ -26,12 +28,15 @@ class AboutPage extends AnimationPage{
         // Enable Dynamic Navbar for this view
         dynamicNavbar: true,
     });
-    var dynamicPageIndex = 1;
+    this.destroyList.push(function(){
+      mainView.destroy()
+    })
+    
     mainView.router.loadContent(
         '<!-- Top Navbar-->' +
         '<div class="navbar">' +
         '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
+        '    <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
         '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
         '  </div>' +
         '</div>' +
