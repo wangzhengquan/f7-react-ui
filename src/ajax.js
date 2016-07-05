@@ -38,7 +38,7 @@ Ajax.ajax = function(options) {
   for (let globalOptionName in globalAjaxOptions) {
     if (callbacks.indexOf(globalOptionName) < 0) defaults[globalOptionName] = globalAjaxOptions[globalOptionName];
   }
-
+//fireAjaxCallback('ajaxSuccess', { xhr: xhr }, 'success', responseData, xhr.status, xhr);
   // Function to run XHR callbacks and events
   function fireAjaxCallback(eventName, eventData, callbackName) {
     var a = arguments;
@@ -160,7 +160,7 @@ Ajax.ajax = function(options) {
           xhr.setRequestHeader('Content-Type', options.contentType);
         }
         postData = '';
-        var _data = Ajax.serializeObject(options.data);
+        var _data = URLUtil.serializeObject(options.data);
         if (options.contentType === 'multipart\/form-data') {
           boundary = '---------------------------' + Date.now().toString(16);
           _data = _data.split('&');

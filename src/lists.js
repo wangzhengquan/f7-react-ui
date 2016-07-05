@@ -12,6 +12,9 @@ class List extends React.Component{
         <ul>
       	{
   	      React.Children.map(this.props.children, function (child) {
+            if(child.type === 'li'){
+              return child
+            }
   	        return (<li>{child}</li>);
   	      })
         }

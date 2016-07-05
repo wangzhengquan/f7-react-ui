@@ -1,6 +1,9 @@
 import $ from './dom'
-let device = window.device = window.device || require('./device')
 require('./resources/less/modals.less');
+require('./resources/less/preloader.less');
+
+let device = window.device = window.device || require('./device')
+
 var _modalTemplateTempDiv = document.createElement('div');
 
 
@@ -468,7 +471,7 @@ var Modals = {
 	 
 	showPreloader (title) {
 	    return this.modal({
-	        title: title || '',
+	        title: title || 'Loading...',
 	        text: '<div class="preloader">' + (this.params.material ? this.params.materialPreloaderHtml : '') + '</div>',
 	        cssClass: 'modal-preloader'
 	    });

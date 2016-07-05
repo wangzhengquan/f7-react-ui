@@ -1,8 +1,8 @@
 import React  from 'react';
 import ReactDOM from 'react-dom';
-import $ from './dom'
-import history from './history'
-import PARAMS from './params'
+import $ from 'react-ui/dom'
+import history from '../history'
+import PARAMS from 'react-ui/params'
 const transitionDuration= 400;
 
 var sizeNavbar = function(navbarinner){
@@ -142,7 +142,7 @@ export default  class Navbar extends React.Component{
       if (direction === 'to-left') {
           if(action === 'enter'){
             navbarInner.removeClass(removeClasses).addClass('navbar-from-right-to-center');
-            window.setTimeout(function (e) {
+            window.setTimeout(function () {
 
                navbarInner.removeClass('navbar-from-right-to-center').addClass('navbar-on-center');
                finishCallback()
@@ -160,7 +160,7 @@ export default  class Navbar extends React.Component{
             
           } else if (action === 'leave'){
             navbarInner.removeClass(removeClasses).addClass('navbar-from-center-to-left');
-            window.setTimeout(function (e) {
+            window.setTimeout(function () {
                navbarInner.removeClass('navbar-from-center-to-left').addClass('navbar-on-left');
                finishCallback()
             }, transitionDuration);
@@ -312,7 +312,7 @@ export default  class Navbar extends React.Component{
     return (
        <div className="navbar-inner" >
           {
-          this.canBack ? 
+          this.canBack ?
           <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
           }
             

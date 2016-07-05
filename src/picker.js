@@ -5,6 +5,7 @@ import device from './device'
 import support from './support'
 import gparams from './params'
 import Modals from './modals'
+import MicroEvent from 'react-ui/microevent'
 import $ from './dom'
 require('./resources/less/modals.less')
 require('./resources/less/picker.less')
@@ -104,6 +105,7 @@ var Picker = function (params) {
         }
         p.value = newValue;
         p.displayValue = newDisplayValue;
+        p.fire('change', p, p.value, p.displayValue)
         if (p.params.onChange) {
             p.params.onChange(p, p.value, p.displayValue);
         }
@@ -114,6 +116,7 @@ var Picker = function (params) {
     };
 
     p.clearValue = function() {
+        p.fire('change', p, p.value, p.displayValue)
         if (p.params.onChange) {
             p.params.onChange(p);
         }
@@ -640,7 +643,7 @@ var Picker = function (params) {
 
     return p;
 };
-
+MicroEvent.mixin(Picker)
 Picker.picker = function (params) {
     return new Picker(params);
 };

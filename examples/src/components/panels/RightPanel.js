@@ -1,5 +1,4 @@
 import React  from 'react'
-import Panels from 'react-ui/panels'
 require('react-ui/resources/less/lists.less')
 require('react-ui/resources/less/content-block.less')
 
@@ -16,8 +15,8 @@ export default class LeftPanel extends React.Component{
 		    <div data-page="panel-right1" className="page">
 		      <div className="page-content">
 		        <div className="content-block">
-		          <p>This is a right side panel. You can close it by clicking outsite or on this link: 
-		            <a href="#" onClick={this.props.onClose} className="close-panel">close me</a>. 
+		          <p>This is a right side panel. You can close it by clicking outsite or on this link:
+		            <a href="#" onClick={this.props.onClose} className="close-panel">close me</a>.
 		            You can put here anything, even another isolated view, try it:
 		          </p>
 		        </div>

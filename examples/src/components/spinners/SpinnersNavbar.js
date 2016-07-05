@@ -1,6 +1,6 @@
 import Navbar from '../Navbar'
 
-class TabsNavBar extends Navbar{
+class SpinnersNavbar extends Navbar{
   
 
     constructor(props) {
@@ -13,7 +13,7 @@ class TabsNavBar extends Navbar{
     }
 }
 
-TabsNavBar.defaultProps = {
-  title: 'Tabs'
+SpinnersNavbar.defaultProps = {
+  title: 'Spinners'
 }
-module.exports = TabsNavBar
+module.exports = SpinnersNavbar

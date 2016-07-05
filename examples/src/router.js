@@ -13,7 +13,7 @@ const rootRoute = {
               
               cb(null, {
                 navbar: hideNavbar ? null : require('./components/home/HomeNavbar'),
-                page: require('./components/home/HomePage'),
+                page: require('./components/home/HomePage')
 
               })
               document.querySelector('title').innerHTML='example'
@@ -22,7 +22,7 @@ const rootRoute = {
           }
         },
 
-        childRoutes: [{ 
+        childRoutes: [{
           path: 'modals',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -35,7 +35,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        },{ 
+        },{
           path: 'popover',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -48,7 +48,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        },{ 
+        },{
           path: 'tabs',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -61,7 +61,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        },{ 
+        },{
           path: 'tabs-static',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -74,7 +74,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        }, { 
+        }, {
           path: 'tabs-animated',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -87,7 +87,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        }, { 
+        }, {
           path: 'tabs-swipeable',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -100,7 +100,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        },  { 
+        },  {
           path: 'infinite-scroll',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -114,7 +114,7 @@ const rootRoute = {
             })
           }
         },
-        { 
+        {
           path: 'grid',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -127,7 +127,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        }, { 
+        }, {
           path: 'picker',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -140,7 +140,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        }, { 
+        }, {
           path: 'forms',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -153,7 +153,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        }, { 
+        }, {
           path: 'forms-elements',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -166,7 +166,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        }, { 
+        }, {
           path: 'list-view',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -176,6 +176,45 @@ const rootRoute = {
                   page: require('./components/list-view/ListViewPage')
                 })
                 document.querySelector('title').innerHTML='List View'
+                Modals.hideIndicator()
+            })
+          }
+        }, {
+          path: 'searchbar',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/searchbar/SearchbarNavbar'),
+                  page: require('./components/searchbar/SearchbarPage')
+                })
+                document.querySelector('title').innerHTML='Search Bar'
+                Modals.hideIndicator()
+            })
+          }
+        },  {
+          path: 'spinners',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/spinners/SpinnersNavbar'),
+                  page: require('./components/spinners/SpinnersPage')
+                })
+                document.querySelector('title').innerHTML='Spinners'
+                Modals.hideIndicator()
+            })
+          }
+        },  {
+          path: 'preloader',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/preloader/PreloaderNavbar'),
+                  page: require('./components/preloader/PreloaderPage')
+                })
+                document.querySelector('title').innerHTML='Preloader'
                 Modals.hideIndicator()
             })
           }

@@ -1,6 +1,6 @@
 import Navbar from '../Navbar'
 
-class TabsNavBar extends Navbar{
+class PreloaderNavBar extends Navbar{
   
 
     constructor(props) {
@@ -13,7 +13,7 @@ class TabsNavBar extends Navbar{
     }
 }
 
-TabsNavBar.defaultProps = {
-  title: 'Tabs'
+PreloaderNavBar.defaultProps = {
+  title: 'Preloader'
 }
-module.exports = TabsNavBar
+module.exports = PreloaderNavBar

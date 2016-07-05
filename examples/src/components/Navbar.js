@@ -1,9 +1,9 @@
 import React  from 'react'
 import ReactDOM from 'react-dom';
-import AnimNavbar from 'react-ui/Navbar'
+import AnimNavbar from './Navbar_'
 import $ from 'react-ui/dom'
 import Panels from 'react-ui/panels'
-import history from 'react-ui/history'
+import history from '../history'
 
 import LeftPanelContent from './panels/LeftPanel'
 
@@ -19,7 +19,6 @@ export default  class Navbar extends AnimNavbar{
     event.preventDefault()
      //panel-reveal
     var panel = Panels.openPanel({position: 'left', className: 'layout-dark'})
-    console.log("panel===", panel)
     var onClose = (event) => {
       event.preventDefault()
       Panels.closePanel(panel)
@@ -34,7 +33,7 @@ export default  class Navbar extends AnimNavbar{
     return  (
     <div className="navbar-inner navbar-on-center">
       {
-      this.canBack ? 
+      this.canBack ?
       <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
       }
       <div className="center sliding">{this.props.title}</div>

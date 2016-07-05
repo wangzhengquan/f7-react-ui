@@ -1,0 +1,34 @@
+/**
+ * Spinners
+ * --------------------------------------------------
+ */
+@import url('_mixins.less');
+@import url('_colors-vars.less');
+
+@spinner-width:                   28px;
+@spinner-height:                  28px;
+
+@spinner-light-stroke:            #fff;
+@spinner-light-fill:              #fff;
+
+@spinner-default-stroke:          #9b9b9b;
+@spinner-default-fill:            #9b9b9b;
+
+.spinner {
+  stroke: @spinner-default-stroke;
+  fill: @spinner-default-fill;
+  svg {
+    width: @spinner-width;
+    height: @spinner-height;
+  }
+}
+
+.spinner-spiral {
+  .stop1 {
+    stop-color: @spinner-light-fill;
+    stop-opacity: 0;
+  }
+  
+  
+   
+}

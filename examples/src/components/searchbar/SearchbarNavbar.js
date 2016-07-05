@@ -1,6 +1,7 @@
+import React  from 'react'
 import Navbar from '../Navbar'
 
-class TabsNavBar extends Navbar{
+class ModalsNavBar extends Navbar{
   
 
     constructor(props) {
@@ -13,7 +14,7 @@ class TabsNavBar extends Navbar{
     }
 }
 
-TabsNavBar.defaultProps = {
-  title: 'Tabs'
+ModalsNavBar.defaultProps = {
+  title: 'Search Bar'
 }
-module.exports = TabsNavBar
+module.exports = ModalsNavBar

@@ -11,17 +11,25 @@
 
 var MicroEvent	= function(){};
 MicroEvent.prototype	= {
-	bind	: function(event, fct){
+	bind : function(event, fct){
 		this._events = this._events || {};
 		this._events[event] = this._events[event]	|| [];
 		this._events[event].push(fct);
-		console.log('on', this._events)
+		// console.log('on', this._events)
 	},
 	on: function(){
 		return this.bind.apply(this, arguments)
 	},
 	addListener: function(){
 		return this.addListener.apply(this, arguments)
+	},
+
+	onece: function(eventName, listener){
+		function proxy() {
+            listener.apply(this, arguments);
+            this.unbind.call(this, eventName, proxy);
+        }
+        return this.bind.call(this, eventName, proxy)
 	},
 
 	unbind	: function(event, fct){
@@ -32,7 +40,6 @@ MicroEvent.prototype	= {
 		}else{
 			this._events[event].splice(this._events[event].indexOf(fct), 1);
 		}
-		console.log('off', this._events)
 		
 	},
 	off: function(){
