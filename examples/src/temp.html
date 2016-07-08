@@ -1,18 +1,30 @@
-<div className="content-block">
-  <p>How about an activity indicator? Framework 7 has a nice one. The F7 preloader is made with SVG and animated with CSS so it can be easily resized. Two options are available: the default is for light background and another one is for dark background. The HTML is pretty easy, just add a .preloader className to any element. For the dark background option, also add a .preloader-white className. Here are some examples:</p>
-</div>
-<div className="content-block row ks-preloaders">
-  <div className="col-25">Default:
-    <br><span className="preloader"></span></div>
-  <div style="background-color: #222; color:#fff;" className="col-25">White:
-    <br><span className="preloader preloader-white"></span></div>
-  <div className="col-25">Big:
-    <br><span className="preloader ks-preloader-big"></span></div>
-  <div style="background-color: #222; color:#fff;" className="col-25">White:
-    <br><span className="preloader preloader-white ks-preloader-big"></span></div>
-</div>
-<div className="content-block">
-  <p>With <b>app.showIndicator()</b> you can call small overlay with indicator:</p><a href="#" className="button demo-indicator">Open small indicator overlay</a>
-  <p>With <b>app.showPreloader()</b> you can call modal window with preloader:</p><a href="#" className="button demo-preloader">Open preloader modal</a>
-  <p>With <b>app.showPreloader('My text...')</b> you can call it with custom title:</p><a href="#" className="button demo-preloader-custom">Open custom preloader</a>
+<div data-page="photo-browser" className="page">
+  <div className="page-content">
+    <div className="content-block">
+      <p>Photo Browser is a standalone and highly configurable component that allows to open window with photo viewer and navigation elements with the following features:</p>
+      <ul>
+        <li>Swiper between photos</li>
+        <li>Multi-gestures support for zooming</li>
+        <li>Toggle zoom by double tap on photo</li>
+        <li>Single click on photo to toggle Exposition mode</li>
+      </ul>
+      <p>Photo Browser could be opened in a three ways - as a Standalone component, in Popup, and as separate Page:</p>
+      <div className="row">
+        <div className="col-33"><a href="#" className="button ks-pb-standalone">Standalone</a></div>
+        <div className="col-33"><a href="#" className="button ks-pb-popup">Popup</a></div>
+        <div className="col-33"><a href="#" className="button ks-pb-page">Page</a></div>
+      </div>
+    </div>
+    <div className="content-block">
+      <p>For Popup and Standalone types, Photo Browser suppots 2 default themes - default Light (like in previous examples) and Dark theme. Here is a Dark theme examples:</p>
+      <div className="row">
+        <div className="col-50"><a href="#" className="button ks-pb-standalone-dark">Standalone</a></div>
+        <div className="col-50"><a href="#" className="button ks-pb-popup-dark">Popup</a></div>
+      </div>
+    </div>
+    <div className="content-block">
+      <p>Photo Browser also supports lazy loading for passed images:</p>
+      <p><a href="#" className="button ks-pb-lazy">Lazy Loading Images</a></p>
+    </div>
+  </div>
 </div>

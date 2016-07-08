@@ -1,7 +1,5 @@
 import React  from 'react';
 import ReactDOM from 'react-dom';
-
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
 import Modals from 'react-ui/modals'
@@ -24,9 +22,9 @@ class AboutPage extends AnimationPage{
   handleSlideInModalClick(event){
     event.preventDefault()
 
-    var mainView = Views.addView('.view-main', {
+    var mainView = window.mainView || Views.addView('.view-main', {
         // Enable Dynamic Navbar for this view
-        dynamicNavbar: true,
+        dynamicNavbar: true
     });
     this.destroyList.push(function(){
       mainView.destroy()
@@ -143,7 +141,7 @@ class AboutPage extends AnimationPage{
                 onClick: function () {
                     MessageBox.alert('You have clicked red button!');
                 }
-            },
+            }
         ],
         // Second group
         [
@@ -153,7 +151,6 @@ class AboutPage extends AnimationPage{
             }
         ]
     ];
-    console.log(event.target)
     ActionSheet.open(event.target, actionSheetButtons)
   }
 
@@ -257,8 +254,8 @@ class AboutPage extends AnimationPage{
           <div className="content-block-title">Action Sheet To Popover</div>
           <div className="content-block">
             <div className="content-block-inner">
-              <p>Action Sheet could be automatically converted to Popover (for tablets). This button will open Popover on tablets and Action Sheet on phones: 
-                <a href="#" onClick={this.handleActionsPopoverClick.bind(this)} style={{display: "inline-block", verticalAlign: "middle"}} className="button demo-actions-popover">Action/Popover</a>
+              <p>Action Sheet could be automatically converted to Popover (for tablets). This button will open Popover on tablets and Action Sheet on phones:
+                <a href="#" onClick={this.handleActionsPopoverClick.bind(this)} style={{display: 'inline-block', verticalAlign: 'middle'}} className="button demo-actions-popover">Action/Popover</a>
               </p>
             </div>
           </div>

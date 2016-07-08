@@ -97,6 +97,14 @@ var sizeNavbar = function(navbarinner){
   center.css({left: centerLeft + 'px'});
 }
 
+var sizeNavbars = function (viewContainer) {
+    if (PARAMS.material) return;
+    var navbarInner = viewContainer ? $(viewContainer).find('.navbar .navbar-inner:not(.cached)') : $('.navbar .navbar-inner:not(.cached)');
+    navbarInner.each(function () {
+        sizeNavbar(this)
+    })
+};
+
 export default  class Navbar extends React.Component{
     constructor(props) {
       super(props);
@@ -322,4 +330,6 @@ export default  class Navbar extends React.Component{
   }
 }
 Navbar.sizeNavbar = sizeNavbar;
+Navbar.sizeNavbars = sizeNavbars;
+
 Navbar.anim = true

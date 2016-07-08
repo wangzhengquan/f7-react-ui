@@ -466,9 +466,10 @@ function handleClick(e) {
         trackClick = false;
         return true;
     }
-    if (e.target.type === 'submit' && e.detail === 0) {
+    if ((e.target.type === 'submit' || e.target.type === 'radio') && e.detail === 0) {
         return true;
     }
+    
     if (!targetElement) {
         if (!isFormElement(e.target)) {
             allowClick =  true;

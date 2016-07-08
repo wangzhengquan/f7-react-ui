@@ -1,13 +1,9 @@
-import {  useRouterHistory } from 'react-router'
-import { createHistory } from 'history'
-// import createBrowserHistory from 'history/lib/createBrowserHistory'
-const history = useRouterHistory(createHistory)({ basename: 'http://localhost:9000/' })
-
+import { browserHistory } from 'react-router'
 const PATHS_LENGTH = -1
-let paths = history.paths = history.paths || []
-history.canBack = false
+let paths = browserHistory.paths = browserHistory.paths || []
+browserHistory.canBack = false
 
-const unlisten = history.listen(location => {
+const unlisten = browserHistory.listen(location => {
 
   let pathname = location.pathname
   if(pathname.charAt(0) !== '/'){
@@ -15,8 +11,8 @@ const unlisten = history.listen(location => {
   }
   // console.log('pathname====', pathname)
   let len = paths.length
-  history.inBack = (len > 1 && pathname === paths[len-2])
-  if(history.inBack) {
+  browserHistory.inBack = (len > 1 && pathname === paths[len-2])
+  if(browserHistory.inBack) {
     paths.pop()
      
   } else if (len === 0 || paths[len-1] !== pathname){
@@ -30,10 +26,9 @@ const unlisten = history.listen(location => {
     }
   }
 
-  history.canBack = (paths.length > 1)
+  browserHistory.canBack = (paths.length > 1)
    
   console.log("paths",paths)
 })
 
-export default history
-//const history = history
+export default browserHistory

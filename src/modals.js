@@ -490,10 +490,14 @@ var Modals = {
 	}
 }
 
-$(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay, .close-picker', function(e){
+$(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay, .close-picker, .close-popup', function(e){
 
 	var clicked = $(this);
 	var isLink = clicked[0].nodeName.toLowerCase() === 'a';
+
+	// Collect Clicked data- attributes
+    var clickedData = clicked.dataset();
+
 	// Close Modal
     if (clicked.hasClass('modal-overlay')) {
         if ($('.modal.modal-in').length > 0 && Modals.params.modalCloseByOutside)
@@ -527,6 +531,15 @@ $(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay, 
                 Modals.closeModal(pickerToClose.parents('.popover'));
             }
         }
+    }
+    // Popup
+    var popup;
+    if (clicked.hasClass('close-popup')) {
+        if (clickedData.popup) {
+            popup = clickedData.popup;
+        }
+        else popup = '.popup.modal-in';
+        Modals.closeModal(popup);
     }
 });
 

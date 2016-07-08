@@ -10,7 +10,7 @@ const unlisten = browserHistory.listen(location => {
     pathname = '/'.concat(pathname)
   }
   // console.log('pathname====', pathname)
-  let len = paths.length 
+  let len = paths.length
   browserHistory.inBack = (len > 1 && pathname === paths[len-2])
   if(browserHistory.inBack) {
     paths.pop()
@@ -20,11 +20,11 @@ const unlisten = browserHistory.listen(location => {
       paths.push(pathname)
     else{
       for(let i = 0; i < len - 1; i++){
-        paths[i] = paths[i+1] 
+        paths[i] = paths[i+1]
       }
       paths[len - 1] = pathname
     }
-  } 
+  }
 
   browserHistory.canBack = (paths.length > 1)
    

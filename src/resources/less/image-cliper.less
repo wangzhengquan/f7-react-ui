@@ -1,0 +1,92 @@
+@import url('_mixins.less');
+@import url('_colors-vars.less');
+
+.image-cliper-toolbar{
+    background: rgba(255,255,255,0.4);
+    a {
+        color: #fff;
+    }
+}
+.image-cliper-container {
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+    .flexbox();
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+   
+    z-index: 1;
+}
+
+
+.image-cliper-clip-container{
+    position: relative;
+	.flexbox();
+	justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin: 5px;
+	width: 100%;
+	height: 310px;
+    cursor: move;
+
+    img{
+    	display: block;
+    	width: 100%;
+    	/*background-color: #fff;
+    	background-image: url('../img/image.svg');
+		background-size: 100% 100%;
+		background-repeat:no-repeat;*/
+    }
+}
+
+.image-cliper-clip-container-shadow{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    .translate3d(-50%, -50%, 0);
+    width: 100%;
+    height: 310px;
+    z-index: 1000;
+    margin: 5px;
+    -border: 1px solid #ddd;
+    outline: rgba(0, 0, 0, 0.6) solid 10000px;
+}
+
+.image-cliper-zoom-container{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.jcrop-vline, .jcrop-hline {
+    position: absolute;
+    font-size: 0;
+    position: absolute;
+    z-index: 1000;
+    opacity: 0.4;
+    background: #fff url("../img/Jcrop.gif");
+}
+
+.jcrop-hline {
+    width: 100%;
+    height: 1px !important;
+    &.bottom {
+        bottom: 0;
+    }
+}
+.jcrop-vline {
+    width: 1px !important;
+    height: 100%;
+    &.right{
+        right: 0;
+    }
+}

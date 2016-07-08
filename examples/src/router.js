@@ -205,7 +205,7 @@ const rootRoute = {
                 Modals.hideIndicator()
             })
           }
-        },  {
+        }, {
           path: 'preloader',
           getComponents(location, cb) {
             Modals.showIndicator()
@@ -215,6 +215,32 @@ const rootRoute = {
                   page: require('./components/preloader/PreloaderPage')
                 })
                 document.querySelector('title').innerHTML='Preloader'
+                Modals.hideIndicator()
+            })
+          }
+        }, {
+          path: 'photo-browser',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/photo-browser/PhotoBrowserNavbar'),
+                  page: require('./components/photo-browser/PhotoBrowserPage')
+                })
+                document.querySelector('title').innerHTML='PhotoBrowser'
+                Modals.hideIndicator()
+            })
+          }
+        }, {
+          path: 'clip-image',
+          getComponents(location, cb) {
+            Modals.showIndicator()
+            require.ensure([], (require) => {
+                cb(null, {
+                  navbar: hideNavbar ? null : require('./components/clip-image/ClipImageNavbar'),
+                  page: require('./components/clip-image/ClipImagePage')
+                })
+                document.querySelector('title').innerHTML='Clip Image'
                 Modals.hideIndicator()
             })
           }

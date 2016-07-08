@@ -16,6 +16,7 @@ class Option extends React.Component{
     }
 
     handleChange(event){
+     
         console.log(event.target.checked, event.target.value)
         this.props.onSelect && this.props.onSelect(event.target.value, event)
     }
