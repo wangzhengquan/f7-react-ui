@@ -7,8 +7,8 @@ import $ from './dom'
 var views = [];
 var View = function (selector, params) {
     var defaults = {
-        dynamicNavbar: false,
-        domCache: false,
+        dynamicNavbar: true,
+        domCache: true,
         linksView: undefined,
         reloadPages: false,
         uniqueHistory: PARAMS.uniqueHistory,
@@ -72,40 +72,27 @@ var View = function (selector, params) {
     view.initialPages = [];
     view.initialPagesUrl = [];
     view.initialNavbars = [];
-    if (view.params.domCache) {
-        var initialPages = container.find('.page');
-        for (i = 0; i < initialPages.length; i++) {
-            view.initialPages.push(initialPages[i]);
-            view.initialPagesUrl.push('#' + initialPages.eq(i).attr('data-page'));
-        }
-        if (view.params.dynamicNavbar) {
-            var initialNavbars = container.find('.navbar-inner');
-            for (i = 0; i < initialNavbars.length; i++) {
-                view.initialNavbars.push(initialNavbars[i]);
-            }
-        }
 
+    var initialPages = container.find('.page');
+    for (i = 0; i < initialPages.length; i++) {
+        view.initialPages.push(initialPages[i]);
+        view.initialPagesUrl.push('#' + initialPages.eq(i).attr('data-page'));
+    }
+    if (view.params.dynamicNavbar) {
+        var initialNavbars = container.find('.navbar-inner');
+        for (i = 0; i < initialNavbars.length; i++) {
+            view.initialNavbars.push(initialNavbars[i]);
+        }
     }
 
-    view.allowPageChange = true;
 
+    view.allowPageChange = true;
     // Location
     var docLocation = document.location.href;
 
     // History
     view.history = [];
     var viewURL = docLocation;
-    var pushStateSeparator = PARAMS.pushStateSeparator;
-    var pushStateRoot = PARAMS.pushStateRoot;
-    if (PARAMS.pushState && view.main) {
-        if (pushStateRoot) {
-            viewURL = pushStateRoot;
-        }
-        else {
-            if (viewURL.indexOf(pushStateSeparator) >= 0 && viewURL.indexOf(pushStateSeparator + '#') < 0) viewURL = viewURL.split(pushStateSeparator)[0];
-        }
-
-    }
 
     // Active Page
     var currentPage, currentPageData;
@@ -121,7 +108,7 @@ var View = function (selector, params) {
     }
 
     // View startup URL
-    if (view.params.domCache && currentPage) {
+    if ( currentPage) {
         view.url = container.attr('data-url') || view.params.url || '#' + currentPage.attr('data-page');   
         view.pagesCache[view.url] = currentPage.attr('data-page');
     }
@@ -131,7 +118,7 @@ var View = function (selector, params) {
     if (currentPageData) {
         currentPageData.view = view;
         currentPageData.url = view.url;
-        if (view.params.domCache && view.params.dynamicNavbar && !currentPageData.navbarInnerContainer) {
+        if (view.params.dynamicNavbar && !currentPageData.navbarInnerContainer) {
             currentPageData.navbarInnerContainer = view.initialNavbars[view.initialPages.indexOf(currentPageData.container)];
         }
         view.activePage = currentPageData;
@@ -143,40 +130,18 @@ var View = function (selector, params) {
         view.history.push(view.url);
     }
 
-    // Touch events
-    var isTouched = false,
-        isMoved = false,
-        touchesStart = {},
-        isScrolling,
-        activePage = [],
-        previousPage = [],
-        viewContainerWidth,
-        touchesDiff,
-        allowViewTouchMove = true,
-        touchStartTime,
-        activeNavbar = [],
-        previousNavbar = [],
-        activeNavElements,
-        previousNavElements,
-        activeNavBackIcon,
-        previousNavBackIcon,
-        dynamicNavbar,
-        pageShadow,
-        el;
-
-   
 
     // Add view to app
     views.push(view);
     // if (view.main) reactUI.mainView = view;
 
-    // Router 
+    // Router
     view.router = {
         load: function (options) {
             return router.load(view, options);
         },
         back: function (options) {
-            return router.back(view, options);  
+            return router.back(view, options);
         },
         // Shortcuts
         loadPage: function (options) {

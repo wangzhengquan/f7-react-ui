@@ -1,36 +1,51 @@
 import React  from 'react';
-import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classnames from 'classnames';
-import {List} from 'react-ui/lists'
 import ImageCliper from 'react-ui/image-cliper'
 require('../../resources/less/clip-image.less')
 class ClipImagePage extends AnimationPage{
   constructor(props) {
     super(props);
+    this.state = {}
   }
    
   componentDidMount(){
   }
 
-  showChangeImageModal(e){
-    e.preventDefault()
+   
+
+  onSelectImage(event){
+    var files =[].slice.call(event.target.files, 0),
+        file = files[0];
+
+    var onClip =  (blob) => {
+      var url = URL.createObjectURL(blob);
+      this.setState({
+        imgUrl : url
+      })
+    }
+
     ImageCliper.imageCliper({
       type: 'page',
-      image: '../../resources/img/tiankong.jpg'
+      imageFile: file,
+      onClip: onClip,
+      ratio:2
     }).open()
+    event.target.value = ''
   }
   
   render(){
   	return (
   	<div className={classnames( 'page page-clip-image', this.props.className)}>
 	    <div className="page-content">
-	       <a className="use-header" onClick={this.showChangeImageModal.bind(this)}></a>
+        <div className="use-header">
+          <input type="file" name="file" onChange={this.onSelectImage.bind(this)} accept="image/*" />
+        </div>
 
-<div className="use-header">      
-<input type="file" name="file" accept="image/*" />
-</div>
+        <div className="image-wraper" style={{marginTop: '10px'}}>
+          {this.state.imgUrl ? <img src={this.state.imgUrl} style={{width: '100%'}}/> : ''}
+        </div>
+
 	    </div>
 	  </div>
   	)

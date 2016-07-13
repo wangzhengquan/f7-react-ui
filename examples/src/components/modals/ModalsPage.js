@@ -22,7 +22,7 @@ class AboutPage extends AnimationPage{
   handleSlideInModalClick(event){
     event.preventDefault()
 
-    var mainView = window.mainView || Views.addView('.view-main', {
+    var mainView = window.mainView = window.mainView || Views.addView('.view-main', {
         // Enable Dynamic Navbar for this view
         dynamicNavbar: true
     });
@@ -103,7 +103,7 @@ class AboutPage extends AnimationPage{
                 onClick: function () {
                     MessageBox.alert('You have clicked red button!');
                 }
-            },
+            }
         ],
         // Second group
         [
@@ -228,7 +228,7 @@ class AboutPage extends AnimationPage{
 
   render(){
     return (
-    <div className={classNames("page", this.props.className)}>
+    <div className={classNames('page', this.props.className)}>
         <div className="page-content">
           <div className="content-block">
             <div className="content-block-inner">
@@ -277,7 +277,7 @@ class AboutPage extends AnimationPage{
           <div className="content-block">
             <div className="content-block-inner">
               <p>Modal slide in</p>
-              <p><a href="#" onClick={this.handleSlideInModalClick.bind(this)} className="button demo-modals-stack">Open Modal</a></p>
+              <p><a href="#" onClick={this.handleSlideInModalClick.bind(this)} className="button demo-modals-stack">Open Page</a></p>
             </div>
           </div>
         </div>

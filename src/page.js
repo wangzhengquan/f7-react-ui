@@ -56,7 +56,7 @@ export default class Page extends React.Component{
   }
 
   componentDidMount(){
-    var node = this.node = this.node || $(ReactDOM.findDOMNode(this));
+    this.node = this.node || $(ReactDOM.findDOMNode(this));
     //this.initPageScrollToolbars(node)
   }
 
@@ -128,8 +128,8 @@ export default class Page extends React.Component{
     var viewContainer = scrollContent.parents('.views' );
     if (viewContainer.length === 0) return;
 
-    var navbar = viewContainer.find('.navbar'), 
-        toolbar = viewContainer.find('.toolbar'), 
+    var navbar = viewContainer.find('.navbar'),
+        toolbar = viewContainer.find('.toolbar'),
         tabbar;
     if (hideTabbar) {
         tabbar = viewContainer.find('.tabbar');
@@ -263,7 +263,7 @@ export default class Page extends React.Component{
 
   render(){
     return (
-      <div className={classNames("page", this.props.className)}></div>
+      <div className={classNames('page', this.props.className)} data-page={location.pathname}></div>
       
     );
   }

@@ -13,10 +13,13 @@ require('./resources/less/image-cliper.less')
 var ImageCliper = function (params) {
 	var me = this;
 	var defaults = {
-		backLinkText: 'Close',
+		cancelText: 'Cancel',
+        okText: 'Ok',
 		title: 'title',
 		type: 'page',
-		material: PARAMS.material
+        navbar: true,
+		material: PARAMS.material,
+        ratio: 1
         
     };
     
@@ -28,36 +31,64 @@ var ImageCliper = function (params) {
         }
     }
 
+    if(params.imageFile){
+        params.imageUrl = URL.createObjectURL(params.imageFile);
+    }
+
+    if(params.ratio >= 1){
+        params.ratioText = params.ratio +':1';
+    } else if(params.ratio + ''.indexOf('/') > 0){
+        params.ratioText = (params.ratio + '').replace('/', ':');
+    } else if(params.ratio < 1){
+        params.ratioText = params.ratio * 100 +'%';
+    } else {
+        params.ratioText = params.ratio;
+    }
+
+    
     me.params = params;
+    
+    var navbarTemplate = me.params.navbarTemplate ||
+        '<div class="navbar image-cliper-navbar">' +
+            '<div class="navbar-inner">' +
+                '<div class="left sliding">' +
+                     
+                '</div>' +
+                '<div class="center sliding">' +
+                    '<span style="margin-right: 5px;">宽高比例</span> ' +
+                    '<span>{{ratioText}}</span> ' +
+                '</div>' +
+                '<div class="right"></div>' +
+            '</div>' +
+        '</div>';
 
 	var toolbarTemplate = me.params.toolbarTemplate ||
         '<div class="toolbar tabbar image-cliper-toolbar">' +
             '<div class="toolbar-inner">' +
-                '<a href="#" class="link cancel back">' +
-                    '取消' +
-                '</a>' +
-                '<a href="#" class="link ok">' +
-                    '选取' +
-                '</a>' +
+                '<a href="#" class="link close-popup image-cliper-close-link cancel"> {{cancelText}} </a>' +
+                '<a href="#" class="link ok  image-cliper-ok-link">{{okText}}</a>' +
             '</div>' +
         '</div>';
 
     var htmlTemplate = t7.compile('<div class="image-cliper">' +
         '<div class="view navbar-fixed toolbar-fixed">' +
+             
             '<div class="page no-toolbar {{#unless navbar}}no-navbar{{/unless}} toolbar-fixed navbar-fixed" data-page="image-cliper-slides">' +
+                
                 toolbarTemplate +
+                '<div class="ratio-bar"><span class="ratio-name">宽高比例</span><span class="ratio-value">{{ratioText}}</span></div>'+
                 '<div class="image-cliper-container">' +
                     '<div class="image-cliper-clip-container-shadow">' +
-                        // '<div class="jcrop-hline"></div>' +
-                        // '<div class="jcrop-hline bottom"></div>' +
-                        // '<div class="jcrop-vline right"></div>' +
-                        // '<div class="jcrop-vline"></div>' +
-                         
                     '</div>' +
                     '<div class="image-cliper-clip-container">' +
+                        '<div class="jcrop-hline"></div>' +
+                        '<div class="jcrop-hline bottom"></div>' +
+                        '<div class="jcrop-vline right"></div>' +
+                        '<div class="jcrop-vline"></div>' +
                         '<span class="image-cliper-zoom-container">' +
-                           '<img class="target-img" src="{{this.image}}"/>' +
+                           '<img class="target-img" src="{{this.imageUrl}}"/>' +
                         '</span>' +
+                       // '<canvas class="image-cliper-canvas" width="100%" height="100%"></canvas>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
@@ -80,13 +111,14 @@ var ImageCliper = function (params) {
             me.popup = Modals.popup('<div class="popup image-cliper-popup">' + htmlTemplate + '</div>');
         }
         if (me.params.type === 'page') {
-            var mainView = window.mainView || Views.addView('.view-main', {
+            var mainView =  window.mainView  = window.mainView || Views.addView('.view-main', {
                 // Enable Dynamic Navbar for this view
                 dynamicNavbar: true
             })
 
             if (!me.params.view) me.params.view = mainView;
-            mainView.loadContent(htmlTemplate);
+            var result = mainView.loadContent(htmlTemplate);
+             
             //return;
         }
         me.layout();
@@ -96,7 +128,25 @@ var ImageCliper = function (params) {
 
     };
 
-    var targetImage, imageZoomContainer, imageClipContainerShadow;
+    me.close = function () {
+        me.opened = false;
+         
+        if (me.params.onClose) {
+            me.params.onClose(me);
+        }
+        // Detach events
+        me.attachEvents(true);
+        // Delete from DOM
+        if (me.params.type === 'standalone') {
+            me.container.removeClass('photo-browser-in').addClass('photo-browser-out').animationEnd(function () {
+                me.container.remove();
+            });
+        } else if(me.params.type === 'page'){
+            window.mainView.back()
+        }
+    };
+
+    var targetImage, imageZoomContainer, imageClipContainerShadow, imageClipContainer, canvas, imageClipContainerWidth, imageClipContainerHeight;
     me.layout = function () {
         if (me.params.type === 'page') {
             me.container = $('.image-cliper-container').parents('.view');
@@ -109,12 +159,61 @@ var ImageCliper = function (params) {
             
         }
         
-        me.imageClipContainer = me.container.find('.image-cliper-clip-container')
+        imageClipContainer = me.container.find('.image-cliper-clip-container')
         imageClipContainerShadow = me.container.find('.image-cliper-clip-container-shadow')
         targetImage = me.container.find('img.target-img');
         imageZoomContainer = me.container.find('.image-cliper-zoom-container');
+
+        imageClipContainerWidth =  imageClipContainer[0].offsetWidth,
+        imageClipContainerHeight = imageClipContainer[0].offsetWidth / me.params.ratio,
+        canvas = $('<canvas class="image-cliper-canvas" width="' + imageClipContainerWidth + '" height="' + imageClipContainerHeight + '"></canvas>')[0],
+        imageClipContainer.append(canvas);
+
+        imageClipContainer.css('height', imageClipContainerHeight + 'px') ;
+        imageClipContainerShadow.css('height', imageClipContainerHeight + 'px');
+
+
+
         me.attachEvents();
     };
+
+    me.ok = function() {
+        if(!clip){
+            var scaledWidth = targetImage[0].offsetWidth * scale;
+            var scaledHeight = targetImage[0].offsetHeight * scale;
+            clip = {
+                x: 0,
+                y: -Math.min((imageClipContainer.height() / 2 - scaledHeight / 2), 0),
+                width: imageClipContainer.width(),
+                height: scaledHeight > imageClipContainer.height() ? imageClipContainer.height() : scaledHeight
+            }
+        }
+        me.clipImage(clip.x, clip.y, clip.width, clip.height, function(){
+            me.close()
+        })
+       
+    }
+
+    me.clipImage = function(sx, sy, sw, sh, cb) {
+       var ctx = canvas.getContext('2d');
+       var dx = sx,
+           dy = imageClipContainer.height() > sh ? imageClipContainer.height()/2 - sh/2 : 0,
+           dw = sw,
+           dh = sh;
+
+       var scale = targetImage[0].naturalWidth / imageClipContainer.width()
+          sx = sx * scale,
+          sy = sy * scale,
+          sw = sw * scale,
+          sh = sh * scale;
+
+        ctx.drawImage(targetImage[0], sx, sy, sw, sh, dx, dy, dw, dh);
+        //console.log('====clip===', sx, sy, sw, sh, imageClipContainer.width(), imageClipContainer.height())
+        canvas.toBlob(function(blob) {
+            me.params.onClip && me.params.onClip(blob)
+            cb && cb()
+        });
+    }
 
     var imageIsTouched = false, imageIsMoved = false, imageTouchesStart = {},
         imageWidth, imageHeight, imageStartX, imageStartY, scale=1,
@@ -122,7 +221,8 @@ var ImageCliper = function (params) {
         imageTouchesCurrent = {},
         imageCurrentX, imageCurrentY,
         velocityPrevPositionX, velocityPrevPositionY, velocityPrevTime,
-        velocityX, velocityY;
+        velocityX, velocityY,
+        clip;
         
     me.onImageTouchStart = function (e) {
         if (imageIsTouched) return;
@@ -145,11 +245,11 @@ var ImageCliper = function (params) {
         // Define if we need image drag
         var scaledWidth = imageWidth * scale;
         var scaledHeight = imageHeight * scale;
-        if (scaledWidth < me.imageClipContainer.width() && scaledHeight < me.imageClipContainer.height()) return;
+        if (scaledWidth < imageClipContainer.width() && scaledHeight < imageClipContainer.height()) return;
 
-        imageMinX = Math.min((me.imageClipContainer.width() / 2 - scaledWidth / 2), 0);
+        imageMinX = Math.min((imageClipContainer.width() / 2 - scaledWidth / 2), 0);
         imageMaxX = -imageMinX;
-        imageMinY = Math.min((me.imageClipContainer.height() / 2 - scaledHeight / 2), 0);
+        imageMinY = Math.min((imageClipContainer.height() / 2 - scaledHeight / 2), 0);
         imageMaxY = -imageMinY;
         
         imageTouchesCurrent.x = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
@@ -224,15 +324,23 @@ var ImageCliper = function (params) {
         // Define if we need image drag
         var scaledWidth = imageWidth * scale;
         var scaledHeight = imageHeight * scale;
-        imageMinX = Math.min((me.imageClipContainer.width()/ 2 - scaledWidth / 2), 0);
+        imageMinX = Math.min((imageClipContainer.width()/ 2 - scaledWidth / 2), 0);
         imageMaxX = -imageMinX;
-        imageMinY = Math.min((me.imageClipContainer.height() / 2 - scaledHeight / 2), 0);
+        imageMinY = Math.min((imageClipContainer.height() / 2 - scaledHeight / 2), 0);
         imageMaxY = -imageMinY;
         imageCurrentX = Math.max(Math.min(imageCurrentX, imageMaxX), imageMinX);
         imageCurrentY = Math.max(Math.min(imageCurrentY, imageMaxY), imageMinY);
-
+        
+        clip ={
+            x: 0,
+            y: - imageMinY - imageCurrentY,
+            width: imageClipContainer.width(),
+            height: scaledHeight > imageClipContainer.height() ? imageClipContainer.height() : scaledHeight
+        }
         imageZoomContainer.transition(momentumDuration).transform('translate3d(' + imageCurrentX + 'px, ' + imageCurrentY + 'px,0)');
+
     };
+    
 
     me.attachEvents = function (detach) {
         var action = detach ? 'off' : 'on';
@@ -240,7 +348,8 @@ var ImageCliper = function (params) {
         imageClipContainerShadow[action](Support.touchEvents.start, me.onImageTouchStart);
         imageClipContainerShadow[action](Support.touchEvents.move, me.onImageTouchMove);
         imageClipContainerShadow[action](Support.touchEvents.end, me.onImageTouchEnd);
-        // me.container.find('.photo-browser-close-link')[action]('click', me.close);
+        me.container.find('.image-cliper-close-link')[action]('click', me.close);
+        me.container.find('.image-cliper-ok-link')[action]('click', me.ok);
     };
 }
 
