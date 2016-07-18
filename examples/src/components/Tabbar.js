@@ -17,7 +17,7 @@ class Tabbar extends React.Component{
 
   render(){
     return (
-   	<div className={classNames("toolbar tabbar tabbar-labels", {'toolbar-hidden': false})}>
+   	<div className={classNames('toolbar tabbar tabbar-labels', {'toolbar-hidden': false})}>
 	  <div className="toolbar-inner tabbar tabbar-labels">
 	    <IndexLink to="/" className="tab-link" activeClassName="active" onClick={this.handleTabClick.bind(this)}>
 	      <i className="icon icon-home"></i>

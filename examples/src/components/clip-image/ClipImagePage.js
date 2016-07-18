@@ -21,13 +21,13 @@ class ClipImagePage extends AnimationPage{
     var onClip =  (blob) => {
       var url = URL.createObjectURL(blob);
       this.setState({
-        imgUrl : url
+        url : url
       })
     }
 
     ImageCliper.imageCliper({
       type: 'page',
-      imageFile: file,
+      file: file,
       onClip: onClip,
       ratio:2
     }).open()
@@ -43,7 +43,7 @@ class ClipImagePage extends AnimationPage{
         </div>
 
         <div className="image-wraper" style={{marginTop: '10px'}}>
-          {this.state.imgUrl ? <img src={this.state.imgUrl} style={{width: '100%'}}/> : ''}
+          {this.state.url ? <img src={this.state.url} style={{width: '100%'}}/> : ''}
         </div>
 
 	    </div>

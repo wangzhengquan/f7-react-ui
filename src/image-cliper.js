@@ -31,8 +31,9 @@ var ImageCliper = function (params) {
         }
     }
 
-    if(params.imageFile){
-        params.imageUrl = URL.createObjectURL(params.imageFile);
+    if(params.file){
+        this.fileName = params.file.name
+        params.url = URL.createObjectURL(params.file);
     }
 
     if(params.ratio >= 1){
@@ -73,7 +74,7 @@ var ImageCliper = function (params) {
     var htmlTemplate = t7.compile('<div class="image-cliper">' +
         '<div class="view navbar-fixed toolbar-fixed">' +
              
-            '<div class="page no-toolbar {{#unless navbar}}no-navbar{{/unless}} toolbar-fixed navbar-fixed" data-page="image-cliper-slides">' +
+            '<div class="page  {{#unless navbar}}no-navbar{{/unless}} toolbar-fixed navbar-fixed" data-page="image-cliper-slides">' +
                 
                 toolbarTemplate +
                 '<div class="ratio-bar"><span class="ratio-name">宽高比例</span><span class="ratio-value">{{ratioText}}</span></div>'+
@@ -86,7 +87,7 @@ var ImageCliper = function (params) {
                         '<div class="jcrop-vline right"></div>' +
                         '<div class="jcrop-vline"></div>' +
                         '<span class="image-cliper-zoom-container">' +
-                           '<img class="target-img" src="{{this.imageUrl}}"/>' +
+                           '<img class="target-img" src="{{this.url}}"/>' +
                         '</span>' +
                        // '<canvas class="image-cliper-canvas" width="100%" height="100%"></canvas>' +
                     '</div>' +
@@ -177,7 +178,8 @@ var ImageCliper = function (params) {
         me.attachEvents();
     };
 
-    me.ok = function() {
+    me.ok = function(e) {
+        e.preventDefault()
         if(!clip){
             var scaledWidth = targetImage[0].offsetWidth * scale;
             var scaledHeight = targetImage[0].offsetHeight * scale;
@@ -210,7 +212,7 @@ var ImageCliper = function (params) {
         ctx.drawImage(targetImage[0], sx, sy, sw, sh, dx, dy, dw, dh);
         //console.log('====clip===', sx, sy, sw, sh, imageClipContainer.width(), imageClipContainer.height())
         canvas.toBlob(function(blob) {
-            me.params.onClip && me.params.onClip(blob)
+            me.params.onClip && me.params.onClip(blob, me.fileName)
             cb && cb()
         });
     }

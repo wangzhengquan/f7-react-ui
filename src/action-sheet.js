@@ -2,6 +2,7 @@
 import Modals from './modals'
 import $ from './dom'
 import t7 from './template'
+import device from './device'
 require('./resources/less/lists.less')
 var _compiledTemplates = {}
 var _modalTemplateTempDiv = document.createElement('div');
@@ -29,7 +30,7 @@ var ActionSheet = {
 	    }
 	    var modalHTML;
 	    if (toPopover) {
-	        var actionsToPopoverTemplate = 
+	        var actionsToPopoverTemplate =
 	            '<div class="popover actions-popover">' +
 	              '<div class="popover-inner">' +
 	                '{{#each this}}' +
@@ -60,6 +61,9 @@ var ActionSheet = {
             for (var i = 0; i < params.length; i++) {
                 for (var j = 0; j < params[i].length; j++) {
                     if (j === 0) buttonsHTML += '<div class="actions-modal-group">';
+                    if(!params[i][j]){
+                    	continue;
+                    }
                     var button = params[i][j];
                     var buttonClass = button.label ? 'actions-modal-label' : 'actions-modal-button';
                     if (button.bold) buttonClass += ' actions-modal-button-bold';
@@ -99,7 +103,7 @@ var ActionSheet = {
 	    });
 	    if (!toPopover) Modals.openModal(modal);
 	    return modal[0];
-	}	
+	}
 }
 
 export default ActionSheet

@@ -42,7 +42,7 @@ class Tabs {
 			    params = swiperContainer.dataset();
 			}
 			params.onSlideChangeStart = function (s) {
-		        me.showTab(s.slides.eq(s.activeIndex));  
+		        me.showTab(s.slides.eq(s.activeIndex));
 		    };
 			var slider = this.slider = new Swiper(swiperContainer[0], params);
 			this.destroyList.push(function(){slider.destroy(); })
@@ -100,7 +100,6 @@ class Tabs {
 	}
 
 	showTab (tab, tabLink, force) {
-		var me = this;
 	    var newTab = $(tab);
 	    if (arguments.length === 2) {
 	        if (typeof tabLink === 'boolean') {

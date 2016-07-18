@@ -10,7 +10,7 @@ const params = {
  hideToolbarOnPageScroll : false ,
  hideTabbarOnPageScroll : false ,
  showBarsOnPageScrollEnd : false ,
- showBarsOnPageScrollTop : true 
+ showBarsOnPageScrollTop : true
 }
 
 
@@ -263,7 +263,7 @@ export default class Page extends React.Component{
 
   render(){
     return (
-      <div className={classNames('page', this.props.className)} data-page={location.pathname}></div>
+      <div className={classNames('page', this.props.className)} data-page={location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname}></div>
       
     );
   }

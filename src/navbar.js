@@ -12,8 +12,6 @@ export default  class Navbar extends React.Component{
       super(props);
     }
 
-    
-
    /**
     * Prepare navbar before animarion
     * @param  {[type]} newNavbarInner    [description]
@@ -52,8 +50,7 @@ export default  class Navbar extends React.Component{
       if (direction === 'to-left') {
           if(action === 'enter'){
             navbarInner.removeClass(removeClasses).addClass('navbar-from-right-to-center');
-            window.setTimeout(function (e) {
-
+            window.setTimeout(function () {
                navbarInner.removeClass('navbar-from-right-to-center').addClass('navbar-on-center');
                finishCallback()
             }, transitionDuration)
@@ -220,9 +217,9 @@ export default  class Navbar extends React.Component{
     }
     
     return (
-       <div className="navbar-inner" >
+       <div className="navbar-inner" data-page={location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname}>
           {
-          this.canBack ? 
+          this.canBack ?
           <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
           }
             

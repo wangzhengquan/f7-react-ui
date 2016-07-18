@@ -1,11 +1,11 @@
 import $ from './dom'
+import PARAMS from './params'
+
 require('./resources/less/panels.less')
 
 var Panels = {
     allowPanelOpen : true,
-    params: {
-
-    },
+     
 
     /**
      * [openPanel description]
@@ -14,7 +14,6 @@ var Panels = {
      */
     openPanel (conf) {
         if (!this.allowPanelOpen) return false;
-        var me = this
         var panelPosition = 'left'
         var className = ''
         var removeOnClose = true
@@ -58,7 +57,7 @@ var Panels = {
         this.allowPanelOpen = false;
         panel.css({display: 'block'}).addClass('active');
         panel.trigger('open');
-        if (this.params.material) {
+        if (PARAMS.material) {
             $('.panel-overlay').show();
         }
         // Trigger reLayout
@@ -71,7 +70,6 @@ var Panels = {
         function panelTransitionEnd() {
             
             transitionEndTarget.transitionEnd( (e) => {
-                console.log('panelTransitionEnd', this)
                 if ($(e.target).is(transitionEndTarget)) {
                     if (panel.hasClass('active')) {
                         panel.trigger('opened');
@@ -79,7 +77,7 @@ var Panels = {
                     else {
                         panel.trigger('closed');
                     }
-                    if (this.params.material) $('.panel-overlay').css({display: ''});
+                    if (PARAMS.material) $('.panel-overlay').css({display: ''});
                     this.allowPanelOpen = true;
                 }
                 else panelTransitionEnd.bind(this)();
@@ -94,9 +92,8 @@ var Panels = {
         return  panel[0];
     },
 
-    closePanel () {
-        var me = this
-        var activePanel = $('.panel.active');
+    closePanel (activePanel) {
+        activePanel = activePanel ? $(activePanel) : $('.panel.active');
         if (activePanel.length === 0) return false;
         var removeOnClose = activePanel.hasClass('remove-on-close')
         var effect = activePanel.hasClass('panel-reveal') ? 'reveal' : 'cover';
@@ -108,7 +105,6 @@ var Panels = {
         this.allowPanelOpen = false;
 
         transitionEndTarget.transitionEnd(  () => {
-             console.log('closePanel panelTransitionEnd', this)
             if (activePanel.hasClass('active')) return;
             activePanel.css({display: ''});
             activePanel.trigger('closed');

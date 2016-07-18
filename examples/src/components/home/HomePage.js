@@ -1,11 +1,13 @@
 import React  from 'react';
+import ReactDOM from 'react-dom';
 import {Link} from 'react-router'
 import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
+import {List} from 'react-ui/lists'
 import Views from 'react-ui/views'
-
+import Panels from 'react-ui/panels'
+import LeftPanelContent from '../panels/LeftPanel'
 require('react-ui/resources/less/content-block.less')
 require('react-ui/resources/less/forms.less')
 
@@ -27,6 +29,7 @@ class AboutPage extends AnimationPage{
       '  <div class="navbar-inner" data-page="dynamic-content-0" >' +
       '    <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
       '    <div class="center sliding">Dynamic Page 0</div>' +
+      '    <div class="right"><a href="#" class="open-panel open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
       '  </div>' +
       '</div>' +
       '<div class="pages">' +
@@ -63,6 +66,7 @@ class AboutPage extends AnimationPage{
           '  <div class="navbar-inner" data-page="dynamic-content-' + dynamicPageIndex + '" >' +
           '    <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
           '    <div class="center sliding">Dynamic Page ' + dynamicPageIndex + '</div>' +
+          '    <div class="right"><a href="#" class="open-panel open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
           '  </div>' +
           '</div>' +
           '<div class="pages">' +
@@ -94,6 +98,19 @@ class AboutPage extends AnimationPage{
 
     $(document).on('click', '.back-first', backToFirst);
     $(document).on('click', '.ks-generate-page', createContentPage);
+
+
+    function handleClickOpenLeftPanel(event){
+      event.preventDefault()
+       //panel-reveal
+      var panel = Panels.openPanel({position: 'left', className: 'layout-dark'})
+      var close = () => {
+        Panels.closePanel(panel)
+      }
+      ReactDOM.render(<LeftPanelContent close={close}/>, panel)
+    }
+
+    $(document).on('click', '.open-left-panel', handleClickOpenLeftPanel);
   }
 
   render(){

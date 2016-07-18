@@ -1,10 +1,8 @@
 import React  from 'react'
 import ReactDOM from 'react-dom';
-import AnimNavbar from './Navbar_'
-import $ from 'react-ui/dom'
+import AnimNavbar from 'react-ui/navbar'
 import Panels from 'react-ui/panels'
 import history from '../history'
-
 import LeftPanelContent from './panels/LeftPanel'
 
 export default  class Navbar extends AnimNavbar{
@@ -19,11 +17,10 @@ export default  class Navbar extends AnimNavbar{
     event.preventDefault()
      //panel-reveal
     var panel = Panels.openPanel({position: 'left', className: 'layout-dark'})
-    var onClose = (event) => {
-      event.preventDefault()
+    var close = () => {
       Panels.closePanel(panel)
     }
-    ReactDOM.render(<LeftPanelContent onClose={onClose}/>, panel)
+    ReactDOM.render(<LeftPanelContent close={close}/>, panel)
   }
    
   render(){

@@ -2,7 +2,7 @@ import React  from 'react'
 require('react-ui/resources/less/lists.less')
 require('react-ui/resources/less/content-block.less')
 
-export default class LeftPanel extends React.Component{
+export default class RightPanel extends React.Component{
 	render(){
 		return (
 		<div className="view view-right">

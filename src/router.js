@@ -737,7 +737,9 @@ router._back = function (view, options) {
         }
 
         // Remove/hide previous page in force mode
+        // force 是指直接返还到指定页面
         if (force) {
+            // 把pagesInView 可见的 /not cach）的page中的前一个删除，后面一个会在回退完成（afterBack方法）后删除
             var pageToRemove, navbarToRemove;
             pageToRemove = $(pagesInView[pagesInView.length - 2]);
 
@@ -767,6 +769,8 @@ router._back = function (view, options) {
             if (dynamicNavbar) {
                 navbarInners = viewContainer.find('.navbar-inner:not(.cached)');
             }
+
+            //只保留到指定页面历史记录的后一条（这条历史记录也会在回退完成后（afterBack方法）删除）
             if (view.history.indexOf(url) >= 0) {
                 view.history = view.history.slice(0, view.history.indexOf(url) + 2);
             }

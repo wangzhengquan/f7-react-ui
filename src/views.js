@@ -3,6 +3,7 @@
 ======================================================*/
 import PARAMS from './params'
 import router from './router'
+import Navbars from './navbars'
 import $ from './dom'
 var views = [];
 var View = function (selector, params) {
@@ -217,6 +218,20 @@ var View = function (selector, params) {
     view.refreshPage = view.router.refreshPage;
     view.refreshPreviousPage = view.router.refreshPreviousPage;
     view.back = view.router.back;
+
+     // Bars methods
+    view.hideNavbar = function () {
+        return Navbars.hideNavbar(container.find('.navbar'));
+    };
+    view.showNavbar = function () {
+        return Navbars.showNavbar(container.find('.navbar'));
+    };
+    view.hideToolbar = function () {
+        return Navbars.hideToolbar(container.find('.toolbar'));
+    };
+    view.showToolbar = function () {
+        return Navbars.showToolbar(container.find('.toolbar'));
+    };
 
     // Destroy
     view.destroy = function () {

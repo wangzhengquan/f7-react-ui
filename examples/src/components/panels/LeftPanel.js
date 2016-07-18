@@ -1,6 +1,6 @@
 import React  from 'react'
 import ReactDOM from 'react-dom';
-
+import history from '../../history'
 import Panels from 'react-ui/panels'
 import RightPanel from './RightPanel'
 require('react-ui/resources/less/lists.less')
@@ -16,6 +16,13 @@ export default class LeftPanel extends React.Component{
     }
     ReactDOM.render(<RightPanel onClose={onClose}/>, panel)
   }
+
+  goTo(url, event){
+    event.preventDefault()
+    this.props.close()
+    history.push(url)
+  }
+
   render(){
     return (
     <span>
@@ -31,7 +38,7 @@ export default class LeftPanel extends React.Component{
       <div className="list-block">
         <ul>
           <li>
-            <a href="forms.html" className="item-link close-panel">
+            <a onClick={this.goTo.bind(this, '/forms')}  className="item-link close-panel">
               <div className="item-content">
                 <div className="item-media"><i className="icon icon-f7"></i></div>
                 <div className="item-inner">
