@@ -6,7 +6,6 @@ import Tabs from 'react-ui/tabs'
 import history from 'react-ui/history'
 
 import LeftPanelContent from '../panels/LeftPanel'
-require('react-ui/resources/less/forms.less')
 
 
 

@@ -166,7 +166,7 @@ export default  class Navbar extends React.Component{
       return;
     }
     var node = this.node || $(ReactDOM.findDOMNode(this));
-    if(history.inBack){
+    if(history.isBack){
       this.prepareNavbar (node, 'left')
       setTimeout( () => {
         this.animateNavbars(node, 'enter', 'to-right', done)
@@ -194,7 +194,7 @@ export default  class Navbar extends React.Component{
       return;
     }
     var node = this.node || $(ReactDOM.findDOMNode(this));
-    if(history.inBack){
+    if(history.isBack){
       this.animateNavbars(node, 'leave', 'to-right', done)
     } else {
       this.animateNavbars(node, 'leave', 'to-left', done)

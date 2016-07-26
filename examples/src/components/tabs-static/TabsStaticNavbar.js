@@ -1,16 +1,10 @@
 import React  from 'react'
 import ReactDOM from 'react-dom';
 import Navbar from '../Navbar'
-import $ from 'react-ui/dom'
 import Panels from 'react-ui/panels'
 import Tabs from 'react-ui/tabs'
 import history from 'react-ui/history'
-
 import LeftPanelContent from '../panels/LeftPanel'
-require('react-ui/resources/less/tabs.less')
-require('react-ui/resources/less/forms.less')
-
-
 
 class TabsNavBar extends Navbar{
   

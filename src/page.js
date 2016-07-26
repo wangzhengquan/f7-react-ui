@@ -36,7 +36,7 @@ export default class Page extends React.Component{
           activeClass = 'page-on-center'
         }
       }
-      // Go inBack
+      // Go isBack
       else if (direction === 'to-right') {
         if(action === 'enter'){
           transitionClass = 'page-from-left-to-center';
@@ -74,7 +74,7 @@ export default class Page extends React.Component{
       return;
     }
     var page = $(ReactDOM.findDOMNode(this));
-    if(history.inBack){
+    if(history.isBack){
       this.animatePages(page, 'enter', 'to-right', done)
     }else{
       this.animatePages(page, 'enter', 'to-left', done)
@@ -96,7 +96,7 @@ export default class Page extends React.Component{
       return;
     }
     var page = $(ReactDOM.findDOMNode(this));
-    if(history.inBack){
+    if(history.isBack){
       this.animatePages(page, 'leave', 'to-right', done)
 
     } else {

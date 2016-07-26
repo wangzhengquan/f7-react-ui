@@ -5,6 +5,7 @@ import $ from './dom'
 import Swiper from './swiper'
 import MicroEvent from './microevent'
 require('./resources/less/tabs.less')
+require('./resources/less/forms.less')
 class Tabs {
 	/**
 	 * [constructor description]

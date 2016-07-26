@@ -70,9 +70,9 @@
     "core-js": "^2.0.0",
     "flux": "^2.1.1",
     "normalize.css": "^4.0.0",
-    "react": "^15.1.0",
-    "react-addons-css-transition-group": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "react": "^15.2.1",
+    "react-addons-css-transition-group": "^15.2.1",
+    "react-dom": "^15.2.1",
     "react-router": "^2.0.0"
   }
 }

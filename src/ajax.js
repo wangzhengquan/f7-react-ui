@@ -178,7 +178,6 @@ Ajax.ajax = function(options) {
     }
 
   }
-
   // Additional headers
   if (options.headers) {
     for (let headerName in options.headers) {

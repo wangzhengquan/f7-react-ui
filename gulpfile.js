@@ -13,8 +13,8 @@ var gulp = require('gulp');
 var babel = require('gulp-babel');
 var flatten = require('gulp-flatten');
 var del = require('del');
-var babelify = require("babelify");
-var copy = require("./copy")
+// var babelify = require('babelify');
+var copy = require('./copy')
 
 var paths = {
     src: [
