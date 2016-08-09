@@ -1,7 +1,6 @@
 import React  from 'react'
 import ReactDOM from 'react-dom';
 import Navbar from '../Navbar'
-import $ from 'react-ui/dom'
 import Panels from 'react-ui/panels'
 import Tabs from 'react-ui/tabs'
 import history from 'react-ui/history'
@@ -28,7 +27,6 @@ class TabsNavBar extends Navbar{
       event.preventDefault()
        //panel-reveal
       var panel = Panels.openPanel({position: 'left', className: 'layout-dark'})
-      console.log("panel===", panel)
       var onClose = (event) => {
         event.preventDefault()
         Panels.closePanel(panel)
@@ -43,7 +41,7 @@ class TabsNavBar extends Navbar{
       return  (
       <div className="navbar-inner">
         {
-        this.canBack ? 
+        this.canBack ?
         <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
         }
         <div className="center sliding">Tabs Animated</div>

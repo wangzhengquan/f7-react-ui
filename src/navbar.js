@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import React  from 'react';
 import ReactDOM from 'react-dom';
 import $ from './dom'
@@ -10,6 +11,9 @@ const transitionDuration= 400;
 export default  class Navbar extends React.Component{
     constructor(props) {
       super(props);
+      this.state = {
+        title: this.props.title
+      }
     }
 
    /**
@@ -95,7 +99,7 @@ export default  class Navbar extends React.Component{
       if (direction === 'to-right') {
         if(action === 'enter'){
           navbarInner.removeClass(removeClasses).addClass('navbar-from-left-to-center');
-          window.setTimeout(function (e) {
+          window.setTimeout(function () {
              navbarInner.removeClass('navbar-from-left-to-center').addClass('navbar-on-center');
              finishCallback()
           }, transitionDuration);
@@ -112,7 +116,7 @@ export default  class Navbar extends React.Component{
           
         } else if(action === 'leave'){
           navbarInner.removeClass(removeClasses).addClass('navbar-from-center-to-right');
-          window.setTimeout(function (e) {
+          window.setTimeout(function () {
              navbarInner.removeClass('navbar-from-center-to-right').addClass('navbar-on-right');
              finishCallback()
           }, transitionDuration);
@@ -131,9 +135,9 @@ export default  class Navbar extends React.Component{
   }
 
   componentDidMount(){
-    console.log("componentDidMount", this.props.location && this.props.location.pathname)
+    console.log('componentDidMount', this.props.location && this.props.location.pathname)
     var node = this.node = $(ReactDOM.findDOMNode(this));
-    var onResize =  (event) => {
+    var onResize =  () => {
       Navbars.sizeNavbar(node)
     }
     $(window).on('resize', onResize);
@@ -223,7 +227,7 @@ export default  class Navbar extends React.Component{
           <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
           }
             
-          <div className="center sliding">{this.props.title || ''}</div>
+          <div className="center sliding">{this.state.title || ''}</div>
         </div>
     )
   }

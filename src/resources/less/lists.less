@@ -8,7 +8,7 @@
 @dividerColor: #8e8e93;
 .list-block {
     margin: 35px 0;
-    font-size: 14px;
+    font-size: 15px;
     ul {
         background: @listBlockBg;
         list-style: none;
@@ -117,6 +117,8 @@
         margin-left: 5px;
         .flexbox();
         max-height: 28px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .smart-select .item-after, .autocomplete-opener .item-after {
         max-width: 70%;

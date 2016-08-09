@@ -1,11 +1,7 @@
 import React  from 'react';
-import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
-
-require('react-ui/resources/less/forms.less')
+import {ResizableTextarea} from 'react-ui/forms'
 class FormsElementsPage extends AnimationPage{
   constructor(props) {
     super(props);
@@ -16,7 +12,7 @@ class FormsElementsPage extends AnimationPage{
   
   render(){
   	return (
-  	<div className={classNames( "page", this.props.className)}>
+  	<div className={classNames( 'page', this.props.className)}>
 	    <div className="page-content">
         <div className="content-block-title">Full Layout</div>
         <div className="list-block">
@@ -156,7 +152,7 @@ class FormsElementsPage extends AnimationPage{
                 <div className="item-inner">
                   <div className="item-title label">Resizeable</div>
                   <div className="item-input">
-                    <textarea className="resizable"></textarea>
+                    <ResizableTextarea className="resizable"></ResizableTextarea>
                   </div>
                 </div>
               </div>

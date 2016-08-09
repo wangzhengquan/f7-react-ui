@@ -244,7 +244,48 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
+    }, {
+      path: 'swiper',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/swiper/swiperNavbar'),
+              page: require('./components/swiper/swiperPage')
+            })
+            document.querySelector('title').innerHTML='Swiper Slider'
+            Modals.hideIndicator()
+        })
+      }
+    },  {
+      path: 'swiper-pagination-progress',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/swiper/SwiperPaginationProgressNavbar'),
+              page: require('./components/swiper/SwiperPaginationProgressPage')
+            })
+            document.querySelector('title').innerHTML='Swiper Pagination Progress'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
+      path: 'notifications',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/notifications/NotificationsNavbar'),
+              page: require('./components/notifications/NotificationsPage')
+            })
+            document.querySelector('title').innerHTML='Notifications'
+            Modals.hideIndicator()
+        })
+      }
     }]
+
+    
 
 
   //}]

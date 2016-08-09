@@ -178,6 +178,8 @@ Ajax.ajax = function(options) {
     }
 
   }
+  
+
   // Additional headers
   if (options.headers) {
     for (let headerName in options.headers) {
@@ -195,6 +197,12 @@ Ajax.ajax = function(options) {
   if (!options.crossDomain) {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   }
+
+   // 是否允许发送凭证
+  if(options.withCredentials){
+    xhr.withCredentials = true;
+  }
+  
 
   if (options.xhrFields) {
     for (let fieldName in options.xhrFields) {

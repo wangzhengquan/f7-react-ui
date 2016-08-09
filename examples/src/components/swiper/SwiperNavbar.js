@@ -1,18 +1,19 @@
 import Navbar from '../Navbar'
 
-class TmpNavBar extends Navbar{
+class SwiperNavBar extends Navbar{
+  
 
     constructor(props) {
       super(props);
     }
+     
      
     render(){
       return  super.render();
     }
 }
 
-TmpNavBar.defaultProps = {
+SwiperNavBar.defaultProps = {
   title: 'Swiper Slider'
 }
-
-module.exports = TmpNavBar
+module.exports = SwiperNavBar

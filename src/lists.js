@@ -8,7 +8,7 @@ class List extends React.Component{
   
   render(){
     return (
-    	<div className={classNames("list-block", this.props.className)} style={this.props.style}>
+    	<div className={classNames('list-block', this.props.className)} style={this.props.style}>
         <ul>
       	{
   	      React.Children.map(this.props.children, function (child) {
@@ -27,19 +27,19 @@ class List extends React.Component{
 
 
 let ItemDivider = (props) => (
-  <div className={classNames("item-divider", props.className)}>
+  <div className={classNames('item-divider', props.className)}>
     { props.children  }
   </div>
 )
  
 let ListGroupTitle = (props) => (
-  <div className={classNames("list-group-title", props.className)}>
+  <div className={classNames('list-group-title', props.className)}>
     { props.children  }
   </div>
 )
 
 export {
-  List, 
+  List,
   ItemDivider,
   ListGroupTitle
 }

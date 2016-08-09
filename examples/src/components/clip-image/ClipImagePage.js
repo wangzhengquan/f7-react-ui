@@ -29,7 +29,8 @@ class ClipImagePage extends AnimationPage{
       type: 'page',
       file: file,
       onClip: onClip,
-      ratio:2
+      ratio:1,
+      fill: true
     }).open()
     event.target.value = ''
   }
@@ -37,12 +38,12 @@ class ClipImagePage extends AnimationPage{
   render(){
   	return (
   	<div className={classnames( 'page page-clip-image', this.props.className)}>
-	    <div className="page-content">
+	    <div className="page-content" style={{background: '#383c3d'}}>
         <div className="use-header">
           <input type="file" name="file" onChange={this.onSelectImage.bind(this)} accept="image/*" />
         </div>
 
-        <div className="image-wraper" style={{marginTop: '10px'}}>
+        <div className="image-wraper" style={{marginTop: '10px', background: '#fff', lineHeight: '0'}}>
           {this.state.url ? <img src={this.state.url} style={{width: '100%'}}/> : ''}
         </div>
 

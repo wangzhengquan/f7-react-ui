@@ -1,10 +1,8 @@
 import React  from 'react';
-import {Link} from 'react-router'
 import {InfiniteScroll, InfiniteScrollPreloader} from 'react-ui/infinite-scroll'
-import $ from 'react-ui/dom'
 import Page from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
+import {List} from 'react-ui/lists'
 
 var params = {
   limit : 20,
@@ -30,18 +28,17 @@ class InfiniteScrollPage extends Page{
       infiniteScroll.destroy()
     })
     infiniteScroll.on('infinite', () => {
-      if (loading) return;
+      if (loading || this.setState.reachLastOne) return;
+
       loading = true;
 
-      if(this.state.data.length >= params.maxItems){
-        this.setState({
-          reachLastOne: true
-        })
-        return
-      }
-      
-
       this.load(() => {
+        if(this.state.data.length >= params.maxItems){
+          this.setState({
+            reachLastOne: true
+          })
+          return
+        }
         loading = false
       })
     })
@@ -54,14 +51,13 @@ class InfiniteScrollPage extends Page{
 
   load ( cb ) {
     return setTimeout(() => {
-      console.log('====loading=====')
       var data = []
       for(var i = 0; i < params.limit; i++){
         data.push(this.state.data.length + i)
       }
       this.setState({
         data:  this.state.data.concat(data)
-      }) 
+      })
       cb && cb()
     }, 1000)
   
@@ -71,7 +67,7 @@ class InfiniteScrollPage extends Page{
   
   render(){
   	return (
-  	<div className={classNames( "page", this.props.className)}>
+  	<div className={classNames( 'page', this.props.className)}>
 	    <div className="page-content  infinite-scroll" ref="pageContent">
 	    	<div className="content-block-title">Scroll bottom</div>
 	        <List style={{marginBottom: 0}}>

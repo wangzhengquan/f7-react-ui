@@ -320,10 +320,6 @@ router._load = function (view, options) {
                     
                 }
 
-                if (!newNavbarInner && oldNavbarInner.length === 1) {
-                  $(oldNavbarInner[0]).addClass('cached');
-                }
-                 
                 oldNavbarInner = navbar.find('.navbar-inner:not(.cached)');
             }
         }
@@ -660,7 +656,7 @@ router._back = function (view, options) {
           url: url,
           position: 'center',
           oldPage: oldPage,
-          newPage: newPage,
+          newPage: newPage
       });
       Pages.pageAnimCallback('before', view, {
           pageContainer: newPage[0],
@@ -863,6 +859,7 @@ router._back = function (view, options) {
         // Dynamic navbar
         if (view.params.dynamicNavbar) {
             dynamicNavbar = true;
+
             // Find navbar
             navbarInners = viewContainer.find('.navbar-inner:not(.cached)');
             newNavbarInner = $(navbarInners[0]);

@@ -11,6 +11,9 @@
     transform: @t;
 }
 .transform-origin(@to) {
+    -moz-transform-origin: @to;
+    -ms-transform-origin: @to;
+    -o-transform-origin: @to;
     -webkit-transform-origin: @to;
     transform-origin: @to;
 }

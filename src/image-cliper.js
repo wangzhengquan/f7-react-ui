@@ -74,7 +74,7 @@ var ImageCliper = function (params) {
     var htmlTemplate = t7.compile('<div class="image-cliper">' +
         '<div class="view navbar-fixed toolbar-fixed">' +
              
-            '<div class="page  {{#unless navbar}}no-navbar{{/unless}} toolbar-fixed navbar-fixed" data-page="image-cliper-slides">' +
+            '<div class="page no-navbar toolbar-fixed navbar-fixed" data-page="image-cliper-slides">' +
                 
                 toolbarTemplate +
                 '<div class="ratio-bar"><span class="ratio-name">宽高比例</span><span class="ratio-value">{{ratioText}}</span></div>'+
@@ -129,6 +129,51 @@ var ImageCliper = function (params) {
 
     };
 
+    var targetImage, imageZoomContainer, imageClipContainerShadow, imageClipContainer,
+        canvas, imageClipContainerWidth, imageClipContainerHeight, scale=1;
+
+    me.layout = function () {
+        if (me.params.type === 'page') {
+            me.container = $('.image-cliper-container').parents('.view');
+        }
+        else {
+            me.container = $('.image-cliper');
+        }
+        if (me.params.type === 'standalone') {
+            me.container.addClass('image-cliper-in');
+            
+        }
+        
+        imageClipContainer = me.container.find('.image-cliper-clip-container')
+        imageClipContainerShadow = me.container.find('.image-cliper-clip-container-shadow')
+        targetImage = me.container.find('img.target-img');
+        imageZoomContainer = me.container.find('.image-cliper-zoom-container');
+
+        imageClipContainerWidth =  imageClipContainer[0].offsetWidth;
+        imageClipContainerHeight = imageClipContainer[0].offsetWidth / me.params.ratio;
+      // alert( imageClipContainerWidth)
+       // alert(targetImage[0].offsetHeight)
+        // if(me.params.fill){
+        //     setTimeout(function(){
+        //         if(imageClipContainerHeight>targetImage[0].offsetHeight){
+        //             scale = imageClipContainerHeight/targetImage[0].offsetHeight
+        //             targetImage.transform('translate3d(0,0,0) scale(' + scale + ')');
+        //         }
+        //     }, 500)
+                
+        // }
+        
+        canvas = $('<canvas class="image-cliper-canvas" width="' + imageClipContainerWidth + '" height="' + imageClipContainerHeight + '"></canvas>')[0];
+        imageClipContainer.append(canvas);
+
+        imageClipContainer.css('height', imageClipContainerHeight + 'px') ;
+        imageClipContainerShadow.css('height', imageClipContainerHeight + 'px');
+
+
+
+        me.attachEvents();
+    };
+
     me.close = function () {
         me.opened = false;
          
@@ -147,38 +192,10 @@ var ImageCliper = function (params) {
         }
     };
 
-    var targetImage, imageZoomContainer, imageClipContainerShadow, imageClipContainer, canvas, imageClipContainerWidth, imageClipContainerHeight;
-    me.layout = function () {
-        if (me.params.type === 'page') {
-            me.container = $('.image-cliper-container').parents('.view');
-        }
-        else {
-            me.container = $('.image-cliper');
-        }
-        if (me.params.type === 'standalone') {
-            me.container.addClass('image-cliper-in');
-            
-        }
-        
-        imageClipContainer = me.container.find('.image-cliper-clip-container')
-        imageClipContainerShadow = me.container.find('.image-cliper-clip-container-shadow')
-        targetImage = me.container.find('img.target-img');
-        imageZoomContainer = me.container.find('.image-cliper-zoom-container');
-
-        imageClipContainerWidth =  imageClipContainer[0].offsetWidth,
-        imageClipContainerHeight = imageClipContainer[0].offsetWidth / me.params.ratio,
-        canvas = $('<canvas class="image-cliper-canvas" width="' + imageClipContainerWidth + '" height="' + imageClipContainerHeight + '"></canvas>')[0],
-        imageClipContainer.append(canvas);
-
-        imageClipContainer.css('height', imageClipContainerHeight + 'px') ;
-        imageClipContainerShadow.css('height', imageClipContainerHeight + 'px');
-
-
-
-        me.attachEvents();
-    };
+    
 
     me.ok = function(e) {
+
         e.preventDefault()
         if(!clip){
             var scaledWidth = targetImage[0].offsetWidth * scale;
@@ -199,10 +216,15 @@ var ImageCliper = function (params) {
     me.clipImage = function(sx, sy, sw, sh, cb) {
        var ctx = canvas.getContext('2d');
        var dx = sx,
-           dy = imageClipContainer.height() > sh ? imageClipContainer.height()/2 - sh/2 : 0,
+           //dy = imageClipContainer.height() > sh ? imageClipContainer.height()/2 - sh/2 : 0,
+           dy=0,
            dw = sw,
            dh = sh;
 
+       if(imageClipContainer.height() > sh){
+        //当剪贴区的高度大于图片高度时，设置画布的高度等于图片高度,去除余白
+        $(canvas).attr('height', sh)
+       }
        var scale = targetImage[0].naturalWidth / imageClipContainer.width()
           sx = sx * scale,
           sy = sy * scale,
@@ -218,7 +240,7 @@ var ImageCliper = function (params) {
     }
 
     var imageIsTouched = false, imageIsMoved = false, imageTouchesStart = {},
-        imageWidth, imageHeight, imageStartX, imageStartY, scale=1,
+        imageWidth, imageHeight, imageStartX, imageStartY,
         imageMinX, imageMaxX, imageMinY, imageMaxY,
         imageTouchesCurrent = {},
         imageCurrentX, imageCurrentY,
@@ -347,9 +369,14 @@ var ImageCliper = function (params) {
     me.attachEvents = function (detach) {
         var action = detach ? 'off' : 'on';
         // Move image
+        // imageClipContainerShadow
         imageClipContainerShadow[action](Support.touchEvents.start, me.onImageTouchStart);
         imageClipContainerShadow[action](Support.touchEvents.move, me.onImageTouchMove);
         imageClipContainerShadow[action](Support.touchEvents.end, me.onImageTouchEnd);
+        
+        imageClipContainer[action](Support.touchEvents.start, me.onImageTouchStart);
+        imageClipContainer[action](Support.touchEvents.move, me.onImageTouchMove);
+        imageClipContainer[action](Support.touchEvents.end, me.onImageTouchEnd);
         me.container.find('.image-cliper-close-link')[action]('click', me.close);
         me.container.find('.image-cliper-ok-link')[action]('click', me.ok);
     };

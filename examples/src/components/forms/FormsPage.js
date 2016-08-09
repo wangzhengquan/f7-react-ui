@@ -1,9 +1,7 @@
 import React  from 'react';
 import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
 
 class FormsPage extends AnimationPage{
   constructor(props) {
@@ -15,7 +13,7 @@ class FormsPage extends AnimationPage{
   
   render(){
   	return (
-  	<div className={classNames( "page", this.props.className)}>
+  	<div className={classNames( 'page', this.props.className)}>
 	    <div className="page-content">
 	      <div className="content-block">
           <p>Framework7 provides very flexible forms layout, you can use it with/out icons, with/out labels, or mixed layouts.</p>
