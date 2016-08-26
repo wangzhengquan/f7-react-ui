@@ -6,7 +6,7 @@ import t7 from './template'
 import $ from './dom'
 import Modals from './modals'
 import Views from './views'
-import Support from './support'
+import Support from './support-events'
 import Device from './device'
 require('./resources/less/image-cliper.less')
 
@@ -82,10 +82,10 @@ var ImageCliper = function (params) {
                     '<div class="image-cliper-clip-container-shadow">' +
                     '</div>' +
                     '<div class="image-cliper-clip-container">' +
-                        '<div class="jcrop-hline"></div>' +
+                        '<div class="jcrop-hline top"></div>' +
                         '<div class="jcrop-hline bottom"></div>' +
                         '<div class="jcrop-vline right"></div>' +
-                        '<div class="jcrop-vline"></div>' +
+                        '<div class="jcrop-vline left"></div>' +
                         '<span class="image-cliper-zoom-container">' +
                            '<img class="target-img" src="{{this.url}}"/>' +
                         '</span>' +

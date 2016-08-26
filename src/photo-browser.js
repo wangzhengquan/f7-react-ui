@@ -8,7 +8,7 @@ import Modals from './modals'
 import Views from './views'
 import Navbar from './navbar'
 import Swiper from './swiper'
-import Support from './support'
+import Support from './support-events'
 import Device from './device'
 
 require('./resources/less/photo-browser.less')

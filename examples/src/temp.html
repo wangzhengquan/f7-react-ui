@@ -1,130 +1,202 @@
 <div className="content-block">
-  <p>Framework7 comes with powerful and most modern touch slider ever - <a href="http://idangero.us/swiper" className="external" target="_blank">Swiper Slider</a> with super flexible configuration and lot, lot of features. Just check the following demos:</p>
+  <p>Swipe out actions on list elements is one of the most awesome F7 features. It allows you to call hidden menu for each list element where you can put default ready-to use delete button or any other buttons for some required actions. </p>
 </div>
-<div className="content-block-title">Swiper Examples</div>
+<div className="content-block-title">Swipe to delete with confirm modal</div>
 <div className="list-block">
   <ul>
-    <li>
-      <a href="swiper-horizontal.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Swiper Horizontal</div>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me please</div>
         </div>
-      </a>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" data-confirm="Are you sure you want to delete this item?" className="swipeout-delete">Delete</a></div>
+    </li>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me too</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" data-confirm="Are you sure you want to delete this item?" className="swipeout-delete">Delete</a></div>
     </li>
     <li>
-      <a href="swiper-vertical.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Swiper Vertical</div>
+      <div className="item-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">I am not removable</div>
         </div>
-      </a>
+      </div>
+    </li>
+  </ul>
+</div>
+<div className="content-block-title">Swipe to delete without confirm</div>
+<div className="list-block">
+  <ul>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me please</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="swipeout-delete">Delete</a></div>
+    </li>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me too</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="swipeout-delete">Delete</a></div>
     </li>
     <li>
-      <a href="swiper-space-between.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Space Between Slides</div>
+      <div className="item-content">
+        <div className="item-inner"> 
+          <div className="item-title">I am not removable</div>
         </div>
-      </a>
+      </div>
+    </li>
+  </ul>
+</div>
+<div className="content-block-title">Swipe for actions</div>
+<div className="list-block">
+  <ul>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me please</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a><a href="#" className="swipeout-delete">Delete</a></div>
+    </li>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me too</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a><a href="#" className="swipeout-delete">Delete</a></div>
+    </li>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">You can't delete me</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a></div>
+    </li>
+  </ul>
+</div>
+<div className="content-block-title">With callback on remove</div>
+<div className="list-block">
+  <ul>
+    <li className="swipeout demo-remove-callback">
+      <div className="item-content swipeout-content">
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me please</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="swipeout-delete">Delete</a></div>
+    </li>
+    <li className="swipeout demo-remove-callback">
+      <div className="item-content swipeout-content">
+        <div className="item-inner"> 
+          <div className="item-title">Swipe left on me too</div>
+        </div>
+      </div>
+      <div className="swipeout-actions-right"><a href="#" className="swipeout-delete">Delete</a></div>
     </li>
     <li>
-      <a href="swiper-multiple.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Multiple Per Page</div>
+      <div className="item-content">
+        <div className="item-inner"> 
+          <div className="item-title">I am not removable</div>
         </div>
-      </a>
+      </div>
     </li>
-    <li>
-      <a href="swiper-nested.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Nested Swipers</div>
+  </ul>
+</div>
+<div className="content-block-title">With actions on left side (swipe to right)</div>
+<div className="list-block">
+  <ul>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">Swipe right on me please</div>
         </div>
-      </a>
+      </div>
+      <div className="swipeout-actions-left"><a href="#" className="bg-green demo-reply">Reply</a><a href="#" className="bg-blue demo-forward">Forward</a></div>
     </li>
-    <li>
-      <a href="swiper-loop.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Infinite Loop Mode</div>
+    <li className="swipeout">
+      <div className="item-content swipeout-content">
+        <div className="item-media"><i className="icon icon-f7"></i></div>
+        <div className="item-inner"> 
+          <div className="item-title">Swipe right on me too</div>
         </div>
-      </a>
+      </div>
+      <div className="swipeout-actions-left"><a href="#" className="bg-green demo-reply">Reply</a><a href="#" className="bg-blue demo-forward">Forward</a></div>
     </li>
-    <li>
-      <a href="swiper-3d-cube.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">3D Cube Effect</div>
-        </div>
-      </a>
+  </ul>
+</div>
+<div className="content-block-title">On both sides with overswipes</div>
+<div className="list-block media-list">
+  <ul>
+    <li className="swipeout">
+      <div className="swipeout-content"><a href="#" className="item-link item-content">
+          <div className="item-inner">
+            <div className="item-title-row">
+              <div className="item-title">Facebook</div>
+              <div className="item-after">17:14</div>
+            </div>
+            <div className="item-subtitle">New messages from John Doe</div>
+            <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+          </div></a></div>
+      <div className="swipeout-actions-left"><a href="#" className="bg-green swipeout-overswipe demo-reply">Reply</a><a href="#" className="demo-forward bg-blue">Forward</a></div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a><a href="#" className="demo-mark bg-orange">Mark</a><a href="#" data-confirm="Are you sure you want to delete this item?" className="swipeout-delete swipeout-overswipe">Delete</a></div>
     </li>
-    <li>
-      <a href="swiper-3d-coverflow.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">3D Coverflow Effect</div>
-        </div>
-      </a>
+    <li className="swipeout">
+      <div className="swipeout-content"><a href="#" className="item-link item-content">
+          <div className="item-inner">
+            <div className="item-title-row">
+              <div className="item-title">John Doe (via Twitter)</div>
+              <div className="item-after">17:11</div>
+            </div>
+            <div className="item-subtitle">John Doe (@_johndoe) mentioned you on Twitter!</div>
+            <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+          </div></a></div>
+      <div className="swipeout-actions-left"><a href="#" className="bg-green swipeout-overswipe demo-reply">Reply</a><a href="#" className="demo-forward bg-blue">Forward</a></div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a><a href="#" className="demo-mark bg-orange">Mark</a><a href="#" data-confirm="Are you sure you want to delete this item?" className="swipeout-delete swipeout-overswipe">Delete</a></div>
     </li>
-    <li>
-      <a href="swiper-3d-flip.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">3D Flip Effect</div>
-          <div className="item-after"><span className="badge bg-green">NEW</span></div>
-        </div>
-      </a>
+    <li className="swipeout">
+      <div className="swipeout-content"><a href="#" className="item-link item-content">
+          <div className="item-inner">
+            <div className="item-title-row">
+              <div className="item-title">Facebook</div>
+              <div className="item-after">16:48</div>
+            </div>
+            <div className="item-subtitle">New messages from John Doe</div>
+            <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+          </div></a></div>
+      <div className="swipeout-actions-left"><a href="#" className="bg-green swipeout-overswipe demo-reply">Reply</a><a href="#" className="demo-forward bg-blue">Forward</a></div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a><a href="#" className="demo-mark bg-orange">Mark</a><a href="#" data-confirm="Are you sure you want to delete this item?" className="swipeout-delete swipeout-overswipe">Delete</a></div>
     </li>
-    <li>
-      <a href="swiper-fade.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Fade Effect</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-scrollbar.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">With Scrollbar</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-gallery.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Two Way Control Gallery</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-custom.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Custom Controls</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-parallax.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Parallax</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-lazy.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Lazy Loading</div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-pagination-progress.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Progress Pagination</div>
-          <div className="item-after"><span className="badge bg-green">NEW</span></div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="swiper-pagination-fraction.html" className="item-link item-content">
-        <div className="item-inner">
-          <div className="item-title">Fraction Pagination</div>
-          <div className="item-after"><span className="badge bg-green">NEW</span></div>
-        </div>
-      </a>
+    <li className="swipeout">
+      <div className="swipeout-content"><a href="#" className="item-link item-content">
+          <div className="item-inner">
+            <div className="item-title-row">
+              <div className="item-title">John Doe (via Twitter)</div>
+              <div className="item-after">15:32</div>
+            </div>
+            <div className="item-subtitle">John Doe (@_johndoe) mentioned you on Twitter!</div>
+            <div className="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+          </div></a></div>
+      <div className="swipeout-actions-left"><a href="#" className="bg-green swipeout-overswipe demo-reply">Reply</a><a href="#" className="demo-forward bg-blue">Forward</a></div>
+      <div className="swipeout-actions-right"><a href="#" className="demo-actions">More</a><a href="#" className="demo-mark bg-orange">Mark</a><a href="#" data-confirm="Are you sure you want to delete this item?" className="swipeout-delete swipeout-overswipe">Delete</a></div>
     </li>
   </ul>
 </div>

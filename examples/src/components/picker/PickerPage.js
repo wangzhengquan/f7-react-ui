@@ -40,7 +40,7 @@ class PickerPage extends AnimationPage{
             },
             {
                 values: ('Man Luthor Woman Boy Girl Person Cutie Babe Raccoon').split(' ')
-            },
+            }
         ]
     });
 
@@ -68,8 +68,8 @@ class PickerPage extends AnimationPage{
             },
             {
                 values: carVendors.Japanese,
-                width: 160,
-            },
+                width: 160
+            }
         ]
     });
 
@@ -91,7 +91,7 @@ class PickerPage extends AnimationPage{
             '</div>',
         cols: [
             {
-                values: ['Mr', 'Ms'],
+                values: ['Mr', 'Ms']
             },
             {
                 textAlign: 'left',
@@ -99,7 +99,7 @@ class PickerPage extends AnimationPage{
             },
             {
                 values: ('Man Luthor Woman Boy Girl Person Cutie Babe Raccoon').split(' ')
-            },
+            }
         ],
         onOpen: function (picker) {
             picker.container.find('.toolbar-randomize-link').on('click', function (e) {
@@ -144,7 +144,7 @@ class PickerPage extends AnimationPage{
             },
             // Days
             {
-                values: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+                values: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
             },
             // Years
             {
@@ -152,7 +152,7 @@ class PickerPage extends AnimationPage{
                     var arr = [];
                     for (var i = 1950; i <= 2030; i++) { arr.push(i); }
                     return arr;
-                })(),
+                })()
             },
             // Space divider
             {
@@ -165,7 +165,7 @@ class PickerPage extends AnimationPage{
                     var arr = [];
                     for (var i = 0; i <= 23; i++) { arr.push(i); }
                     return arr;
-                })(),
+                })()
             },
             // Divider
             {
@@ -178,7 +178,7 @@ class PickerPage extends AnimationPage{
                     var arr = [];
                     for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
                     return arr;
-                })(),
+                })()
             }
         ]
     });
@@ -187,7 +187,7 @@ class PickerPage extends AnimationPage{
   
   render(){
   	return (
-  	<div className={classNames( "page", this.props.className)}>
+  	<div className={classNames( 'page', this.props.className)}>
 	    <div className="page-content">
 
 	      <div className="content-block">
@@ -201,7 +201,7 @@ class PickerPage extends AnimationPage{
               <div className="item-content">
                 <div className="item-inner">
                   <div className="item-input">
-                    <input type="text" placeholder="Your iOS device" readonly="readonly" id="ks-picker-device" />
+                    <input type="text" placeholder="Your iOS device" readOnly="readonly" id="ks-picker-device" />
                   </div>
                 </div>
               </div>
@@ -215,7 +215,7 @@ class PickerPage extends AnimationPage{
               <div className="item-content">
                 <div className="item-inner">
                   <div className="item-input">
-                    <input type="text" placeholder="Describe yourself" readonly="readonly" id="ks-picker-describe" />
+                    <input type="text" placeholder="Describe yourself" readOnly="readonly" id="ks-picker-describe" />
                   </div>
                 </div>
               </div>
@@ -229,7 +229,7 @@ class PickerPage extends AnimationPage{
               <div className="item-content">
                 <div className="item-inner">
                   <div className="item-input">
-                    <input type="text" placeholder="Your car" readonly="readonly" id="ks-picker-dependent" />
+                    <input type="text" placeholder="Your car" readOnly="readonly" id="ks-picker-dependent" />
                   </div>
                 </div>
               </div>
@@ -243,7 +243,7 @@ class PickerPage extends AnimationPage{
               <div className="item-content">
                 <div className="item-inner">
                   <div className="item-input">
-                    <input type="text" placeholder="Describe yourself" readonly="readonly" id="ks-picker-custom-toolbar" />
+                    <input type="text" placeholder="Describe yourself" readOnly="readonly" id="ks-picker-custom-toolbar" />
                   </div>
                 </div>
               </div>
@@ -252,14 +252,14 @@ class PickerPage extends AnimationPage{
         </div>
         <div className="content-block-title">Inline Picker / Date-time</div>
         <div className="content-block">
-          <div style={{padding:0, marginRight:"-15px", width: "auto"}} className="content-block-inner">
+          <div style={{padding:0, marginRight:'-15px', width: 'auto'}} className="content-block-inner">
             <div style={{margin:0}} className="list-block">
-              <ul style={{borderTop: "none"}}>
+              <ul style={{borderTop: 'none'}}>
                 <li>
                   <div className="item-content">
                     <div className="item-inner">
                       <div className="item-input">
-                        <input type="text" placeholder="Date Time" readonly="readonly" id="ks-picker-date" />
+                        <input type="text" placeholder="Date Time" readOnly="readonly" id="ks-picker-date" />
                       </div>
                     </div>
                   </div>

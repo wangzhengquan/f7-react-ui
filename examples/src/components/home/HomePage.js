@@ -14,88 +14,75 @@ require('react-ui/resources/less/forms.less')
 class AboutPage extends AnimationPage{
   constructor(props) {
     super(props);
+    this.dynamicPageIndex = 0;
   }
 
-  generatePage(event){
-    event.preventDefault();
+  generatePage(){
     var mainView = window.mainView = window.mainView || Views.addView('.view-main', {
         // Enable Dynamic Navbar for this view
         dynamicNavbar: true
     });
-
+    var dynamicPageIndex = this.dynamicPageIndex
     mainView.router.loadContent(
-      '<!-- Top Navbar-->' +
-      '<div class="navbar">' +
-      '  <div class="navbar-inner" data-page="dynamic-content-0" >' +
-      '    <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-      '    <div class="center sliding">Dynamic Page 0</div>' +
-      '    <div class="right"><a href="#" class="open-panel open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
-      '  </div>' +
-      '</div>' +
-      '<div class="pages">' +
-      '  <!-- Page, data-page contains page name-->' +
-      '  <div data-page="dynamic-content-0" class="page">' +
-      '    <!-- Scrollable page content-->' +
-      '    <div class="page-content">' +
-      '      <div class="content-block">' +
-      '        <div class="content-block-inner">' +
-      '          <p>Here is a dynamic page created on 0 !</p>' +
-      '          <p>Go <a href="#" class="back-first">back to first</a> or generate <a href="#" class="ks-generate-page">one more page</a>.</p>' +
-      '        </div>' +
-      '      </div>' +
-      '    </div>' +
-      '  </div>' +
-      '</div>'
+        '<!-- Top Navbar-->' +
+        '<div class="navbar">' +
+        '  <div class="navbar-inner" data-page="dynamic-content-' + dynamicPageIndex + '" >' +
+        '    <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
+        '    <div class="center sliding">Dynamic Page ' + dynamicPageIndex + '</div>' +
+        '    <div class="right"><a href="#" class="open-panel open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
+        '  </div>' +
+        '</div>' +
+        '<div class="pages">' +
+        '  <!-- Page, data-page contains page name-->' +
+        '  <div data-page="dynamic-content-' + dynamicPageIndex + '" class="page">' +
+        '    <!-- Scrollable page content-->' +
+        '    <div class="page-content">' +
+        '      <div class="content-block">' +
+        '        <div class="content-block-inner">' +
+        '          <p>Here is a dynamic page created on ' + dynamicPageIndex + ' !</p>' +
+        '          <p>Go <a href="#" class="back-home">back to home</a> or go '+
+        '            <a href="#" class="back-first">back to first</a> or generate '+
+        '            <a href="#" class="ks-generate-page">one more page</a>.'+
+        '          </p>' +
+        '        </div>' +
+        '      </div>' +
+        '    </div>' +
+        '  </div>' +
+        '</div>'
     );
+
+     dynamicPageIndex++;
+     this.dynamicPageIndex= dynamicPageIndex
   }
 
   componentDidMount(){
     super.componentDidMount();
-    /* ===== Generate Content Dynamically ===== */
-    var mainView = window.mainView = window.mainView || Views.addView('.view-main', {
-        // Enable Dynamic Navbar for this view
-        dynamicNavbar: true
-    });
-    var dynamicPageIndex = 0;
+    var me = this;
+    
     function createContentPage(event) {
       event.preventDefault();
-      dynamicPageIndex++
-      mainView.router.loadContent(
-          '<!-- Top Navbar-->' +
-          '<div class="navbar">' +
-          '  <div class="navbar-inner" data-page="dynamic-content-' + dynamicPageIndex + '" >' +
-          '    <div class="left sliding"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-          '    <div class="center sliding">Dynamic Page ' + dynamicPageIndex + '</div>' +
-          '    <div class="right"><a href="#" class="open-panel open-left-panel link icon-only"><i class="icon icon-bars"></i></a></div>' +
-          '  </div>' +
-          '</div>' +
-          '<div class="pages">' +
-          '  <!-- Page, data-page contains page name-->' +
-          '  <div data-page="dynamic-content-' + dynamicPageIndex + '" class="page">' +
-          '    <!-- Scrollable page content-->' +
-          '    <div class="page-content">' +
-          '      <div class="content-block">' +
-          '        <div class="content-block-inner">' +
-          '          <p>Here is a dynamic page created on ' + dynamicPageIndex + ' !</p>' +
-          '          <p>Go <a href="#" class="back-first">back to first</a> or generate <a href="#" class="ks-generate-page">one more page</a>.</p>' +
-          '        </div>' +
-          '      </div>' +
-          '    </div>' +
-          '  </div>' +
-          '</div>'
-      );
-
-      return;
+      me.generatePage()
     }
 
     function backToFirst(e){
       e.preventDefault()
-      mainView.router.back({
+      me.dynamicPageIndex = 1;
+      window.mainView.router.back({
           force: true,
           pageName: 'dynamic-content-0'
       });
     }
 
+    function backToHome(e){
+      e.preventDefault()
+      me.dynamicPageIndex = 0
+      window.mainView.router.back({
+          force: true,
+          pageName: me.props.pageName
+      });
+    }
+
+    $(document).on('click', '.back-home', backToHome);
     $(document).on('click', '.back-first', backToFirst);
     $(document).on('click', '.ks-generate-page', createContentPage);
 
@@ -115,7 +102,7 @@ class AboutPage extends AnimationPage{
 
   render(){
     return (
-    <div className={classNames('page', this.props.className)} data-page={location.pathname}>
+    <div className={classNames('page', this.props.className)} data-page={this.props.pageName}>
       <div className="page-content">
         <div className="content-block-title">Welcome To ReactUI</div>
         <div className="content-block"><Link to="about.html" className="button">About ReactUI</Link></div>
@@ -387,7 +374,7 @@ class AboutPage extends AnimationPage{
             </div>
           </Link>
         
-          <a href="#" onClick={this.generatePage.bind(this)}  className="item-link">
+          <a href="#" onClick={this.handleClickGeneratedContent.bind(this)}  className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
@@ -400,6 +387,11 @@ class AboutPage extends AnimationPage{
       </div>
     </div>
     );
+  }
+
+  handleClickGeneratedContent(e){
+    e.preventDefault()
+    this.generatePage()
   }
   
 }

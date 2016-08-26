@@ -244,14 +244,27 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
+    },{
+      path: 'swipe-delete',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/swipe-delete/SwipeDeleteNavbar'),
+              page: require('./components/swipe-delete/SwipeDeletePage')
+            })
+            document.querySelector('title').innerHTML='Swipe To Delete Slider'
+            Modals.hideIndicator()
+        })
+      }
     }, {
       path: 'swiper',
       getComponents(nextState, cb) {
         Modals.showIndicator()
         require.ensure([], (require) => {
             cb(null, {
-              navbar: hideNavbar ? null : require('./components/swiper/swiperNavbar'),
-              page: require('./components/swiper/swiperPage')
+              navbar: hideNavbar ? null : require('./components/swiper/SwiperNavbar'),
+              page: require('./components/swiper/SwiperPage')
             })
             document.querySelector('title').innerHTML='Swiper Slider'
             Modals.hideIndicator()

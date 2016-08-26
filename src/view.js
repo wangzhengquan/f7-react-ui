@@ -20,7 +20,7 @@ class View extends React.Component{
           <ReactTransitionGroup component="div" className={classNames('navbar', {'navbar-hidden': !!!navbar})}>
              {navbar ? React.cloneElement(navbar, {
                 key: (this.props.location ? this.props.location.pathname.concat('/navbar') : ReactUI.guid() ),
-                dataPage: location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname
+                pageName: location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname
               }) : '' }
           </ReactTransitionGroup>
 
@@ -29,7 +29,7 @@ class View extends React.Component{
             {React.cloneElement(page, {
               className: {'navbar-through': !!navbar, 'toolbar-through': !!toolbar, 'tabbar-labels-through': !!toolbar},
               key: (this.props.location ? this.props.location.pathname : ReactUI.guid() ),
-              dataPage: location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname
+              pageName: location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname
             })}
           </ReactTransitionGroup>
 

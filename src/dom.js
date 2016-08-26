@@ -130,6 +130,9 @@ Dom7.prototype = {
         }
         return this;
     },
+    hasAttr: function(attrs){
+        return  this[0] && this[0].hasAttribute(attrs)
+    },
     prop: function (props, value) {
         if (arguments.length === 1 && typeof props === 'string') {
             // Get prop

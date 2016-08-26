@@ -30,7 +30,7 @@ var loadImage = (function(){
         if (!src) return;
 
         function onLoad() {
-            el.removeClass('lazy').addClass('lazy-loaded');
+            el.removeClass('lazy');
             if (bg) {
                 el.css('background-image', 'url(' + src + ')');
                 el.removeAttr('data-background')
@@ -72,32 +72,10 @@ export default class Lazyload {
         this.initImagesLazyLoad();
     }
     initImagesLazyLoad () {
-        var me = this
-        var pageContainer = $(this.config.pageContainer);;
-
-        // Lazy images
-        var lazyLoadImages;
-        if (pageContainer.hasClass('lazy')) {
-            lazyLoadImages = pageContainer;
-            pageContainer = lazyLoadImages.parents('.page');
-        }
-        else {
-            lazyLoadImages = pageContainer.find('.lazy');
-        }
-        //if (lazyLoadImages.length === 0) return;
-
-        // Scrollable page content
-        var pageContent;
-        if (pageContainer.hasClass('page-content'))  {
-            pageContent = pageContainer;
-            pageContainer = pageContainer.parents('.page');
-        }
-        else  {
-            pageContent = pageContainer.find('.page-content');
-        }
-        if (pageContent.length === 0) return;
-        this.pageContainer = pageContainer;
-        this.pageContent = pageContent;
+        var scrollContainer = $(this.config.scrollContainer);
+        var lazyLoadImages = scrollContainer.find('.lazy');
+        
+        this.scrollContainer = scrollContainer;
         // Placeholder
         var placeholderSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXCwsK592mkAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
         if (typeof this.config.placeholder === 'string') {
@@ -114,9 +92,9 @@ export default class Lazyload {
     attachEvents(destroy) {
         var method = destroy ? 'off' : 'on';
         // lazyLoadImages.parents('.tab')[method]('show', handleLazy);
-        this.pageContent[method]('scroll', this.handleLazy.bind(this));
+        this.scrollContainer[method]('scroll', this.handleLazy.bind(this));
         $(window)[method]('resize', this.handleLazy.bind(this));
-    }   
+    }
     detachEvents() {
         this.attachEvents(true);
     }
@@ -125,10 +103,10 @@ export default class Lazyload {
         this.detachEvents()
     }
     build (){
-        attachEvents()
-    } 
+        this.attachEvents()
+    }
     handleLazy() {
-        var lazyLoadImages = this.pageContainer.find('.lazy');
+        var lazyLoadImages = this.scrollContainer.find('.lazy');
         lazyLoadImages.each((index, el) => {
             el = $(el);
             if (el.parents('.tab:not(.active)').length > 0) {

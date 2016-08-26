@@ -2,7 +2,7 @@
 ************   Picker   ************
 ======================================================*/
 import device from './device'
-import support from './support'
+import support from './support-events'
 import gparams from './params'
 import Modals from './modals'
 import MicroEvent from 'react-ui/microevent'
@@ -89,7 +89,8 @@ var Picker = function (params) {
                 valueIndex++;
             }
         }
-        p.updateValue();
+
+        p.updateValue(arrValues);
     };
     p.updateValue = function (forceValues) {
         var newValue = forceValues || [];
@@ -191,7 +192,7 @@ var Picker = function (params) {
         // Set Value Function
         col.setValue = function (newValue, transition, valueCallbacks) {
             if (typeof transition === 'undefined') transition = '';
-            var newActiveIndex = col.wrapper.find('.picker-item[data-picker-value="' + newValue + '"]').index();
+            var newActiveIndex = col.wrapper.find('.picker-item[data-picker-value="' + (newValue.id || newValue) + '"]').index();
             if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
                 return;
             }
@@ -254,7 +255,7 @@ var Picker = function (params) {
 
             if (valueCallbacks || typeof valueCallbacks === 'undefined') {
                 // Update values
-                col.value = selectedItem.attr('data-picker-value');
+                col.value = col.values[activeIndex]
                 col.displayValue = col.displayValues ? col.displayValues[activeIndex] : col.value;
                 // On change callback
                 if (previousActiveIndex !== activeIndex) {
@@ -378,10 +379,12 @@ var Picker = function (params) {
         }
 
         function handleClick(e) {
+            // debugger
             if (!allowItemClick) return;
             $.cancelAnimationFrame(animationFrameId);
             /*jshint validthis:true */
-            var value = $(this).attr('data-picker-value');
+            // var value = $(this).attr('data-picker-value');
+            var value = col.values[$(e.target).index()];
             col.setValue(value);
         }
 
@@ -428,7 +431,7 @@ var Picker = function (params) {
         }
         else {
             for (var j = 0; j < col.values.length; j++) {
-                columnItemsHTML += '<div class="picker-item" data-picker-value="' + col.values[j] + '">' + (col.displayValues ? col.displayValues[j] : col.values[j]) + '</div>';
+                columnItemsHTML += '<div class="picker-item" data-picker-value="' + (col.values[j].id || col.values[j]) + '">' + (col.displayValues ? col.displayValues[j] : col.values[j]) + '</div>';
             }
             columnHTML += '<div class="picker-items-col ' + (col.textAlign ? 'picker-items-col-' + col.textAlign : '') + ' ' + (col.cssClass || '') + '"><div class="picker-items-col-wrapper">' + columnItemsHTML + '</div></div>';
         }
@@ -445,6 +448,7 @@ var Picker = function (params) {
             colsHTML += p.columnHTML(p.params.cols[i]);
             p.cols.push(col);
         }
+
         pickerClass = 'picker-modal picker-columns ' + (p.params.cssClass || '') + (p.params.rotateEffect ? ' picker-3d' : '');
         pickerHTML =
             '<div class="' + (pickerClass) + '">' +
@@ -532,7 +536,6 @@ var Picker = function (params) {
     p.opened = false;
     p.open = function () {
         var toPopover = isPopover();
-
         if (!p.opened) {
 
             // Layout
@@ -593,6 +596,7 @@ var Picker = function (params) {
                 p.input.trigger('focus');
             }
         }
+
         // Set value
         if (!p.initialized) {
             if (p.value) p.setValue(p.value, 0);

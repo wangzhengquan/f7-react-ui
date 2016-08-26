@@ -15,7 +15,7 @@ class PopoverPage extends AnimationPage{
 		e.preventDefault()
 		var modal = Modals.popover(e.target)
 		var href = function(path){
-			history.push(path); 
+			history.push(path);
 			Modals.closeModal(modal);
 		}
 		let PopoverMenu = (props) => (
@@ -34,7 +34,7 @@ class PopoverPage extends AnimationPage{
 	}
 	render(){
 		return (
-			<div className={classNames( "page", this.props.className)}>
+			<div className={classNames( 'page', this.props.className)}>
 			    <div className="page-content">
 			      <div className="content-block">
 			        <p>Of course, Framework7 has Popovers. Popovers may be called on absolutely any element with dynamic positioning. Note that due to Apple guide lines it is not recommended to use popovers on iPhone, only on bigger screens (iPad), so on small screen it may have wrong positioning because it is not fit to screen. For iPhone it is recommended to use <Link to="modals">actions and modals</Link> instead. Try the "bars" icon on navbar, "menu" link on bottom toolbar, links and buttons in text below:</p>

@@ -221,7 +221,7 @@ export default  class Navbar extends React.Component{
     }
     
     return (
-       <div className="navbar-inner" data-page={location.pathname==='/' ? 'index' : location.pathname.charAt(0) === '/' ? location.pathname.substring(1) : location.pathname}>
+       <div className="navbar-inner" data-page={this.props.pageName}>
           {
           this.canBack ?
           <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''

@@ -1,3 +1,21 @@
+/**
+ * 转换为有符号数字串
+ * 将 10 转换成 '+10',
+ * 将 -10 转换成 '-10'.
+ * @method toSignedNumberString
+ * @param zeroPrefix {String} : 0之前的字符，一般用 +号，默认为空字符串。
+ * @return {String}
+ */
+var toSignedNumberString = function(num, zeroPrefix){  
+    if(num > 0){
+        return '+' + String(num);     
+    } else if(num == 0){
+        return (zeroPrefix || '') + String(num);
+    } else {
+        return String(num);
+    }
+}
+
 export default {
 
   /**
@@ -33,49 +51,49 @@ export default {
     }
   },
   /**
-   * 
+   *
    * 日期格式化.如:
    * UFODate.format(new Date(),"yyyy-MM-dd mm:ss");
-   * UFODate.format(new Date("january 12 2008 11:12:30"), "yyyy-MM-dd hh:mm:ss"); 
+   * UFODate.format(new Date("january 12 2008 11:12:30"), "yyyy-MM-dd hh:mm:ss");
    * @method format
    */
   format: function(date, format) {
     if (!date) {
-      return "";
+      return '';
     }
     if (!format) {
-      format = "yyyy-MM-dd mm:ss";
+      format = 'yyyy-MM-dd mm:ss';
     }
     var o = {
       /**
        * 特殊的格式符，使用大写，如TZ, MN, WN。
        * MM为月份小于10时，前补零，如:2012-01-11。
        */
-      'TZ': UFONumber.toSignedNumberString(parseInt(-date.getTimezoneOffset() / 60)), //本地时间与 GMT 时间之间的时间差，以小时为单位.
-      "q+": Math.floor((date.getMonth() + 3) / 3), //quarter
+      'TZ': toSignedNumberString(parseInt(-date.getTimezoneOffset() / 60)), //本地时间与 GMT 时间之间的时间差，以小时为单位.
+      'q+': Math.floor((date.getMonth() + 3) / 3), //quarter
 
-      "y+": date.getFullYear(),
+      'y+': date.getFullYear(),
 
-      "MN": this.getMonthName(date, true), //month name
-      "M+": date.getMonth() + 1, //month number
+      'MN': this.getMonthName(date, true), //month name
+      'M+': date.getMonth() + 1, //month number
 
-      "d+": date.getDate(), //day
+      'd+': date.getDate(), //day
 
-      "WN": this.getWeekName(date), //week
+      'WN': this.getWeekName(date), //week
 
-      "h+": date.getHours(), //hour
-      "H+": (function(h) {
+      'h+': date.getHours(), //hour
+      'H+': (function(h) {
         return h < 13 ? h : h - 12;
       })(date.getHours()), //hour 12小时制
-      "m+": date.getMinutes(), //minute
+      'm+': date.getMinutes(), //minute
       'MP': date.getMinutes() - new Date().getMinutes(), //minutes passed
-      "s+": date.getSeconds(), //second
-      "DP": (function(dataObj) { //AM/PM
+      's+': date.getSeconds(), //second
+      'DP': (function(dataObj) { //AM/PM
         return dataObj.getHours() < 12 ? 'AM' : 'PM';
       })(date)
     };
     for (var k in o) {
-      if (new RegExp("(" + k + ")").test(format)) {
+      if (new RegExp('(' + k + ')').test(format)) {
         var matchStr = RegExp.$1;
         format = format.replace(
           matchStr,

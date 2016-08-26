@@ -3,7 +3,7 @@
 ************   Inspired by https://github.com/ftlabs/fastclick   ************
 ===============================================================================*/
 import $ from './dom'
-import support from './support'
+import support from './support-events'
 import params from './params'
 import device from './device'
 

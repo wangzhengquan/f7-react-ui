@@ -329,8 +329,9 @@ router._load = function (view, options) {
         newNavbarInner.removeClass('cached');
         newPage[0].f7RelatedNavbar = newNavbarInner[0];
         newNavbarInner[0].f7RelatedPage = newPage[0];
+        // navbar.removeClass('navbar-hidden')
     }else {
-      navbar.addClass('navbar-hidden')
+      // navbar.addClass('navbar-hidden')
     }
 
     // save content areas into view's cache
@@ -466,7 +467,6 @@ router._load = function (view, options) {
           }
 
           if (clicked.hasClass('back')){
-              // console.log('====back', options)
               view.router.back(options);
 
           }
@@ -727,7 +727,6 @@ router._back = function (view, options) {
         newPage.addClass('page-on-left').removeClass('cached');
         if (dynamicNavbar) {
             navbar = viewContainer.find('.navbar');
-            navbar.removeClass('navbar-hidden')
             navbarInners = viewContainer.find('.navbar-inner:not(.cached)');
             newNavbarInner.addClass('navbar-on-left').removeClass('cached');
         }
@@ -862,8 +861,10 @@ router._back = function (view, options) {
 
             // Find navbar
             navbarInners = viewContainer.find('.navbar-inner:not(.cached)');
+
             newNavbarInner = $(navbarInners[0]);
             oldNavbarInner = $(navbarInners[1]);
+           
             if (newNavbarInner.length === 0 || oldNavbarInner.length === 0 || oldNavbarInner[0] === newNavbarInner[0]) {
                 dynamicNavbar = false;
             }
@@ -1052,8 +1053,6 @@ router.afterBack = function (view, oldPage, newPage) {
         var page = $(this);
         var index = page.index();
         var pageUrl = page[0].f7PageData && page[0].f7PageData.url;
-        console.log(view.history)
-         console.log('del',pageUrl, view.history.indexOf(pageUrl) < 0, view.initialPages.indexOf(this) < 0)
         if (pageUrl && view.history.indexOf(pageUrl) < 0 && view.initialPages.indexOf(this) < 0) {
           Pages.pageRemoveCallback(view, page[0], 'right');
           if (page[0].f7RelatedNavbar && view.params.dynamicNavbar) {
