@@ -361,6 +361,14 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
+          <Link to="animation-items" className="item-link">
+            <div className="item-content">
+              <div className="item-media"><i className="icon icon-f7"></i></div>
+              <div className="item-inner">
+                <div className="item-title">Animation Items</div>
+              </div>
+            </div>
+          </Link>
 
         </List>
 

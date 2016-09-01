@@ -142,6 +142,7 @@ pages.pageInitCallback = function (view, params) {
     // Init Callback
     //app.pluginHook('pageInit', pageData);
     pages.triggerPageCallbacks('init', pageData.name, pageData);
+    // console.log('pageData.container', pageData.container)
     $(pageData.container).trigger('pageInit', {page: pageData});
 };
 pages.pageRemoveCallback = function (view, pageContainer, position) {

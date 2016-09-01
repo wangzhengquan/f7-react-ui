@@ -12,6 +12,7 @@ class SwipeDeletePage extends AnimationPage{
   }
    
   componentDidMount(){
+    super.componentDidMount()
     SwipeOut.initSwipeout()
   }
 

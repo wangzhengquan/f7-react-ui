@@ -6,6 +6,8 @@ import Modals from 'react-ui/modals'
 import MessageBox from 'react-ui/message-box'
 import ActionSheet from 'react-ui/action-sheet'
 import Views from 'react-ui/views'
+import Navbars from 'react-ui/navbars'
+import $ from 'react-ui/dom'
 require('react-ui/resources/less/content-block.less')
 
 require('react-ui/resources/less/forms.less')
@@ -219,6 +221,10 @@ class AboutPage extends AnimationPage{
     )
 
     var modal = Modals.popup()
+    $(modal).on('opened', function(){
+       Navbars.sizeNavbar(modal.querySelector('.navbar-inner'))
+    })
+   
     var closeModal = (e) => {
       e.preventDefault()
       Modals.closeModal(modal)

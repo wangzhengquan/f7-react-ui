@@ -296,6 +296,19 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
+    }, {
+      path: 'animation-items',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/react-animation/AnimationItemsNavbar'),
+              page: require('./components/react-animation/AnimationItemsPage')
+            })
+            document.querySelector('title').innerHTML='Animation Item'
+            Modals.hideIndicator()
+        })
+      }
     }]
 
     

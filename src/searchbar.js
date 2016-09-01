@@ -71,8 +71,12 @@ class Searchbar extends React.Component{
     cancelButton.transition('');
     this.cancelButtonHasMargin = true;
   }
-
+  onFocus(e){
+     this.props.onFocus &&  this.props.onFocus(e)
+     this.enable(e)
+  }
   enable (e) {
+      
        var _enable = () => {
           if (!this.state.searchbarActive ){
             this.setState({
@@ -137,9 +141,12 @@ class Searchbar extends React.Component{
     event.preventDefault()
     var oldValue = this.state.value
     var newValue = ''
-    this.setState ({value: newValue})
-    this.props.onChange && this.props.onChange(newValue, oldValue)
-    this.props.onClear && this.props.onClear()
+    if(oldValue !== newValue){
+      this.setState ({value: newValue})
+      this.props.onChange && this.props.onChange(newValue, oldValue)
+      this.props.onClear && this.props.onClear()
+    }
+   
   }
 
   handleChange(event) {
@@ -155,16 +162,16 @@ class Searchbar extends React.Component{
 	  <form onSubmit={this.onSubmit.bind(this) }
 	  	className={
         classnames(
-          "searchbar", 
+          'searchbar', 
           this.props.className,
           {
             'searchbar-not-empty': (this.state.value !== ''),
             'searchbar-active': this.state.active
           }
         )
-      } >
+      } style={this.props.style}>
 	    <div className="searchbar-input">
-	      <input type="search" value={this.state.value} placeholder={this.props.placeholder} onFocus={this.enable.bind(this)} onChange={this.handleChange.bind(this)}/>
+	      <input type="search" value={this.state.value} placeholder={this.props.placeholder} onFocus={this.onFocus.bind(this)} onChange={this.handleChange.bind(this)}/>
 	      <a href="#" onClick={this.handleClear.bind(this)} className="searchbar-clear"></a>
 	    </div>
 	    {this.props.cancelButton ?  <a href="#" onClick={this.handleCancel.bind(this)} className="searchbar-cancel">取消</a> : ''}
@@ -174,7 +181,7 @@ class Searchbar extends React.Component{
 }
 
 Searchbar.propTypes = {
-	placeholder: React.PropTypes.string.isRequired,
+	placeholder: React.PropTypes.string.isRequired
 }
 Searchbar.defaultProps = {
 	placeholder: '搜索',

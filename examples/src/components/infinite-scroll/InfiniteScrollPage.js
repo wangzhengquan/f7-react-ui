@@ -4,10 +4,10 @@ import Page from '../Page'
 import classNames from 'classnames';
 import {List} from 'react-ui/lists'
 
-var params = {
-  limit : 20,
-  maxItems: 60
-}
+ 
+
+var limit = 20,
+    maxItems = 60;
 class InfiniteScrollPage extends Page{
   constructor(props) {
     super(props);
@@ -20,45 +20,71 @@ class InfiniteScrollPage extends Page{
 
   componentDidMount(){
   	super.componentDidMount()
-    var loading = true;
-     
-
-  	var infiniteScroll = new InfiniteScroll({infiniteContent: this.refs.pageContent, distance: 50})
-    this.destroyList.push(function(){
-      infiniteScroll.destroy()
-    })
-    infiniteScroll.on('infinite', () => {
-      if (loading || this.setState.reachLastOne) return;
-
-      loading = true;
-
-      this.load(() => {
-        if(this.state.data.length >= params.maxItems){
-          this.setState({
-            reachLastOne: true
-          })
-          return
-        }
-        loading = false
-      })
-    })
-
-  	this.load(() => {
-      loading = false
-    })
-    
+    this.init()
   }
 
-  load ( cb ) {
-    return setTimeout(() => {
-      var data = []
-      for(var i = 0; i < params.limit; i++){
-        data.push(this.state.data.length + i)
-      }
+  init(){
+    this.loadFirst(()=> {
+      var infiniteScroll = new InfiniteScroll({infiniteContent: this.refs.pageContent, distance: 50})
+      this.destroyList.push(function(){
+        infiniteScroll.destroy()
+      })
+      var loading = false;
+      infiniteScroll.on('infinite', () => {
+        if (loading || this.setState.reachLastOne) return;
+        loading = true;
+        this.loadMore(() => {
+          loading = false
+        })
+      })
+    })
+  }
+
+  loadMore(cb){
+    this.param.start += limit
+    this.query(this.param, (data) => {
       this.setState({
-        data:  this.state.data.concat(data)
+        data: this.state.data.concat(data)
       })
       cb && cb()
+    })
+  }
+
+  loadFirst(cb){
+    this.param = {
+      start: 0,
+      limit: limit
+    }
+    this.setState({
+      reachLastOne: false
+    })
+    this.query(this.param, (data) => {
+      this.setState({
+        data: data
+      })
+      cb && cb()
+    })
+  }
+
+  query (param,  cb ) {
+    return setTimeout(() => {
+      var data = []
+      
+      var end = param.start + limit;
+      if(end>maxItems){
+        end = maxItems;
+
+        this.setState({
+          reachLastOne: true
+        })
+      }
+
+      for(var i = param.start; i < end; i++){
+        data.push(i)
+      }
+       
+      
+      cb && cb(data)
     }, 1000)
   
   }

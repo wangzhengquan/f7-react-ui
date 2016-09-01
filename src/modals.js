@@ -11,7 +11,7 @@ var _modalTemplateTempDiv = document.createElement('div');
 var Modals = {
 	params : {
 		modalStack : true,
-		material: false,
+		material: false
 	},
 	modalStack: [],
 	modalStackClearQueue () {

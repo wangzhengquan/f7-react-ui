@@ -397,7 +397,7 @@ SwipeOut.swipeoutDelete = function (el, callback) {
             if (virtualList && typeof virtualIndex !== 'undefined') virtualList.deleteItem(virtualIndex);
         }
         else {
-            el.remove();
+            // el.remove();
         }
     });
     var translate = '-100%';

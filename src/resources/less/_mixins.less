@@ -1,4 +1,12 @@
+/*.transition(@property, @duration, @function, @delay) {
+    -webkit-transition: @property @duration @function @delay;
+    transition: @property @duration @function @delay;
+}*/
 .transition(@d) {
+    -webkit-transition-duration: @d;
+    transition-duration: @d;
+}
+.transition-duration(@d) {
     -webkit-transition-duration: @d;
     transition-duration: @d;
 }

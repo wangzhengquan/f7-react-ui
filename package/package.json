@@ -1,6 +1,6 @@
 {
   "name": "f7-react-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "a ui framework with reactjs",
   "main": "index.js",
    
@@ -20,14 +20,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wangzhengquan/react-ui/issues"
-  },
-  
-  "dependencies": {
-    "classnames": "^2.2.4",
-    "core-js": "^2.0.0",
-    "react": "^15.2.1",
-    "react-addons-css-transition-group": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "react-router": "^2.6.0"
   }
+   
 }
