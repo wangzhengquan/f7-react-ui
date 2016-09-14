@@ -309,6 +309,19 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
+    }, {
+      path: 'editor',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/editor/EditorNavbar'),
+              page: require('./components/editor/EditorPage')
+            })
+            document.querySelector('title').innerHTML='Editor'
+            Modals.hideIndicator()
+        })
+      }
     }]
 
     

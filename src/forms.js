@@ -38,7 +38,7 @@ class DateField extends React.Component{
         value = DateUtil.format(value, this.props.format || 'yyyy-MM-dd')
       }
     }
-    return <input type={this.props.type || 'date'} placeholder={this.props.placeholder}  onChange={this.props.onChange} style={this.props.style} value={value} />
+    return <input type={this.props.type || 'date'} placeholder={this.props.placeholder}  onChange={this.props.onChange} name={this.props.name || false} style={this.props.style} value={value} />
              
   }
 }

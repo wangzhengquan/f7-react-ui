@@ -1,4 +1,5 @@
 import ArrayUtil from './array'
+import StringHelper from './string'
 var Dom7 = function (arr) {
     var _this = this, i = 0;
     // Create array-like object
@@ -15,6 +16,10 @@ var $ = function (selector, context) {
         if (selector instanceof Dom7) {
             return selector;
         }
+
+    }
+    if(context && context instanceof Dom7){
+        context = context[0]
     }
     if (selector) {
         // String
@@ -49,7 +54,7 @@ var $ = function (selector, context) {
             }
         }
         // Node/element
-        else if (selector.nodeType || selector === window || selector === document) {
+        else if (selector.nodeType || toString.call(selector) === toString.call(window) || toString.call(selector) === toString.call(document)) {
             arr.push(selector);
         }
         //Array of elements or instance of Dom
@@ -205,7 +210,7 @@ Dom7.prototype = {
                 for (var i = 0; i < el.attributes.length; i++) {
                     var attr = el.attributes[i];
                     if (attr.name.indexOf('data-') >= 0) {
-                        dataset[$.toCamelCase(attr.name.split('data-')[1])] = attr.value;
+                        dataset[StringHelper.toCamelCase(attr.name.split('data-')[1])] = attr.value;
                     }
                 }
             }
@@ -639,7 +644,8 @@ Dom7.prototype = {
         $(parent).prepend(this);
         return this;
     },
-    insertBefore: function (selector) {
+     
+    _insertBefore: function (selector) {
         var before = $(selector);
         for (var i = 0; i < this.length; i++) {
             if (before.length === 1) {
@@ -808,15 +814,9 @@ Dom7.prototype = {
     }
 };
 
-/*dom util*/
-$.toCamelCase = function (string) {
-    return string.toLowerCase().replace(/-(.)/g, function(match, group1) {
-        return group1.toUpperCase();
-    });
-};
-$.dataset = function (el) {
-    return $(el).dataset();
-};
+// $.dataset = function (el) {
+//     return $(el).dataset();
+// };
 
 $.getTranslate = function (el, axis) {
     var matrix, curTransform, curStyle, transformMatrix;
@@ -885,7 +885,8 @@ $.cancelAnimationFrame = function (id) {
         return window.clearTimeout(id);
     }  
 };
-$.supportTouch = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+
+// $.supportTouch = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
 
 
 // Link to prototype
@@ -999,7 +1000,7 @@ $.fn.scrollLeft = function (left, duration, easing, callback) {
 
 // Shortcuts
 (function () {
-    var shortcuts = ('click blur focus focusin focusout keyup keydown keypress submit change mousedown mousemove mouseup mouseenter mouseleave mouseout mouseover touchstart touchend touchmove resize scroll').split(' ');
+    var shortcuts = ('click blur focus focusin focusout keyup keydown keypress submit change mousedown mousemove mouseup mouseenter mouseleave mouseout mouseover touchstart touchend touchmove resize scroll contextmenu').split(' ');
     var notTrigger = ('resize scroll').split(' ');
     function createMethod(name) {
         Dom7.prototype[name] = function (targetSelector, listener, capture) {
@@ -1024,6 +1025,6 @@ $.fn.scrollLeft = function (left, duration, easing, callback) {
         createMethod(shortcuts[i]);
     }
 })();
-
+ 
 export default  $ 
 

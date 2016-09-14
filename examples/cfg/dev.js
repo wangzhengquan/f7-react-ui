@@ -22,13 +22,8 @@ let config = Object.assign({}, baseConfig, {
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
-    }),
-    // https://github.com/ampedandwired/html-webpack-plugin
-    // new HtmlWebpackPlugin({
-    //   filename: path.join(defaultSettings.distPath,'index.html'),
-    //   template: path.join(defaultSettings.srcPath, 'template.html'),
-    //   inject: true
-    // }),
+    })
+     
   ],
   module: defaultSettings.getDefaultModules()
 });

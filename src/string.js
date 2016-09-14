@@ -1,4 +1,8 @@
 let StringHelper = {}
+
+StringHelper.trim = function(str) {
+    return str.replace(/(?:^[ \t\n\r]+)|(?:[ \t\n\r]+$)/g, '');
+}
 /**
  * 下划线样式转成驼峰样式
  * @param  {[type]} string [description]
@@ -9,6 +13,8 @@ StringHelper.toCamelCase = function (string) {
         return group1.toUpperCase();
     });
 };
+
+
 
 /**
  * 计算字符串所占的内存字节数，默认使用UTF-8的编码方式计算，也可制定为UTF-16

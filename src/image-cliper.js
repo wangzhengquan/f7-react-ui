@@ -192,7 +192,10 @@ var ImageCliper = function (params) {
         }
     };
 
-    
+    me.cancel = function(e){
+        e.preventDefault()
+        me.close()
+    }
 
     me.ok = function(e) {
 
@@ -377,7 +380,7 @@ var ImageCliper = function (params) {
         imageClipContainer[action](Support.touchEvents.start, me.onImageTouchStart);
         imageClipContainer[action](Support.touchEvents.move, me.onImageTouchMove);
         imageClipContainer[action](Support.touchEvents.end, me.onImageTouchEnd);
-        me.container.find('.image-cliper-close-link')[action]('click', me.close);
+        me.container.find('.image-cliper-close-link')[action]('click', me.cancel);
         me.container.find('.image-cliper-ok-link')[action]('click', me.ok);
     };
 }

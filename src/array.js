@@ -1,28 +1,44 @@
-var $ = {}
-$.isArray = function (arr) {
-    if (Object.prototype.toString.apply(arr) === '[object Array]') return true;
-    else return false;
-};
-$.each = function (obj, callback) {
-    if (typeof obj !== 'object') return;
-    if (!callback) return;
-    var i, prop;
-    if ($.isArray(obj) || obj instanceof Dom7) {
-        // Array
-        for (i = 0; i < obj.length; i++) {
-            callback(i, obj[i]);
-        }
+var ArrayHelper = {}
+
+ArrayHelper.isArray = function (val) {
+    if (!val) {
+        return false;
     }
-    else {
-        // Object
-        for (prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                callback(prop, obj[prop]);
+    return Object.prototype.toString.call(val) === '[object Array]';
+};
+
+ArrayHelper.toArray = function (obj, offset) {
+    return Array.prototype.slice.call(obj, offset || 0);
+}
+
+ArrayHelper.each = function (obj, fn) {
+    if (ArrayHelper.isArray(obj)) {
+        for (var i = 0, len = obj.length; i < len; i++) {
+            if (fn.call(obj[i], obj[i], i) === false) {
+                break;
+            }
+        }
+    } else {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (fn.call(obj[key], obj[key], key) === false) {
+                    break;
+                }
             }
         }
     }
 };
-$.unique = function (arr) {
+
+ArrayHelper.inArray = function (val, arr) {
+    for (var i = 0, len = arr.length; i < len; i++) {
+        if (val === arr[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+ArrayHelper.unique = function (arr) {
     var unique = [];
     for (var i = 0; i < arr.length; i++) {
         if (unique.indexOf(arr[i]) === -1) unique.push(arr[i]);
@@ -30,4 +46,4 @@ $.unique = function (arr) {
     return unique;
 };
 
-export default $
+export default ArrayHelper

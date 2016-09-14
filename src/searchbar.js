@@ -159,7 +159,7 @@ class Searchbar extends React.Component{
 
   render() {
   	return (
-	  <form onSubmit={this.onSubmit.bind(this) }
+	  <form onSubmit={this.onSubmit.bind(this) } action=""
 	  	className={
         classnames(
           'searchbar', 

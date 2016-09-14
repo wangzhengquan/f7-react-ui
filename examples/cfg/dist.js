@@ -26,8 +26,9 @@ let config = Object.assign({}, baseConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
+    // new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('shared-[hash].js'),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
@@ -35,10 +36,11 @@ let config = Object.assign({}, baseConfig, {
       filename: path.join(defaultSettings.distPath,'index.html'),
       template: path.join(defaultSettings.srcPath,'template.html'),
       inject: true,
+      favicon:  path.join(defaultSettings.srcPath,'favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: false
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       }
@@ -59,7 +61,8 @@ config.module.loaders.push({
 
 config.output = Object.assign({}, config.output, {
   //publicPath: '//hlj-img.b0.upaiyun.com/upload/pre311/',
-  filename: 'app-[hash].js'
+  filename: 'app-[hash].js',
+  chunkFilename: '[id].chunk-[hash].js'
 });
 
 module.exports = config;
