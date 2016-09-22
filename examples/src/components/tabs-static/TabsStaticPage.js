@@ -1,9 +1,6 @@
 import React  from 'react';
-import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
 
 
 

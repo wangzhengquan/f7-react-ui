@@ -1,6 +1,8 @@
 @imgBaseUrl: "../img";
 @import url('_mixins.less');
 @import url('_colors-vars.less');
+ 
+
 /* === Icons === */
 i.icon {
     display: inline-block;
@@ -107,5 +109,10 @@ i.icon {
         line-height: 20px;
         text-align: center;
         font-weight: 100;
+    }
+    &.icon-arrow-down{
+      width: 20px;
+      height: 20px;
+      .encoded-svg-background("<svg viewBox='0 0 60 120' xmlns='http://www.w3.org/2000/svg'><path transform='translate(90 30) rotate(90 0 0)' d='m60 61.5-38.25 38.25-9.75-9.75 29.25-28.5-29.25-28.5 9.75-9.75z' fill='#c7c7cc'/></svg>");
     }
 }

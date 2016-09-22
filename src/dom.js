@@ -7,6 +7,9 @@ var Dom7 = function (arr) {
         _this[i] = arr[i];
     }
     _this.length = arr.length;
+
+    _this.doc = arr.length<1 ? document: arr[0].ownerDocument || arr[0].document || arr[0];
+    _this.win  =  _this.doc.parentWindow || _this.doc.defaultView
     // Return collection with methods
     return this;
 };
@@ -645,7 +648,7 @@ Dom7.prototype = {
         return this;
     },
      
-    _insertBefore: function (selector) {
+    insertBefore: function (selector) {
         var before = $(selector);
         for (var i = 0; i < this.length; i++) {
             if (before.length === 1) {

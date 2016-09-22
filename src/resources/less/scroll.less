@@ -1,0 +1,28 @@
+@import url('_mixins.less');
+@import url('_colors-vars.less');
+.scroll{
+	.scrollable();
+    .no-scrollbar();
+}
+
+.xscroll{
+	.scrollable();
+    .no-scrollbar();
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.yscroll{
+	.scrollable();
+    .no-scrollbar();
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scroll-inner{
+	position: relative;
+    width: 100%;
+    box-sizing: content-box;
+    .flexbox();
+    
+}

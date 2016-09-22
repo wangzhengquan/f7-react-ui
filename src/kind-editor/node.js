@@ -1,9 +1,8 @@
 import TagMap from './tag-map'
 import $ from '../dom'
-import StringHelper from '../string'
-// import Util from './Util'
-// import Vars from './vars'
-// import HtmlHelper from './html'
+import Util from './Util'
+import Vars from './vars'
+import HtmlHelper from './html'
 // import KEvent from './event'
 
 function _getDoc(node) {
@@ -52,8 +51,8 @@ function _setHtml(el, html) {
 		temp.parentNode.removeChild(temp);
 	} catch(e) {
 		// bugfix: 在IE上innerHTML有时候报错
-		$(el).empty();
-		$(html, doc).each(function() {
+		KNode(el).empty();
+		KNode(html, doc).each(function() {
 			el.appendChild(this);
 		});
 	}
@@ -69,7 +68,7 @@ function _getNodeName(node) {
 }
 
 function _computedCss(el, key) {
-	var win = Node.getWin(el), camelKey = StringHelper.toCamelCase(key), val = '';
+	var win = Node.getWin(el), camelKey = Util.toCamel(key), val = '';
 	if (win.getComputedStyle) {
 		var style = win.getComputedStyle(el, null);
 		val = style[camelKey] || style.getPropertyValue(key) || el.style[camelKey];
@@ -80,34 +79,48 @@ function _computedCss(el, key) {
 }
 
 function _hasVal(node) {
+	console.log(TagMap.VALUE_TAG_MAP, _getNodeName(node), !!TagMap.VALUE_TAG_MAP[_getNodeName(node)])
 	return !!TagMap.VALUE_TAG_MAP[_getNodeName(node)];
 }
 
- 
+function _docElement(doc) {
+	doc = doc || document;
+	return Vars.QUIRKS ? doc.body : doc.documentElement;
+}
 
 
 function _docHeight(doc) {
-	var el = doc.body;
+	var el = _docElement(doc);
 	return Math.max(el.scrollHeight, el.clientHeight);
 }
 
 function _docWidth(doc) {
-	var el = doc.body;
+	var el = _docElement(doc);
 	return Math.max(el.scrollWidth, el.clientWidth);
 }
 
 function _getScrollPos(doc) {
 	doc = doc || document;
 	var x, y;
-	
-	x = _getWin(doc).scrollX;
-	y = _getWin(doc).scrollY;
-	
+	if (Vars.IE || Vars.NEWIE || Vars.OPERA) {
+		x = _docElement(doc).scrollLeft;
+		y = _docElement(doc).scrollTop;
+	} else {
+		x = _getWin(doc).scrollX;
+		y = _getWin(doc).scrollY;
+	}
 	return {x : x, y : y};
 }
 
 
- 
+var KNode = function(selector, context){
+	var el = $(selector, context)
+	el.doc = _getDoc(el[0]);
+	el.name = (!el[0] || !el[0].nodeName) ? '' : el[0].nodeName.toLowerCase()
+	el.type = el.length > 0 ? el[0].nodeType : null;
+	el.win = _getWin(el[0]);
+	return el;
+}
 $.fn.nodeName = function(){
 	return _getNodeName(this[0])
 }
@@ -162,10 +175,10 @@ $.fn.empty = function() {
 	return self;
 }
 
-// $.fn.clone = function(bool) {
+$.fn.clone = function(bool) {
 	 
-// 	return KNode(this[0].cloneNode(bool));
-// }
+	return KNode(this[0].cloneNode(bool));
+}
 
 $.fn.pos =function() {
 	var  node = this[0], x = 0, y = 0;
@@ -187,7 +200,7 @@ $.fn.pos =function() {
 }
 
 $.fn.opacity = function(val) {
-	this.each(function() {
+	Util.each(function() {
 		if (this.style.opacity === undefined) {
 			this.style.filter = val == 1 ? '' : 'alpha(opacity=' + (val * 100) + ')';
 		} else {
@@ -211,7 +224,7 @@ $.fn.replaceWith = function(expr) {
 		node.parentNode.replaceChild(newNode, node);
 		nodes.push(newNode);
 	});
-	return $(nodes);
+	return KNode(nodes);
 }
 
 $.fn.outer = function() {
@@ -282,21 +295,22 @@ $.fn.hasVal = function() {
 	return _hasVal(this[0]);
 }
 
-// $.fn.html = function(val) {
-// 	var self = this;
-// 	if (val === undefined) {
-// 		if (self.length < 1 || self.type != 1) {
-// 			return '';
-// 		}
-// 		return HtmlHelper.formatHtml(self[0].innerHTML);
-// 	}
-// 	self.each(function() {
-// 		_setHtml(this, val);
-// 	});
-// 	return self;
-// }
+$.fn.html = function(val) {
+	var self = this;
+	if (val === undefined) {
+		if (self.length < 1 || self.type != 1) {
+			return '';
+		}
+		return HtmlHelper.formatHtml(self[0].innerHTML);
+	}
+	self.each(function() {
+		_setHtml(this, val);
+	});
+	return self;
+}
 
- 
+$.fn.bind = $.fn.on 
+$.fn.unbind = $.fn.off
 
 // $.fn.bind = function(type, fn) {
 // 	this.each(function() {
@@ -330,5 +344,19 @@ $.fn.hasVal = function() {
 // 	};
 // });
 
+Object.assign(KNode, {
+	getDoc: _getDoc,
+	getWin: _getWin,
+	iframeDoc: _iframeDoc
+})
  
+KNode.getScrollPos = _getScrollPos
+KNode.docHeight = _docHeight;
+KNode.docWidth = _docWidth
+KNode.docElement = _docElement
+KNode.elementVal = _elementVal
+KNode.computedCss = _computedCss;
+KNode.hasVal = _hasVal;
+KNode.setHtml = _setHtml;
 
+export default KNode;

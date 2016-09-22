@@ -60,7 +60,7 @@ function _hasAttrOrCss(knode, map) {
 	return _hasAttrOrCssByKey(knode, map, '*') || _hasAttrOrCssByKey(knode, map);
 }
 function _hasAttrOrCssByKey(knode, map, mapKey) {
-	mapKey = mapKey || knode.name;
+	mapKey = mapKey || knode.nodeName();
 	if (knode.type !== 1) {
 		return false;
 	}
@@ -96,7 +96,7 @@ function _removeAttrOrCss(knode, map) {
 	_removeAttrOrCssByKey(knode, map);
 }
 function _removeAttrOrCssByKey(knode, map, mapKey) {
-	mapKey = mapKey || knode.name;
+	mapKey = mapKey || knode.nodeName();
 	if (knode.type !== 1) {
 		return;
 	}
@@ -150,7 +150,7 @@ function _mergeWrapper(a, b) {
 	var lastA = _getInnerNode(a), childA = a, merged = false;
 	while (b) {
 		while (childA) {
-			if (childA.name === b.name) {
+			if (childA.nodeName() === b.nodeName()) {
 				_mergeAttrs(childA, b.attr(), b.css());
 				merged = true;
 			}
@@ -206,8 +206,9 @@ function _mergeAttrs(knode, attrs, styles) {
 }
 // 判断node是否在pre、style、script里
 function _inPreElement(knode) {
-	while (knode && knode.name != 'body') {
-		if (TagMap.PRE_TAG_MAP[knode.name] || knode.name == 'div' && knode.hasClass('ke-script')) {
+
+	while (knode && knode.nodeName() != 'body') {
+		if (TagMap.PRE_TAG_MAP[knode.nodeName()] || knode.nodeName() == 'div' && knode.hasClass('ke-script')) {
 			return true;
 		}
 		knode = knode.parent();
@@ -227,11 +228,12 @@ Util.extend(KCmd, {
 		self.range = range;
 	},
 	selection : function(forceReset) {
+		debugger
 		var self = this, doc = self.doc, rng = _getRng(doc);
 		self.sel = _getSel(doc);
 		if (rng) {
 			self.range = KRange.range(rng);
-			if (KNode(self.range.startContainer)[0].nodeName.toLowerCase() == 'html') {
+			if (KNode(self.range.startContainer).nodeName()== 'html') {
 				self.range.selectNodeContents(doc.body).collapse(false);
 			}
 			return self;
@@ -292,6 +294,7 @@ Util.extend(KCmd, {
 		return self;
 	},
 	wrap : function(val) {
+		debugger
 		var self = this, doc = self.doc, range = self.range, wrapper;
 		wrapper = KNode(val, doc);
 		// collapsed=true
@@ -314,6 +317,7 @@ Util.extend(KCmd, {
 		// collapsed=false
 		range.enlarge();
 		var bookmark = range.createBookmark(), ancestor = range.commonAncestor(), isStart = false;
+		
 		KNode(ancestor).scan(function(node) {
 			if (!isStart && node == bookmark.start) {
 				isStart = true;
@@ -357,7 +361,7 @@ Util.extend(KCmd, {
 					break;
 				}
 			} else {
-				if (TagMap.NOSPLIT_TAG_MAP[knode.name]) {
+				if (TagMap.NOSPLIT_TAG_MAP[knode.nodeName()]) {
 					break;
 				}
 			}
@@ -585,7 +589,7 @@ Util.extend(KCmd, {
 			if (val === '') {
 				knode = self.commonNode({'h1,h2,h3,h4,h5,h6,p,div,pre,address' : '*'});
 				if (knode) {
-					val = knode.name;
+					val = knode.nodeName();
 				}
 			}
 			if (val === 'Normal') {
@@ -833,9 +837,9 @@ Util.extend(KCmd, {
 				self.select();
 			}
 			_nativeCommand(doc, 'unlink', null);
-			if (VARS.WEBKIT && KNode(range.startContainer).name === 'img') {
+			if (VARS.WEBKIT && KNode(range.startContainer).nodeName() === 'img') {
 				var parent = KNode(range.startContainer).parent();
-				if (parent[0].nodeName === 'A') {
+				if (parent.nodeName() === 'a') {
 					parent.remove(true);
 				}
 			}

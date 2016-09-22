@@ -59,6 +59,9 @@ export default class Page extends React.Component{
     this.node = this.node || $(ReactDOM.findDOMNode(this));
     //this.initPageScrollToolbars(node)
   }
+  componentWillUnmount(){
+    this.destroy()
+  }
 
   componentWillAppear(done) {
     // console.log('componentWillAppear', this.props.location && this.props.location.pathname);
@@ -109,9 +112,7 @@ export default class Page extends React.Component{
     // console.log('componentDidLeave', this.props.location && this.props.location.pathname);
   }
 
-  componentWillUnmount(){
-    this.destroy()
-  }
+ 
 
 
   initPageScrollToolbars  (pageContainer) {

@@ -23,6 +23,9 @@ MicroEvent.prototype	= {
 	addListener: function(){
 		return this.addListener.apply(this, arguments)
 	},
+	addEventListener: function(){
+		return this.addListener.apply(this, arguments)
+	},
 
 	onece: function(eventName, listener){
 		function proxy() {
@@ -48,15 +51,24 @@ MicroEvent.prototype	= {
 	removeListener: function(){
 		return this.unbind.apply(this, arguments)
 	},
+	removeEventListener: function(){
+		return this.unbind.apply(this, arguments)
+	},
 
 	trigger	: function(event /* , args... */){
 		this._events = this._events || {};
 		if( event in this._events === false  )	return;
+		var result = []
 		for(var i = 0; i < this._events[event].length; i++){
-			this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
+			result.push(this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1)) );
 		}
+		return result.length === 1 ? result[0] : result;
 	},
+	
 	fire: function(){
+		return this.trigger.apply(this, arguments)
+	},
+	fireEvent: function(){
 		return this.trigger.apply(this, arguments)
 	},
 	emit: function(){

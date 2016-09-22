@@ -227,8 +227,6 @@ function _query(expr, root) {
 	return arr.length > 0 ? arr[0] : null;
 }
 
-K.query = _query;
-K.queryAll = _queryAll;
 Selector.getAttr= _getAttr
 Selector.query = _query;
 Selector.queryAll = _queryAll;

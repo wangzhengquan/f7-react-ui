@@ -1,139 +1,84 @@
-// import K from './K'
-import KWidget from './widget'
-import Util from './util'
-import KNode from './node'
-function _selectToolbar(name, fn) {
-	var self = this,
-		knode = self.get(name);
-	if (knode) {
-		if (knode.hasClass('ke-disabled')) {
-			return;
-		}
-		fn(knode);
-	}
+import React  from 'react';
+import ReactDOM from 'react-dom'
+import $ from '../dom'
+import Tabs from 'react-ui/tabs'
+import FontSize from './tools/font-size'
+import FontColor from './tools/font-color'
+import FontShape from './tools/font-shape'
+import FontFamily from './tools/font-family'
+import Justify from './tools/justify'
+import InsertImage from './tools/insert-image'
+
+class Toolbar extends React.Component{
+  constructor(props) {
+    super(props);
+    this.edit = this.props.edit
+    this.doc = this.edit.doc
+  }
+   
+  componentDidMount(){
+    new Tabs({tabbar: this.refs.tabbar})
+  }
+
+  
+  
+  render(){
+  	return (
+  	<span>
+      <div className="toolbar">
+        <div className="toolbar-inner">
+          <div className="center">
+            <InsertImage  edit={this.props.edit}/>
+          </div>
+          <div className="right"><a href="#" onClick={this.props.onClickSwitch} className="link"><i className="icon icon-picker-switch"></i></a></div>
+        </div>
+      </div>
+      <div className="picker-modal-inner">
+        <div className="tabbar tool-tabbar left" ref="tabbar">
+          <a href="#tab-font" className="tab-link active"> 
+            <i className="icon icon-font"></i>
+          </a>
+          <a href="#tab-font-family" className="tab-link">
+             <i className="icon icon-font-family"></i>
+          </a>
+          <a href="#tab-paragraph" className="tab-link">
+             <i className="icon icon-paragraph"></i>
+          </a>
+          
+        </div>
+        <div  className="center tabs">
+          <div id="tab-font" className="content-block scroll tab active">
+             <FontSize edit={this.props.edit}/>
+             <FontShape edit={this.props.edit}/>
+             <FontColor edit={this.props.edit}/>
+          </div>
+
+          <div id="tab-font-family" className="content-block scroll tab">
+             <FontFamily edit={this.props.edit}/>
+          </div>
+
+          <div id="tab-paragraph" className="content-block scroll tab">
+             <Justify edit={this.props.edit}/>
+          </div>
+        </div>
+        
+      </div>
+    </span>
+  	)
+  }
 }
 
-// create KToolbar class
-function KToolbar(options) {
-	this.init(options);
-}
-Util.extend(KToolbar, KWidget, {
-	init : function(options) {
-		var self = this;
-		KToolbar.parent.init.call(self, options);
-		self.disableMode = Util.undef(options.disableMode, false);
-		self.noDisableItemMap = Util.toMap(Util.undef(options.noDisableItems, []));
-		self._itemMap = {};
-		self.div.addClass('ke-toolbar').bind('contextmenu,mousedown,mousemove', function(e) {
-			e.preventDefault();
-		}).attr('unselectable', 'on');
-		function find(target) {
-			var knode = KNode(target);
-			if (knode.hasClass('ke-outline')) {
-				return knode;
-			}
-			if (knode.hasClass('ke-toolbar-icon')) {
-				return knode.parent();
-			}
-		}
-		function hover(e, method) {
-			var knode = find(e.target);
-			if (knode) {
-				if (knode.hasClass('ke-disabled')) {
-					return;
-				}
-				if (knode.hasClass('ke-selected')) {
-					return;
-				}
-				knode[method]('ke-on');
-			}
-		}
-		self.div.mouseover(function(e) {
-			hover(e, 'addClass');
-		})
-		.mouseout(function(e) {
-			hover(e, 'removeClass');
-		})
-		.click(function(e) {
-			var knode = find(e.target);
-			if (knode) {
-				if (knode.hasClass('ke-disabled')) {
-					return;
-				}
-				self.options.click.call(this, e, knode.attr('data-name'));
-			}
-		});
-	},
-	get : function(name) {
-		// cache
-		if (this._itemMap[name]) {
-			return this._itemMap[name];
-		}
-		return (this._itemMap[name] = KNode('span.ke-icon-' + name, this.div).parent());
-	},
-	select : function(name) {
-		_selectToolbar.call(this, name, function(knode) {
-			knode.addClass('ke-selected');
-		});
-		return self;
-	},
-	unselect : function(name) {
-		_selectToolbar.call(this, name, function(knode) {
-			knode.removeClass('ke-selected').removeClass('ke-on');
-		});
-		return self;
-	},
-	enable : function(name) {
-		var self = this,
-			knode = name.get ? name : self.get(name);
-		if (knode) {
-			knode.removeClass('ke-disabled');
-			knode.opacity(1);
-		}
-		return self;
-	},
-	disable : function(name) {
-		var self = this,
-			knode = name.get ? name : self.get(name);
-		if (knode) {
-			knode.removeClass('ke-selected').addClass('ke-disabled');
-			knode.opacity(0.5);
-		}
-		return self;
-	},
-	disableAll : function(bool, noDisableItems) {
-		var self = this, map = self.noDisableItemMap;
-		if (noDisableItems) {
-			map = Util.toMap(noDisableItems);
-		}
-		// disable toolbar
-		if (bool === undefined ? !self.disableMode : bool) {
-			KNode('span.ke-outline', self.div).each(function() {
-				var knode = KNode(this),
-					name = knode[0].getAttribute('data-name', 2);
-				if (!map[name]) {
-					self.disable(knode);
-				}
-			});
-			self.disableMode = true;
-		// enable toolbar
-		} else {
-			KNode('span.ke-outline', self.div).each(function() {
-				var knode = KNode(this),
-					name = knode[0].getAttribute('data-name', 2);
-				if (!map[name]) {
-					self.enable(knode);
-				}
-			});
-			self.disableMode = false;
-		}
-		return self;
-	}
-});
-
-function _toolbar(options) {
-	return new KToolbar(options);
+Toolbar.init = function(edit){
+  var modal = $('<div class="picker-modal editor-toolbar-modal"></div>')
+  $('body').append(modal[0]);
+  var onClickSwitch = function() {
+    if(modal.hasClass('modal-in')){
+      modal.removeClass('modal-in').addClass('modal-out')
+    } else {
+      modal.removeClass('modal-out').addClass('modal-in')
+    }
+  }
+  ReactDOM.render(<Toolbar onClickSwitch={onClickSwitch} edit={edit}/>, modal[0])
 }
 
-KToolbar.toolbar = _toolbar;
-export default KToolbar
+module.exports = Toolbar

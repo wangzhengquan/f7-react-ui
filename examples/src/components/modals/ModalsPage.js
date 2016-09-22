@@ -15,7 +15,7 @@ require('react-ui/resources/less/grid.less')
 
 var dynamicPageIndex = 1;
 
-class AboutPage extends AnimationPage{
+class ModalPage extends AnimationPage{
   constructor(props) {
     super(props);
   }
@@ -294,4 +294,4 @@ class AboutPage extends AnimationPage{
   
 }
 
-module.exports = AboutPage
+module.exports = ModalPage

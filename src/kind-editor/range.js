@@ -377,6 +377,7 @@ Util.extend(KRange, {
 		return _updateCollapsed(this);
 	},
 	setEnd : function(node, offset) {
+		debugger
 		var self = this, doc = self.doc;
 		self.endContainer = node;
 		self.endOffset = offset;
@@ -751,6 +752,7 @@ Util.extend(KRange, {
 	},
 	// 根据bookmark重新设置range
 	moveToBookmark : function(bookmark) {
+		debugger
 		var self = this, doc = self.doc,
 			start = KNode(bookmark.start, doc), end = bookmark.end ? KNode(bookmark.end, doc) : null;
 		if (!start || start.length < 1) {
@@ -775,6 +777,7 @@ Util.extend(KRange, {
 
 function _range(mixed) {
 	if (!mixed.nodeName) {
+
 		return mixed.constructor === KRange ? mixed : _toRange(mixed);
 	}
 	return new KRange(mixed);
