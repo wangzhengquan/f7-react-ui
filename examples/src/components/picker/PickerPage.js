@@ -1,9 +1,6 @@
 import React  from 'react';
-import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
 import Picker from 'react-ui/picker'
 require('react-ui/resources/less/forms.less')
 
@@ -17,7 +14,7 @@ class PickerPage extends AnimationPage{
     var today = new Date();
 
     // iOS Device picker
-    var pickerDevice = Picker.picker({
+    Picker.picker({
         input: '#ks-picker-device',
         toolbarCloseText: '关闭',
         cols: [
@@ -30,7 +27,7 @@ class PickerPage extends AnimationPage{
 
 
      // Describe yourself picker
-    var pickerDescribe = Picker.picker({
+    Picker.picker({
         input: '#ks-picker-describe',
         rotateEffect: true,
         cols: [
@@ -50,7 +47,7 @@ class PickerPage extends AnimationPage{
         German : ['Audi', 'BMW', 'Mercedes', 'Volkswagen', 'Volvo'],
         American : ['Cadillac', 'Chrysler', 'Dodge', 'Ford']
     };
-    var pickerDependent = Picker.picker({
+    Picker.picker({
         input: '#ks-picker-dependent',
         rotateEffect: true,
         formatValue: function (picker, values) {
@@ -75,7 +72,7 @@ class PickerPage extends AnimationPage{
 
 
     // Custom Toolbar
-    var pickerCustomToolbar = Picker.picker({
+    Picker.picker({
         input: '#ks-picker-custom-toolbar',
         rotateEffect: true,
         toolbarTemplate:
@@ -120,13 +117,13 @@ class PickerPage extends AnimationPage{
 
 
     // Inline date-time
-    var pickerInline = Picker.picker({
+    Picker.picker({
         input: '#ks-picker-date',
         container: '#ks-picker-date-container',
         toolbar: false,
         rotateEffect: true,
         value: [today.getMonth(), today.getDate(), today.getFullYear(), today.getHours(), (today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes())],
-        onChange: function (picker, values, displayValues) {
+        onChange: function (picker, values) {
             var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
             if (values[1] > daysInMonth) {
                 picker.cols[1].setValue(daysInMonth);

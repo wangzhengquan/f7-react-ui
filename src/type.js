@@ -14,7 +14,7 @@ export default {
 
     type = typeof value;
 
-    if (type === 'undefined' || type === 'string' || type === 'number' || type === 'boolean') {
+    if (type === 'undefined' || type === 'string' || type === 'number' || type === 'boolean' || type === 'function') {
       return type;
     }
 
@@ -31,10 +31,6 @@ export default {
         return 'number';
       case '[object RegExp]':
         return 'regexp';
-    }
-
-    if (type === 'function') {
-      return 'function';
     }
 
     if (type === 'object') {

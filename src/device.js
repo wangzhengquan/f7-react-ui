@@ -2,7 +2,7 @@ import $ from './dom'
 
 var ua = navigator.userAgent;
 
-window.device = (function () {
+var device = window.device = (function () {
     var device = {};
 
     var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
@@ -101,4 +101,4 @@ window.device = (function () {
     return device;
 })();
 
-export default window.device;
+export default device;

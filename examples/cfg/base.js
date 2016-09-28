@@ -31,8 +31,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
     alias: {
       // 'react-ui': path.join(__dirname, '/../react-ui/src'),
-      'react-ui': `${defaultSettings.reactUIPath}`
-
+      'react-ui': `${defaultSettings.reactUIPath}`,
+      'react': path.join(__dirname, '../node_modules', 'react')
      // actions: `${defaultSettings.srcPath}/actions/`,
      // components: `${defaultSettings.srcPath}/components/`,
      // sources: `${defaultSettings.srcPath}/sources/`,

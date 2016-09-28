@@ -137,7 +137,7 @@ var Picker = function (params) {
         col.wrapper = col.container.find('.picker-items-col-wrapper');
         col.items = col.wrapper.find('.picker-item');
         
-        var i, j;
+        // var i, j;
         var wrapperHeight, itemHeight, itemsHeight, minTranslate, maxTranslate;
         col.replaceValues = function (values, displayValues) {
             col.destroyEvents();
@@ -186,7 +186,7 @@ var Picker = function (params) {
         col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)').transition(0);
 
 
-        var activeIndex = 0;
+        // var activeIndex = 0;
         var animationFrameId;
 
         // Set Value Function

@@ -1,9 +1,6 @@
 import React  from 'react';
-import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import {List, ContentBlockTitle, ItemDivider, ListGroupTitle} from 'react-ui/lists'
 
 class TmpPage extends AnimationPage{
   constructor(props) {
@@ -15,7 +12,7 @@ class TmpPage extends AnimationPage{
   
   render(){
   	return (
-  	<div className={classNames( "page", this.props.className)}>
+  	<div className={classNames( 'page', this.props.className)}>
 	    <div className="page-content">
 	      <div className="content-block">
           <p>Framework7 allows you to be flexible with list views (table views). You can make them as navigation menus, you can use there icons, inputs, and any elements inside of the list, and even make them nested:</p>

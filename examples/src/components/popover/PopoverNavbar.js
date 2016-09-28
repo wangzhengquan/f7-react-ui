@@ -1,7 +1,5 @@
 import React  from 'react'
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router'
-
 import Navbar from '../Navbar'
 import history from 'react-ui/history'
 import Modals from 'react-ui/modals'
@@ -19,10 +17,10 @@ class PopoverNavBar extends Navbar{
 		
 		var modal = Modals.popover(e.target)
 		var href = function(path){
-			history.push(path); 
+			history.push(path);
 			Modals.closeModal(modal);
 		}
-		let PopoverMenu = (props) => (
+		let PopoverMenu = () => (
 		<List>
 			<a onClick={function(e){e.preventDefault(); href('/modals');}} className="list-button item-link">Modals</a>
             <a href="popover.html" className="list-button item-link">Popover</a>
@@ -38,14 +36,13 @@ class PopoverNavBar extends Navbar{
 	}
      
     render(){
-    	console.log('history', history)
 	    if(this.canBack === undefined){
 	      this.canBack = history.canBack;
 	    }
 	    return (
 	       <div className="navbar-inner" >
 	          {
-	          this.canBack ? 
+	          this.canBack ?
 	          <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
 	          }
 	            

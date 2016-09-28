@@ -14,8 +14,7 @@ var fontColorList = [
 class FontColor extends React.Component{
   constructor(props) {
     super(props);
-    this.edit = this.props.edit
-    this.doc = this.edit.doc
+    this.doc = document
     this.state = {
 
     }

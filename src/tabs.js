@@ -140,10 +140,6 @@ class Tabs {
 	    	if (this.slider.activeIndex !== newTab.index()) this.slider.slideTo(newTab.index(), undefined, false);
 	    }
 
-	    
-
-	    
-
 	    // Find related link for new tab
 	    if (tabLink) tabLink = $(tabLink);
 	    else {

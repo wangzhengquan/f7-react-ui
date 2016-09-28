@@ -2,7 +2,6 @@ import React  from 'react';
 import {Link} from 'react-router'
 import AnimationPage from '../Page'
 import classnames from 'classnames';
-import {List} from 'react-ui/lists'
 
 class SwiperPage extends AnimationPage{
   constructor(props) {

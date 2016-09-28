@@ -9,7 +9,7 @@ class SwiperPaginationProgressPage extends AnimationPage{
   }
    
   componentDidMount(){
-    let slider = new Swiper(this.refs.slider, {pagination:'.swiper-pagination', paginationType: 'progress'})
+    new Swiper(this.refs.slider, {pagination:'.swiper-pagination', paginationType: 'progress'})
   }
   
   render(){

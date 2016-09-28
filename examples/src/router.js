@@ -322,6 +322,19 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
+    },{
+      path: 'draft-editor',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/draft-editor/EditorNavbar'),
+              page: require('./components/draft-editor/EditorPage')
+            })
+            document.querySelector('title').innerHTML='Draft Editor'
+            Modals.hideIndicator()
+        })
+      }
     }]
 
     

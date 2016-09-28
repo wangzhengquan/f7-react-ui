@@ -2,7 +2,6 @@ import React  from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router'
 import history from 'react-ui/history'
-
 import AnimationPage from '../Page'
 import classNames from 'classnames';
 import Modals from 'react-ui/modals'
@@ -18,7 +17,7 @@ class PopoverPage extends AnimationPage{
 			history.push(path);
 			Modals.closeModal(modal);
 		}
-		let PopoverMenu = (props) => (
+		let PopoverMenu = () => (
 		<List>
 			<a onClick={function(e){e.preventDefault(); href('/modals');}} className="list-button item-link">Modals</a>
             <Link to="/modals" className="list-button item-link">Popover</Link>

@@ -1,6 +1,4 @@
 import React  from 'react';
-import {Link} from 'react-router'
-import $ from 'react-ui/dom'
 import AnimationPage from '../Page'
 import classnames from 'classnames';
 import SwipeOut from 'react-ui/swipeout'

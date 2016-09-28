@@ -53,7 +53,7 @@ require('./resources/less/app.less');
 require('react-ui/resources/less/react-ui.ios.colors.less')
 
 require('./resources/less/app.less')
-ReactDOM.render( 
+ReactDOM.render(
   <Router history={ history } routes={ rootRoute } />,
   document.getElementById('app')
 )

@@ -58,14 +58,12 @@ class SearchbarPage extends AnimationPage{
   }
 
   handleSearch(value){
-    console.log(value)
     this.setState({
-      data: data.filter(item => new RegExp("^"+value, "i").test(item.name))
+      data: data.filter(item => new RegExp('^'+value, 'i').test(item.name))
     })
   }
   
   render(){
-    console.log('data', this.state.data)
   	return (
   	<div className={classNames( 'page', this.props.className)}>
       <Searchbar cancelButton={true} overlay={true} onChange={this.handleSearch.bind(this)}/>

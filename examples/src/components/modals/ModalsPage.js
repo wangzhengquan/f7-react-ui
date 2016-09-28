@@ -2,10 +2,10 @@ import React  from 'react';
 import ReactDOM from 'react-dom';
 import AnimationPage from '../Page'
 import classNames from 'classnames';
-import Modals from 'react-ui/modals'
 import MessageBox from 'react-ui/message-box'
 import ActionSheet from 'react-ui/action-sheet'
 import Views from 'react-ui/views'
+import Modals from 'react-ui/modals'
 import Navbars from 'react-ui/navbars'
 import $ from 'react-ui/dom'
 require('react-ui/resources/less/content-block.less')
@@ -197,15 +197,17 @@ class ModalPage extends AnimationPage{
   handlePopupClick(event) {
     event.preventDefault()
     let PopupView = (props) => (
-      <div className="view navbar-fixed">
+      <div className="view">
+
+        <div className="navbar">
+          <div className="navbar-inner">
+            <div className="center">Popup Title</div>
+            <div className="right"><a href="#" onClick={props.onClose} className="link close-popup">Done</a></div>
+          </div>
+        </div>
+
         <div className="pages">
-          <div className="page">
-            <div className="navbar">
-              <div className="navbar-inner">
-                <div className="center">Popup Title</div>
-                <div className="right"><a href="#" onClick={props.onClose} className="link close-popup">Done</a></div>
-              </div>
-            </div>
+          <div className="page navbar-through">
             <div className="page-content">
               <div className="content-block">
                 <p>Here comes popup. You can put here anything, even independent view with its own navigation. Also not, that by default popup looks a bit different on iPhone/iPod and iPad, on iPhone it is fullscreen.</p>

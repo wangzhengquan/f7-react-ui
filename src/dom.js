@@ -8,8 +8,8 @@ var Dom7 = function (arr) {
     }
     _this.length = arr.length;
 
-    _this.doc = arr.length<1 ? document: arr[0].ownerDocument || arr[0].document || arr[0];
-    _this.win  =  _this.doc.parentWindow || _this.doc.defaultView
+    // _this.doc = arr.length<1 ? document: arr[0].ownerDocument || arr[0].document || arr[0];
+    // _this.win  =  _this.doc.parentWindow || _this.doc.defaultView
     // Return collection with methods
     return this;
 };
@@ -96,7 +96,7 @@ Dom7.prototype = {
         return this;
     },
     hasClass: function (className) {
-        if (!this[0]) return false;
+        if (!this[0] || !this[0].classList) return false;
         else return this[0].classList.contains(className);
     },
     toggleClass: function (className) {
@@ -660,6 +660,7 @@ Dom7.prototype = {
                 }
             }
         }
+        return this;
     },
     insertAfter: function (selector) {
         var after = $(selector);
@@ -673,6 +674,7 @@ Dom7.prototype = {
                 }
             }
         }
+        return this;
     },
     next: function (selector) {
         if (this.length > 0) {
