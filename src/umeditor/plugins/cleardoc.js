@@ -10,7 +10,7 @@
  * @param   {String}   cmdName     cleardoc清空文档
  */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 import browser from '../core/browser'
 
 UM.commands['cleardoc'] = {

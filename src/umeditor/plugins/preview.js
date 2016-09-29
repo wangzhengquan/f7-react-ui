@@ -9,7 +9,7 @@
  * @param   {String}   cmdName     preview预览编辑器内容
  */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 // import $ from '../../dom'
 // import browser from '../core/browser'
 // import utils from '../core/utils'

@@ -2,7 +2,7 @@
  * 公式插件
  */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 import browser from '../core/browser'
 import utils from '../core/utils'
 UM.plugins['formula'] = function () {

@@ -115,7 +115,7 @@ var TextfieldEditor = {
 
 	    });
 
-	    bar.on('click', '.cancel ,.back', (event) => {
+	    bar.on('click', '.cancel, .back', (event) => {
 	    	event.preventDefault()
 	    	closeFn()
 	    })

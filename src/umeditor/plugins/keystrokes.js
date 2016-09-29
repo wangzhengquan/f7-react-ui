@@ -2,7 +2,7 @@
  *   处理特殊键的兼容性问题
  */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 import $ from '../../dom'
 import browser from '../core/browser'
 // import utils from '../core/utils'

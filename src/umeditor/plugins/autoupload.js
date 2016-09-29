@@ -6,7 +6,7 @@
  * @date 2013-10-14
  */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 UM.plugins['autoupload'] = function () {
 
     var me = this;

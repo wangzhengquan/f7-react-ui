@@ -6,10 +6,9 @@
  * @import editor.js,core/utils.js
  * @anthor zhanyi
  */
-import UM from '../../editor'
 import utils from './utils'
 import dtd from './dtd'
-var filterNode = UM.filterNode = function () {
+var filterNode = function () {
     function filterNode(node,rules){
         switch (node.type) {
             case 'text':

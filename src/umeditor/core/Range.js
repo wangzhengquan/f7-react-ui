@@ -12,8 +12,8 @@
  * @import editor.js,core/utils.js,core/browser.js,core/dom/domUtils.js,core/dom/dtd.js
  * @desc Range范围实现类，本类是UEditor底层核心类，统一w3cRange和ieRange之间的差异，包括接口和属性
  */
-import {UM, dom} from '../editor'
-import utils from './utils'
+// import {dom} from '../editor'
+// import utils from './utils'
 import browser from './browser'
 import dtd from './dtd'
 import domUtils from './domUtils'
@@ -73,7 +73,7 @@ import $ from '../../dom'
      * - ***document*** 跟range关联的document对象
      * - ***collapsed*** 是否是闭合状态
      */
-    var Range = dom.Range = function (document,body) {
+    var Range =  function (document,body) {
         var me = this;
         me.startContainer =
             me.startOffset =

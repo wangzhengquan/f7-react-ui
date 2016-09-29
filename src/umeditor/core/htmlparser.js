@@ -1,11 +1,10 @@
 //html字符串转换成uNode节点
 //by zhanyi
-import UM from '../editor'
 import domUtils from './domUtils'
 import utils from './utils'
 import dtd from './dtd'
 import UNode from './node'
-var htmlparser = UM.htmlparser = function (htmlstr,ignoreBlank) {
+var htmlparser = function (htmlstr,ignoreBlank) {
     //todo 原来的方式  [^"'<>\/] 有\/就不能配对上 <TD vAlign=top background=../AAA.JPG> 这样的标签了
     //先去掉了，加上的原因忘了，这里先记录
     var re_tag = /<(?:(?:\/([^>]+)>)|(?:!--([\S|\s]*?)-->)|(?:([^\s\/>]+)\s*((?:(?:"[^"]*")|(?:'[^']*')|[^"'<>])*)\/?>))/g,

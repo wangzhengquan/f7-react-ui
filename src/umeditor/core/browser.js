@@ -10,9 +10,8 @@
  * @unfile
  * @module UE.browser
  */
-import UM from '../editor'
 
-var browser = window.browser = UM.browser = function(){
+var browser = window.browser =  function(){
     var agent = navigator.userAgent.toLowerCase(),
         opera = window.opera,
         browser = {

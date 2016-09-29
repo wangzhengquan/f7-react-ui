@@ -9,9 +9,8 @@
 import browser from './browser'
 import utils from './utils'
 import dtd from './dtd'
-import UM from '../editor'
+// import {dom} from '../um'
 import $ from '../../dom'
-var dom = UM.dom
 function getDomNode(node, start, ltr, startFromChild, fn, guard) {
     var tmpNode = startFromChild && node[start],
         parent;
@@ -50,7 +49,7 @@ var attrFix = browser.ie && browser.version < 9 ? {
         'table-row' , 'table-column-group' , 'table-column' ,
         'table-cell' , 'table-caption'
     ]);
-var domUtils = dom.domUtils = {
+var domUtils =   {
     //节点常量
     NODE_ELEMENT: 1,
     NODE_DOCUMENT: 9,

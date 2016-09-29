@@ -9,7 +9,7 @@ import FontFamily from './tools/font-family'
 import InsertImage from './tools/insert-image'
 import ListItem from './tools/list-item'
 import HeadLine from './tools/headline'
-import {Link} from './tools/link'
+import {CreateLink, RemoveLink} from './tools/link'
 
 class Toolbar extends React.Component{
   constructor(props) {
@@ -37,8 +37,10 @@ class Toolbar extends React.Component{
   	<div className={'picker-modal editor-toolbar-modal '+ (this.state.collapse ? 'modal-out' : 'modal-in')}>
       <div className="toolbar editor-toolbar tabbar">
         <div className="toolbar-inner">
-          <InsertImage  edit={this.props.edit}/>
-          <Link  edit={this.props.edit}/>
+          <InsertImage uploadFileFn={this.props.uploadFileFn} edit={this.props.edit}/>
+          <CreateLink  edit={this.props.edit}/>
+          <RemoveLink  edit={this.props.edit}/>
+
         </div>
         <a href="#" className="switch" onClick={this.handleClickSwitch.bind(this)}><i className="icon icon-picker-switch"></i></a>
       </div>

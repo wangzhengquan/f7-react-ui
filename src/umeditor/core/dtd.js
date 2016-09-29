@@ -6,10 +6,10 @@
  * @constructor
  * @namespace dtd
  */
-import UM from '../editor'
+// import UM from '../um'
 import utils from './utils'
-var dom = UM.dom;
-var dtd = dom.dtd = (function() {
+// var dom = UM.dom;
+var dtd =  (function() {
     function _( s ) {
         for (var k in s) {
             s[k.toUpperCase()] = s[k];

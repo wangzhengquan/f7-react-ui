@@ -7,7 +7,7 @@
 /**
  * @class UM.dom.Selection    Selection类
  */
-import {UM, dom} from '../editor'
+// import {dom} from '../editor'
 import browser from './browser'
 import dtd from './dtd'
 import domUtils from './domUtils'
@@ -120,7 +120,7 @@ function _getIERange( sel,txtRange ) {
     return null;
 }
 
-var Selection = dom.Selection = function ( doc,body ) {
+var Selection = function ( doc,body ) {
     var me = this;
     me.document = doc;
     me.body = body;

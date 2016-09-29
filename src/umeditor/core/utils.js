@@ -6,9 +6,8 @@
  * @desc UEditor封装使用的静态工具函数
  * @import editor.js
  */
-import UM from  '../editor'
 import browser from './browser'
-var utils = UM.utils = {
+var utils =  {
     /**
      * 遍历数组，对象，nodeList
      * @name each
@@ -500,7 +499,7 @@ var utils = UM.utils = {
  * @grammar UM.utils.isNumber(obj)  => true|false
  */
 utils.each(['String', 'Function', 'Array', 'Number', 'RegExp', 'Object'], function (v) {
-    UM.utils['is' + v] = function (obj) {
+    utils['is' + v] = function (obj) {
         return Object.prototype.toString.apply(obj) == '[object ' + v + ']';
     }
 });

@@ -9,7 +9,7 @@
  * @param    {String}    cmdName    bold加粗。italic斜体。subscript上标。superscript下标。
 */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'

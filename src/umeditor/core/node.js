@@ -5,15 +5,14 @@
 ///import core/htmlparser.js
 //模拟的节点类
 //by zhanyi
-import UM from '../editor'
 import utils from './utils'
 // import browser from './browser'
 import dtd from './dtd'
 // import domUtils from './domUtils'
 import $ from '../../dom'
-// import htmlparser from './htmlparser'
+import htmlparser from './htmlparser'
 
-var uNode = UM.uNode = function (obj) {
+var uNode =  function (obj) {
     this.type = obj.type;
     this.data = obj.data;
     this.tagName = obj.tagName;
@@ -53,7 +52,7 @@ function insertIndent(arr, current) {
 //支持标签和html
 uNode.createElement = function (html) {
     if (/[<>]/.test(html)) {
-        return UM.htmlparser(html).children[0]
+        return htmlparser(html).children[0]
     } else {
         return new uNode({
             type:'element',
@@ -63,7 +62,7 @@ uNode.createElement = function (html) {
     }
 };
 uNode.createText = function (data,noTrans) {
-    return new UM.uNode({
+    return new uNode({
         type:'text',
         'data':noTrans ? data : utils.unhtml(data || '')
     })
@@ -258,14 +257,14 @@ uNode.prototype = {
                 }
             }
             this.children = [];
-            var tmpRoot = UM.htmlparser(htmlstr);
+            var tmpRoot = htmlparser(htmlstr);
             for (var i = 0, ci; ci = tmpRoot.children[i++];) {
                 this.children.push(ci);
                 ci.parentNode = this;
             }
             return this;
         } else {
-            var tmpRoot = new UM.uNode({
+            var tmpRoot = new uNode({
                 type:'root',
                 children:this.children
             });

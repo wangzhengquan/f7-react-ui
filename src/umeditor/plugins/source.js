@@ -5,7 +5,7 @@
 ///commandsName  Source
 ///commandsTitle  查看源码
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 import $ from '../../dom'
 import browser from '../core/browser'
 // import utils from '../core/utils'

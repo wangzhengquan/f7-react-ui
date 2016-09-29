@@ -35,7 +35,7 @@
 //};
 //
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 // import $ from '../../dom'
 import browser from '../core/browser'
 import Range from '../core/Range'

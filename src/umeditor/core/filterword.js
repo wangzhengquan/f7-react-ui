@@ -8,10 +8,9 @@
  * @import editor.js,core/utils.js
  * @anthor zhanyi
  */
-import UM from './editor'
 import browser from './browser'
 import utils from './utils'
-var filterWord = UM.filterWord = function () {
+var filterWord = function () {
 
     //是否是word过来的内容
     function isWordDocument( str ) {

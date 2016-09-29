@@ -2,7 +2,7 @@
  * 自动保存草稿
  */
 /* eslint quotes : "off"*/
-import UM from '../editor'
+import UM from '../um'
 import browser from '../core/browser'
 UM.plugins['autosave'] = function() {
 

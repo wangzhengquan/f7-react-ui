@@ -13,7 +13,7 @@ class RichEditor extends React.Component {
   constructor(props) {
     super(props);
 
-   const decorator = new CompositeDecorator([
+   const decorator = this.decorator = new CompositeDecorator([
       {
         strategy: findLinkEntities,
         component: Link
@@ -77,6 +77,16 @@ class RichEditor extends React.Component {
       setTimeout(() => this.refs.editor.focus(), 0);
     });
   }
+
+   removeLink() {
+      const {editorState} = this.state;
+      const selection = editorState.getSelection();
+      if (!selection.isCollapsed()) {
+        this.setState({
+          editorState: RichUtils.toggleLink(editorState, selection, null)
+        });
+      }
+    }
 
   insertAtomicBlock(urlValue, urlType) {
     const {editorState} = this.state;
@@ -188,22 +198,20 @@ class RichEditor extends React.Component {
     return (
      
       <div style={Object.assign({}, styles.editorWrapper, {paddingBottom: this.state.collapsed ? '44px': '260px'})}>
-      <div className="RichEditor-root">
-        <div className={className} onClick={this.focus}>
-          <Editor
+        <div className={className}>
+          <Editor onClick={this.focus}
             customStyleMap={customStyleMap}
             blockRendererFn={mediaBlockRenderer}
             editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
             onChange={this.onChange}
             onTab={this.onTab}
-            placeholder="Tell a story..."
+            placeholder={this.props.placeholder || 'Tell a story...'}
             ref="editor"
             spellCheck={true}
           />
         </div>
-      </div>
-      <Toolbar edit={this} onCollapse={this.handleCollapse.bind(this)}/>
+        <Toolbar edit={this} uploadFileFn={this.props.uploadFileFn} onCollapse={this.handleCollapse.bind(this)}/>
       </div>
     );
   }

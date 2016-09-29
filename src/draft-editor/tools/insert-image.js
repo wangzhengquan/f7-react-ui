@@ -18,8 +18,11 @@ class InsertImage extends React.Component{
     var files =[].slice.call(event.target.files, 0),
         file = files[0];
     event.target.value = ''
-    var url = URL.createObjectURL(file);
-    this.edit.insertAtomicBlock(url, 'image')
+    this.props.uploadFileFn(file, (url) => {
+       // var url = URL.createObjectURL(file);
+      this.edit.insertAtomicBlock(url, 'image')
+    })
+   
     // this.doc.execCommand('insertHTML', false, '<div style="width: 100%;"><img width="100%" src="'+url+'""></div>');
   }
   
