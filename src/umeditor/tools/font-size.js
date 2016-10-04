@@ -1,32 +1,23 @@
 import React  from 'react';
 import classnames from 'classnames'
+require('../../resources/less/scroll.less')
+var fontsizeList = [12, 16, 18, 24, 32, 48];
+ 
 
-
-var fontsizeList = [10, 12,  16, 18,24, 32,48];
 class FontSize extends React.Component{
   constructor(props) {
     super(props);
-    this.doc = document
+    this.edit = props.edit
     this.state = {
-
     }
   }
 
+  handleChangeFontSize(value ){
    
-  componentDidMount(){
-  }
-
-  
-
-  handleChangeFontSize(value , event){
-    var size = {}
-    fontsizeList.forEach( (val, idx) => {
-      size[val] = idx
-    })
     this.setState({
       value: value
     })
-    this.doc.execCommand('fontSize', false, size[value])
+     this.edit.execCommand('fontsize', value)
   }
   
   render(){
@@ -37,10 +28,9 @@ class FontSize extends React.Component{
         <div className="tool-buttons-inner scroll-inner">
           {
             fontsizeList.map(value => (
-              <div className={classnames('btn common-btn', {'active': this.state.value===value})} key={value} style={{padding: '0 10px'}}>
-                <input type="radio" value={value} name="fontsize" onChange={this.handleChangeFontSize.bind(this, value)}/>
+              <a onClick={this.handleChangeFontSize.bind(this, value)} className={classnames('btn common-btn', {'active': false})} key={value} style={{padding: '0 10px'}}>
                 {value}px
-              </div>
+              </a>
             ))
           }
           
@@ -51,6 +41,5 @@ class FontSize extends React.Component{
   	)
   }
 }
- 
-
-module.exports = FontSize
+  
+export default FontSize

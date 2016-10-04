@@ -179,7 +179,7 @@ class Tabs {
 	    }
 	    if (oldTabLink && oldTabLink.length > 0) oldTabLink.removeClass('active');
 	    
-	    this.fire('show', newTab, tabLink)
+	    this.fireEvent('show', newTab, tabLink)
 	    return true;
 	}
 }

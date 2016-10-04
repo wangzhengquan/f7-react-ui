@@ -5,17 +5,17 @@
 ///commandsTitle  字体颜色,背景色,字号,字体,下划线,删除线
 /**
  * @description 字体
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param {String}     cmdName    执行的功能名称
  * @param {String}    value             传入的值
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'
 
-UM.plugins['font'] = function () {
+Plugins.plugins['font'] = function () {
     var me = this,
         fonts = {
             'forecolor': 'forecolor',
@@ -108,6 +108,7 @@ UM.plugins['font'] = function () {
                         return;
                     }
                     var rng = this.selection.getRange();
+
                     if(rng.collapsed){
                         var span = $('<span></span>').css(cmdNameToStyle[cmdName],value)[0];
                         rng.insertNode(span).setStart(span,0).setCursor();
@@ -123,36 +124,36 @@ UM.plugins['font'] = function () {
                                 '48':'7'
                             }[(value+"").replace(/px/,'')]
                         }
+
                         this.document.execCommand(fonts[cmdName],false, value);
-                        if(browser.gecko){
-                            utils.each(this.$body.find('a'),function(a){
-                                var parent = a.parentNode;
-                                if(parent.lastChild === parent.firstChild && /FONT|SPAN/.test(parent.tagName)){
-                                    var cloneNode = parent.cloneNode(false);
-                                    cloneNode.innerHTML = a.innerHTML;
-                                    $(a).html('').append(cloneNode).insertBefore(parent);
+                        // if(browser.gecko){
+                        //     utils.each(this.$body.find('a'),function(a){
+                        //         var parent = a.parentNode;
+                        //         if(parent.lastChild === parent.firstChild && /FONT|SPAN/.test(parent.tagName)){
+                        //             var cloneNode = parent.cloneNode(false);
+                        //             cloneNode.innerHTML = a.innerHTML;
+                        //             $(a).html('').append(cloneNode).insertBefore(parent);
 
-                                    $(parent).remove();
-                                }
-                            });
-                        }
-                        if(!browser.ie){
-                            var nativeRange = this.selection.getNative().getRangeAt(0);
-                            debugger
-                            var common = nativeRange.commonAncestorContainer;
-                            var rng = this.selection.getRange(),
-                                bk = rng.createBookmark(true);
+                        //             $(parent).remove();
+                        //         }
+                        //     });
+                        // }
+                        // if(!browser.ie){
+                        //     var nativeRange = this.selection.getNative().getRangeAt(0);
+                        //     var common = nativeRange.commonAncestorContainer;
+                        //     var rng = this.selection.getRange(),
+                        //         bk = rng.createBookmark(true);
 
-                            $(common).find('a').each(function(i,n){
-                                var parent = n.parentNode;
-                                if(parent.nodeName == 'FONT'){
-                                    var font = parent.cloneNode(false);
-                                    font.innerHTML = n.innerHTML;
-                                    $(n).html('').append(font);
-                                }
-                            });
-                            rng.moveToBookmark(bk).select()
-                        }
+                        //     $(common).find('a').each(function(i,n){
+                        //         var parent = n.parentNode;
+                        //         if(parent.nodeName == 'FONT'){
+                        //             var font = parent.cloneNode(false);
+                        //             font.innerHTML = n.innerHTML;
+                        //             $(n).html('').append(font);
+                        //         }
+                        //     });
+                        //     rng.moveToBookmark(bk).select()
+                        // }
                         return true
                     }
 

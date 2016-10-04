@@ -78,8 +78,10 @@ function androidNeedsBlur(el) {
 }
 function targetNeedsFastClick(el) {
     var $el = $(el);
+console.log('targetNeedsFastClick==', el)
     if (el.nodeName.toLowerCase() === 'input' && el.type === 'file') return false;
     if ($el.hasClass('no-fastclick') || $el.parents('.no-fastclick').length > 0) return false;
+    if($el.closest('[contenteditable=true]').length > 0) return false
     return true;
 }
 function targetNeedsFocus(el) {
@@ -95,6 +97,7 @@ function targetNeedsFocus(el) {
         else return true;
     }
     if (tag === 'input' && skipInputs.indexOf(el.type) < 0) return true;
+    if($(el).closest('[contenteditable=true]').length > 0) return true
 }
 function targetNeedsPrevent(el) {
     el = $(el);
@@ -257,6 +260,7 @@ function sendClick(e) {
 
 // Touch Handlers
 function handleTouchStart(e) {
+
     isMoved = false;
     tapHoldFired = false;
     if (e.targetTouches.length > 1) {
@@ -460,13 +464,12 @@ function handleTouchCancel(e) {
 
 function handleClick(e) {
     var allowClick = false;
-
     if (trackClick) {
         targetElement = null;
         trackClick = false;
         return true;
     }
-    if ((e.target.type === 'submit' || e.target.type === 'radio') && e.detail === 0) {
+    if ((e.target.type === 'submit' || e.target.type === 'radio' || e.target.type === 'file') && e.detail === 0) {
         return true;
     }
     

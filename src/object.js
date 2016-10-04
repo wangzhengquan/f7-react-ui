@@ -73,7 +73,7 @@ var clone = function(obj, wl){
 }
 
 
-var extend = function(subclass, superclass, proto) {
+var inherits = function(subclass, superclass, proto) {
 	if(arguments.length === 2 && Type.isPlainObject(superclass)){
 		proto = superclass;
 		superclass = null;
@@ -93,7 +93,7 @@ var extend = function(subclass, superclass, proto) {
 ObjectHelper.mix = mix
 ObjectHelper.each = each
 ObjectHelper.clone = clone
-ObjectHelper.extend = extend
+ObjectHelper.inherits = inherits
 
 
 export default ObjectHelper

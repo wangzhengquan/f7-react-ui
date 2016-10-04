@@ -12,7 +12,7 @@ class TmpNavbar extends Navbar{
 }
 
 TmpNavbar.defaultProps = {
-  title: 'Swiper Slider'
+  title: ''
 }
 
 module.exports = TmpNavbar

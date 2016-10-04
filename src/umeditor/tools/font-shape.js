@@ -1,60 +1,26 @@
 import React  from 'react';
 import classnames from 'classnames'
-import $ from '../../dom'
-import SupportEvents from '../../support-events'
-var fontShapList = ['bold', 'italic', 'underline']
+// var fontShapList = ['bold', 'italic', 'underline']
+
+var fontShapList = [
+  {label: 'bold', style: 'bold'},
+  {label: 'italic', style: 'italic'},
+  {label: 'underline', style: 'underline'}
+];
 class FontShape extends React.Component{
   constructor(props) {
     super(props);
-    this.doc = document
-    this.state = {
-      commandState: {}
-    }
-    this.destroyList = []
+    this.edit = props.edit
+     
   }
    
   
 
-
-  updateCommandState(){
-    var commandState = this.state.commandState;
-    fontShapList.forEach(val => {
-      commandState[val] = this.doc.queryCommandState(val)
-    })
-    this.setState({
-      commandState: commandState
-    })
-  }
-   
-  componentDidMount(){
-
-    var fn = ()  => {
-      // console.log('bold', this.doc.queryCommandState('bold'),   typeof this.doc.queryCommandState('bold'))
-      this.updateCommandState()
-    }
-
-    $(this.doc).on(SupportEvents.touchEvents.end, fn)
-
-    this.destroyList.push(()=> {
-       $(this.doc).off(SupportEvents.touchEvents.end, fn)
-    })
-  }
-
-  componentWillUnmount(){
-    this.destroy()
-  }
   
-  destroy(){
-    this.destroyList.forEach((fun) => {
-      fun()
-    })
-  }
-
   handleClickFontBtn(cmd, e){
     e.preventDefault()
-    console.log('font-shap', cmd)
-    this.doc.execCommand(cmd)
-    this.updateCommandState()
+    this.edit.execCommand(cmd)
+
   }
 
   render(){
@@ -63,9 +29,9 @@ class FontShape extends React.Component{
       <div className="tool-name">字形</div>
       <div className="tool-buttons">
         {
-          fontShapList.map(val => (
-            <a key={val} className={classnames('btn font-shape-btn common-btn', {'active': this.state.commandState[val]})} onClick={this.handleClickFontBtn.bind(this, val)}>
-              <i className={'icon '+'icon-'+val}></i>
+          fontShapList.map((item) => (
+            <a key={item.style} className={classnames('btn font-shape-btn common-btn', {'active': false})} onClick={this.handleClickFontBtn.bind(this, item.style)}>
+              <i className={'icon '+'icon-'+item.label}></i>
             </a>
           ))
         }

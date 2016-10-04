@@ -29,7 +29,7 @@ ArrayHelper.each = function (obj, fn) {
     }
 };
 
-ArrayHelper.inArray = function (val, arr) {
+ArrayHelper.inArray = function (arr, val) {
     for (var i = 0, len = arr.length; i < len; i++) {
         if (val === arr[i]) {
             return i;

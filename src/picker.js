@@ -106,7 +106,7 @@ var Picker = function (params) {
         }
         p.value = newValue;
         p.displayValue = newDisplayValue;
-        p.fire('change', p, p.value, p.displayValue)
+        p.fireEvent('change', p, p.value, p.displayValue)
         if (p.params.onChange) {
             p.params.onChange(p, p.value, p.displayValue);
         }
@@ -117,7 +117,7 @@ var Picker = function (params) {
     };
 
     p.clearValue = function() {
-        p.fire('change', p, p.value, p.displayValue)
+        p.fireEvent('change', p, p.value, p.displayValue)
         if (p.params.onChange) {
             p.params.onChange(p);
         }

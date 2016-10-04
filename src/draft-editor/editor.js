@@ -6,8 +6,8 @@ import {backColorStyleMap} from './tools/back-color'
 import {fontSizeStyleMap} from './tools/font-size'
 import {fontFamilyStyleMap} from './tools/font-family'
 require('draft-js/dist/Draft.css')
-require('../resources/less/draft-editor.less')
-require('../resources/less/editor.less')
+require('../resources/less/editor/draft-editor.less')
+require('../resources/less/editor/bottom-toolbar.less')
 // console.log('fontSizeStyleMap', fontSizeStyleMap)
 class RichEditor extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class RichEditor extends React.Component {
       collapsed: true,
       editorState: props.rawContent ? EditorState.createWithContent(convertFromRaw(props.rawContent), decorator) : EditorState.createEmpty(decorator)
     };
-
+    console.log(this.refs.editor)
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => {
       this.setState({editorState});
@@ -198,8 +198,8 @@ class RichEditor extends React.Component {
     return (
      
       <div style={Object.assign({}, styles.editorWrapper, {paddingBottom: this.state.collapsed ? '44px': '260px'})}>
-        <div className={className}>
-          <Editor onClick={this.focus}
+        <div className={className} onClick={this.focus}>
+          <Editor
             customStyleMap={customStyleMap}
             blockRendererFn={mediaBlockRenderer}
             editorState={editorState}

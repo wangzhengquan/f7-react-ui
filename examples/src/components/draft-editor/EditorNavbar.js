@@ -12,7 +12,7 @@ class EditorNavbar extends Navbar{
 }
 
 EditorNavbar.defaultProps = {
-  title: 'Editor'
+  title: 'UMEditor'
 }
 
 module.exports = EditorNavbar

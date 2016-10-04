@@ -6,7 +6,7 @@
  *
  * 清空文档
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName     cleardoc清空文档
  */
 /* eslint quotes : "off"*/

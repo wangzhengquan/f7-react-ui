@@ -5,15 +5,15 @@
 /**
  * b u i等基础功能实现
  * @function
- * @name UM.execCommands
+ * @name Plugins.execCommands
  * @param    {String}    cmdName    bold加粗。italic斜体。subscript上标。superscript下标。
 */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'
-UM.plugins['basestyle'] = function(){
+Plugins.plugins['basestyle'] = function(){
     var basestyles = ['bold','underline','superscript','subscript','italic','strikethrough'],
         me = this;
     //添加快捷键

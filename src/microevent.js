@@ -11,71 +11,81 @@
 
 var MicroEvent	= function(){};
 MicroEvent.prototype	= {
-	bind : function(event, fct){
+	on : function(event, fct){
 		this._events = this._events || {};
 		this._events[event] = this._events[event]	|| [];
 		this._events[event].push(fct);
 		// console.log('on', this._events)
 	},
-	on: function(){
-		return this.bind.apply(this, arguments)
-	},
+	 
 	addListener: function(){
-		return this.addListener.apply(this, arguments)
+		return this.on.apply(this, arguments)
 	},
 	addEventListener: function(){
-		return this.addListener.apply(this, arguments)
+		return this.on.apply(this, arguments)
 	},
 
 	onece: function(eventName, listener){
 		function proxy() {
             listener.apply(this, arguments);
-            this.unbind.call(this, eventName, proxy);
+            this.off.call(this, eventName, proxy);
         }
-        return this.bind.call(this, eventName, proxy)
+        return this.on.call(this, eventName, proxy)
 	},
 
-	unbind	: function(event, fct){
+	off	: function(types, listener){
 		this._events = this._events || {};
-		if( event in this._events === false  )	return;
-		if(!fct){
-			delete this._events[event]
-		}else{
-			this._events[event].splice(this._events[event].indexOf(fct), 1);
-		}
-		
+		types = types.trim().split(' ')
+		types.forEach((type) => {
+			if( type in this._events === false  )	return;
+			if(!listener){
+				delete this._events[event]
+			}else{
+				this._events[event].splice(this._events[event].indexOf(listener), 1);
+			}
+		})
 	},
-	off: function(){
-		return this.unbind.apply(this, arguments)
-	},
+	 
 	removeListener: function(){
-		return this.unbind.apply(this, arguments)
+		return this.off.apply(this, arguments)
 	},
 	removeEventListener: function(){
-		return this.unbind.apply(this, arguments)
+		return this.off.apply(this, arguments)
 	},
 
-	trigger	: function(event /* , args... */){
+	trigger	: function(types /* , args... */){
+		var args = Array.prototype.slice.call(arguments, 1);
 		this._events = this._events || {};
-		if( event in this._events === false  )	return;
+		types = types.trim().split(' ')
 		var result = []
-		for(var i = 0; i < this._events[event].length; i++){
-			result.push(this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1)) );
-		}
+		types.forEach((type) => {
+			if( type in this._events === false  )	return;
+			let tevents = this._events[type]
+			for(var i = 0, len=tevents.length; i <len ; i++){
+				let res = tevents[i].apply(this, args);
+				if (res !== undefined) 
+					result.push(res);
+			}
+		})
 		return result.length === 1 ? result[0] : result;
+		
 	},
 	
-	fire: function(){
-		return this.trigger.apply(this, arguments)
-	},
+	 
 	fireEvent: function(){
 		return this.trigger.apply(this, arguments)
-	},
-	emit: function(){
-		return this.trigger.apply(this, arguments)
 	}
+	 
 };
 
+var inArray = function (arr, val) {
+    for (var i = 0, len = arr.length; i < len; i++) {
+        if (val === arr[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
 /**
  * mixin will delegate all MicroEvent.js function in the destination object
  *
@@ -83,13 +93,18 @@ MicroEvent.prototype	= {
  *
  * @param {Object} the object which will support MicroEvent
 */
-MicroEvent.mixin = function(destObject){
+MicroEvent.mixin = function(destObject, proplist){
 	var prototype	= MicroEvent.prototype;
 	if( typeof destObject === 'function' ){
 		destObject = destObject.prototype
 	}
 	for(let p in prototype){
-		destObject[p] = prototype[p];
+		if(proplist){
+			if(inArray(proplist, p)) destObject[p] = prototype[p];
+		} else {
+			destObject[p] = prototype[p];
+		}
+		
 	}
 	return destObject;
 }

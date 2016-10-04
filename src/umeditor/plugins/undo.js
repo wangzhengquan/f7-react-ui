@@ -7,23 +7,23 @@
  * @author zhanyi
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'
 import domUtils from '../core/domUtils'
 import dtd from '../core/dtd'
 import Range from '../core/Range'
-UM.plugins['undo'] = function () {
+Plugins.plugins['undo'] = function () {
     var saveSceneTimer;
     var me = this,
-        maxUndoCount = me.options.maxUndoCount || 20,
-        maxInputCount = me.options.maxInputCount || 20,
+        maxUndoCount =  20,
+        maxInputCount =  20,
         fillchar = new RegExp(domUtils.fillChar + '|<\/hr>', 'gi');// ie会产生多余的</hr>
     var noNeedFillCharTags = {
         ol:1,ul:1,table:1,tbody:1,tr:1,body:1
     };
-    var orgState = me.options.autoClearEmptyNode;
+    var orgState = true;
     function compareAddr(indexA, indexB) {
         if (indexA.length != indexB.length)
             return 0;
@@ -79,10 +79,10 @@ UM.plugins['undo'] = function () {
         this.restore = function () {
             var me = this.editor;
             var scene = this.list[this.index];
-            var root = UM.htmlparser(scene.content.replace(fillchar, ''));
-            me.options.autoClearEmptyNode = false;
+            var root = Plugins.htmlparser(scene.content.replace(fillchar, ''));
+            // me.options.autoClearEmptyNode = false;
             me.filterInputRule(root,true);
-            me.options.autoClearEmptyNode = orgState;
+            // me.options.autoClearEmptyNode = orgState;
             //trace:873
             //去掉展位符
             me.body.innerHTML = root.toHtml();
@@ -118,10 +118,10 @@ UM.plugins['undo'] = function () {
             var rng = me.selection.getRange(),
                 rngAddress = rng.createAddress(false,true);
             me.fireEvent('beforegetscene');
-            var root = UM.htmlparser(me.body.innerHTML,true);
-            me.options.autoClearEmptyNode = false;
+            var root = Plugins.htmlparser(me.body.innerHTML,true);
+            // me.options.autoClearEmptyNode = false;
             me.filterOutputRule(root,true);
-            me.options.autoClearEmptyNode = orgState;
+            // me.options.autoClearEmptyNode = orgState;
             var cont = root.toHtml();
             browser.ie && (cont = cont.replace(/>&nbsp;</g, '><').replace(/\s*</g, '<').replace(/>\s*/g, '>'));
             me.fireEvent('aftergetscene');

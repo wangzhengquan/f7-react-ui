@@ -1,7 +1,7 @@
 import React  from 'react';
 import Edit from './Edit'
 import Toolbar from './toolbar'
-require('../resources/less/editor.less')
+require('../resources/less/editor/bottom-toolbar.less')
 require('../resources/less/scroll.less')
 class Editor extends React.Component{
   constructor(props) {

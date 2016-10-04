@@ -5,7 +5,7 @@
 /**
  * 有序列表
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName     insertorderlist插入有序列表
  * @param   {String}   style               值为：decimal,lower-alpha,lower-roman,upper-alpha,upper-roman
  * @author zhanyi
@@ -13,35 +13,35 @@
 /**
  * 无序链接
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName     insertunorderlist插入无序列表
  * * @param   {String}   style            值为：circle,disc,square
  * @author zhanyi
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 // import browser from '../core/browser'
 import utils from '../core/utils'
 import dtd from '../core/dtd'
 import domUtils from '../core/domUtils'
-UM.plugins['list'] = function () {
+Plugins.plugins['list'] = function () {
     var me = this;
 
-    me.setOpt( {
-        'insertorderedlist':{
-            'decimal':'',
-            'lower-alpha':'',
-            'lower-roman':'',
-            'upper-alpha':'',
-            'upper-roman':''
-        },
-        'insertunorderedlist':{
-            'circle':'',
-            'disc':'',
-            'square':''
-        }
-    } );
+    // me.setOpt( {
+    //     'insertorderedlist':{
+    //         'decimal':'',
+    //         'lower-alpha':'',
+    //         'lower-roman':'',
+    //         'upper-alpha':'',
+    //         'upper-roman':''
+    //     },
+    //     'insertunorderedlist':{
+    //         'circle':'',
+    //         'disc':'',
+    //         'square':''
+    //     }
+    // } );
 
     this.addInputRule(function(root){
         utils.each(root.getNodesByTagName('li'), function (node) {

@@ -5,7 +5,7 @@
 ///commandsName  Source
 ///commandsTitle  查看源码
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 // import utils from '../core/utils'
@@ -57,7 +57,7 @@ import dtd from '../core/dtd'
         }
     };
 
-    UM.plugins['source'] = function (){
+    Plugins.plugins['source'] = function (){
         var me = this;
         var opt = this.options;
         var sourceMode = false;
@@ -93,7 +93,7 @@ import dtd from '../core/dtd'
 
 
                     me.fireEvent('beforegetcontent');
-                    var root = UM.htmlparser(me.body.innerHTML);
+                    var root = Plugins.htmlparser(me.body.innerHTML);
                     me.filterOutputRule(root);
                     root.traversal(function (node) {
                         if (node.type == 'element') {

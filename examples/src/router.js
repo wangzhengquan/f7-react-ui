@@ -310,13 +310,13 @@ const rootRoute = {
         })
       }
     }, {
-      path: 'editor',
+      path: 'umeditor',
       getComponents(nextState, cb) {
         Modals.showIndicator()
         require.ensure([], (require) => {
             cb(null, {
-              navbar: hideNavbar ? null : require('./components/editor/EditorNavbar'),
-              page: require('./components/editor/EditorPage')
+              navbar: hideNavbar ? null : require('./components/umeditor/EditorNavbar'),
+              page: require('./components/umeditor/EditorPage')
             })
             document.querySelector('title').innerHTML='Editor'
             Modals.hideIndicator()
@@ -332,6 +332,19 @@ const rootRoute = {
               page: require('./components/draft-editor/EditorPage')
             })
             document.querySelector('title').innerHTML='Draft Editor'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
+      path: 'quill-editor',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/quill-editor/EditorNavbar'),
+              page: require('./components/quill-editor/EditorPage')
+            })
+            document.querySelector('title').innerHTML='Quill Editor'
             Modals.hideIndicator()
         })
       }

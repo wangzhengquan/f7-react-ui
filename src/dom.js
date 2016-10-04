@@ -773,6 +773,7 @@ Dom7.prototype = {
     find : function (selector) {
         var foundElements = [];
         for (var i = 0; i < this.length; i++) {
+            if(this[i].nodeType === Node.TEXT_NODE) continue;
             var found = this[i].querySelectorAll(selector);
             for (var j = 0; j < found.length; j++) {
                 foundElements.push(found[j]);

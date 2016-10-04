@@ -1,6 +1,6 @@
 import Navbar from '../Navbar'
 
-class EditorNavbar extends Navbar{
+class TmpNavbar extends Navbar{
 
     constructor(props) {
       super(props);
@@ -11,8 +11,8 @@ class EditorNavbar extends Navbar{
     }
 }
 
-EditorNavbar.defaultProps = {
-  title: 'Editor'
+TmpNavbar.defaultProps = {
+  title: 'Qill Editor'
 }
 
-module.exports = EditorNavbar
+module.exports = TmpNavbar

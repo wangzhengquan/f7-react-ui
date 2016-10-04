@@ -8,14 +8,14 @@
  * @author zhanyi
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import domUtils from '../core/domUtils'
-UM.plugins['enterkey'] = function() {
+Plugins.plugins['enterkey'] = function() {
     var hTag,
         me = this,
-        tag = me.options.enterTag;
+        tag = 'p';
     me.addListener('keyup', function(type, evt) {
 
         var keyCode = evt.keyCode || evt.which;

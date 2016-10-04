@@ -1,0 +1,46 @@
+@import url('../_mixins.less');
+@import url('../_colors-vars.less');
+
+.rich-editor{
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  cursor: text;
+  font-size: 14px;
+  /*margin-top: 10px;*/
+  height: 100%;
+  .scrollable();
+
+  ul {
+  	list-style: disc;
+  	padding-left: 10px; 
+  }
+  ol {
+  	padding-left: 10px;
+  }
+}
+
+.rich-editor-area{
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 10px;
+}
+
+.editor-toolbar {
+	svg{
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.ql-stroke {
+    fill: none;
+    stroke: #444;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.ql-fill {
+    fill: #444;
+}

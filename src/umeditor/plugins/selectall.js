@@ -5,17 +5,17 @@
 /**
  * 选中所有
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName    selectall选中编辑器里的所有内容
  * @author zhanyi
 */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 // import utils from '../core/utils'
 import domUtils from '../core/domUtils'
-UM.plugins['selectall'] = function(){
+Plugins.plugins['selectall'] = function(){
     var me = this;
     me.commands['selectall'] = {
         execCommand : function(){

@@ -2,10 +2,10 @@
  * 公式插件
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import browser from '../core/browser'
 import utils from '../core/utils'
-UM.plugins['formula'] = function () {
+Plugins.plugins['formula'] = function () {
     var me = this;
 
     function getActiveIframe() {
@@ -28,7 +28,7 @@ UM.plugins['formula'] = function () {
                 node.tagName = 'iframe';
                 node.setAttr({
                     'frameborder': '0',
-                    'src': me.getOpt('UMEDITOR_HOME_URL') + 'dialogs/formula/formula.html',
+                    'src': me.getOpt('PluginsEDITOR_HOME_URL') + 'dialogs/formula/formula.html',
                     'data-latex': utils.unhtml(latex)
                 });
             }
@@ -38,7 +38,7 @@ UM.plugins['formula'] = function () {
         utils.each(root.getNodesByTagName('iframe'), function (node) {
             if (node.hasClass('mathquill-embedded-latex')) {
                 node.tagName = 'span';
-                node.appendChild(UM.uNode.createText(node.getAttr('data-latex')));
+                node.appendChild(Plugins.uNode.createText(node.getAttr('data-latex')));
                 node.setAttr({
                     'frameborder': '',
                     'src': '',

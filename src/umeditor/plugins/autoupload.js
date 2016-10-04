@@ -6,8 +6,8 @@
  * @date 2013-10-14
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
-UM.plugins['autoupload'] = function () {
+import Plugins from './plugins'
+Plugins.plugins['autoupload'] = function () {
 
     var me = this;
 

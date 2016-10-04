@@ -1,0 +1,24 @@
+@import url('../_mixins.less');
+@import url('../_colors-vars.less');
+@import url('editor-icon.less');
+
+.editor-toolbar {
+	a.tab-link {
+		position: relative;
+		input[type=file]{
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+			opacity: 0;
+		}
+	}
+}
+
+.editor-toolbar i.icon{
+	width: 25px;
+	height: 25px;
+}

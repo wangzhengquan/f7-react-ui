@@ -370,11 +370,11 @@ class AboutPage extends AnimationPage{
             </div>
           </Link>
 
-          <Link to="editor" className="item-link">
+          <Link to="umeditor" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
-                <div className="item-title">Editor</div>
+                <div className="item-title">UMEditor</div>
               </div>
             </div>
           </Link>
@@ -384,6 +384,24 @@ class AboutPage extends AnimationPage{
               <div className="item-media"><i className="icon icon-f7"></i></div>
               <div className="item-inner">
                 <div className="item-title">Draft Editor</div>
+              </div>
+            </div>
+          </Link>
+
+           <Link to="react-quill" className="item-link">
+            <div className="item-content">
+              <div className="item-media"><i className="icon icon-f7"></i></div>
+              <div className="item-inner">
+                <div className="item-title">React Quill Editor</div>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="quill-editor" className="item-link">
+            <div className="item-content">
+              <div className="item-media"><i className="icon icon-f7"></i></div>
+              <div className="item-inner">
+                <div className="item-title">Quill Editor</div>
               </div>
             </div>
           </Link>

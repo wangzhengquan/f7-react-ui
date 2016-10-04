@@ -2,12 +2,12 @@
  *   处理特殊键的兼容性问题
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 // import utils from '../core/utils'
 import domUtils from '../core/domUtils'
-UM.plugins['keystrokes'] = function() {
+Plugins.plugins['keystrokes'] = function() {
     var me = this;
     var collapsed = true;
     me.addListener('keydown', function(type, evt) {

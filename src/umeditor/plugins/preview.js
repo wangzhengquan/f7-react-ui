@@ -5,20 +5,20 @@
 /**
  * 预览
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName     preview预览编辑器内容
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 // import $ from '../../dom'
 // import browser from '../core/browser'
 // import utils from '../core/utils'
-UM.commands['preview'] = {
+Plugins.commands['preview'] = {
     execCommand : function(){
         var w = window.open('', '_blank', ''),
             d = w.document,
             c = this.getContent(null,null,true),
-            path = this.getOpt('UMEDITOR_HOME_URL'),
+            path = this.getOpt('PluginsEDITOR_HOME_URL'),
             formula = c.indexOf('mathquill-embedded-latex')!=-1 ?
                 '<link rel="stylesheet" href="' + path + 'third-party/mathquill/mathquill.css"/>' +
                 '<script src="' + path + 'third-party/jquery.min.js"></script>' +

@@ -43,5 +43,5 @@ $.pluginProcess = reactUI.pluginProcess = function (process, data) {
     return processed;
 };
 
-export default plugin;
+export default $;
 

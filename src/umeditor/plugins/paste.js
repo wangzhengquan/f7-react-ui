@@ -10,12 +10,12 @@
  * @author zhanyi
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'
 import domUtils from '../core/domUtils'
-UM.plugins['paste'] = function () {
+Plugins.plugins['paste'] = function () {
     function getClipboardData(callback) {
         var doc = this.document;
         if (doc.getElementById('baidu_pastebin')) {
@@ -122,12 +122,12 @@ UM.plugins['paste'] = function () {
             html = div.innerHTML;//.replace(/>(?:(\s|&nbsp;)*?)</g,'><');
 
             //过滤word粘贴过来的冗余属性
-            html = UM.filterWord(html);
+            html = Plugins.filterWord(html);
             //取消了忽略空白的第二个参数，粘贴过来的有些是有空白的，会被套上相关的标签
-            var root = UM.htmlparser(html);
+            var root = Plugins.htmlparser(html);
             //如果给了过滤规则就先进行过滤
             if (me.options.filterRules) {
-                UM.filterNode(root, me.options.filterRules);
+                Plugins.filterNode(root, me.options.filterRules);
             }
             //执行默认的处理
             me.filterInputRule(root);

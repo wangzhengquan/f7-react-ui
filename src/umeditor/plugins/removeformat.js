@@ -1,4 +1,4 @@
-//UM.plugins['removeformat'] = function () {
+//Plugins.plugins['removeformat'] = function () {
 //    var me = this;
 //    me.commands['removeformat'] = {
 //        execCommand: function () {
@@ -35,14 +35,14 @@
 //};
 //
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 // import $ from '../../dom'
 import browser from '../core/browser'
 import Range from '../core/Range'
 import domUtils from '../core/domUtils'
 import dtd from '../core/dtd'
 
-UM.plugins['removeformat'] = function(){
+Plugins.plugins['removeformat'] = function(){
     var me = this;
     me.setOpt({
         'removeFormatTags': 'b,big,code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var',

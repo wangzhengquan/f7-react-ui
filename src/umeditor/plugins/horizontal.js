@@ -6,16 +6,16 @@
 /**
  * 分割线
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param {String}     cmdName    horizontal插入分割线
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import domUtils from '../core/domUtils'
 import dtd from '../core/dtd'
-UM.plugins['horizontal'] = function(){
+Plugins.plugins['horizontal'] = function(){
     var me = this;
     me.commands['horizontal'] = {
         execCommand : function(  ) {

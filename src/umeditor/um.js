@@ -1,9 +1,8 @@
-require('../resources/less/editor.less')
-require('../resources/less/scroll.less')
-window.UMEDITOR_CONFIG = window.UMEDITOR_CONFIG || {};
 
+// window.UMEDITOR_CONFIG = window.UMEDITOR_CONFIG || {};
+import Plugins from './plugins/plugins'
 var UM = window.UM = {
-    plugins : {},
+    plugins : Plugins.plugins,
 
     commands : {},
 

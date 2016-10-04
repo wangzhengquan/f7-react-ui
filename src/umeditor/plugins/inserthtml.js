@@ -29,10 +29,10 @@ UM.commands['inserthtml'] = {
         div.style.display = 'inline';
 
         if (!notNeedFilter) {
-            var root = UM.htmlparser(html);
+            var root = Plugins.htmlparser(html);
             //如果给了过滤规则就先进行过滤
             if(me.options.filterRules){
-                UM.filterNode(root,me.options.filterRules);
+                Plugins.filterNode(root,me.options.filterRules);
             }
             //执行默认的处理
             me.filterInputRule(root);

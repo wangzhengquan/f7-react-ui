@@ -6,7 +6,7 @@
 /**
  * 超链接
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName     link插入超链接
  * @param   {Object}  options         url地址，title标题，target是否打开新页
  * @author zhanyi
@@ -14,20 +14,20 @@
 /**
  * 取消链接
  * @function
- * @name UM.execCommand
+ * @name Plugins.execCommand
  * @param   {String}   cmdName     unlink取消链接
  * @author zhanyi
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'
 import domUtils from '../core/domUtils'
-UM.plugins['link'] = function(){
+Plugins.plugins['link'] = function(){
     var me = this;
 
-    me.setOpt('autourldetectinie',false);
+    // me.setOpt('autourldetectinie',false);
     //在ie下禁用autolink
     if(browser.ie && this.options.autourldetectinie === false){
         this.addListener('keyup',function(cmd,evt){

@@ -1,0 +1,213 @@
+
+@import url('../_mixins.less');
+@import url('../_colors-vars.less');
+@import url('editor-icon.less');
+
+*{
+    box-sizing: border-box;
+}
+
+@rowHeight: 40px;
+
+
+.editor{
+    background: #fff;
+}
+
+.editor-toolbar{
+
+    .hairline(bottom, #c8c7cc);
+    .toolbar-inner {
+        padding-right: 44px + 8px; 
+    }
+     
+    .switch{
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: block;
+        line-height: 44px;
+        height: 44px;
+        width: 44px;
+        text-align: center;
+        .flexbox();
+        .justify-content(center);
+        .align-items(center);
+        .hairline(left, #c8c7cc);
+    }
+    .input-button {
+        position: relative;
+        input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 10;
+            opacity: 0;
+        }
+    }
+}
+.editor-toolbar-modal{
+    background: #fff;
+    .list-block ul{
+        .hairline-remove(top);
+        .hairline-remove(bottom);
+    }
+    .tab{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    
+
+    .picker-modal-inner {
+        position: relative;
+        padding-left: 60px;
+        .left{
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 60px;
+            height: 100%;
+            
+        }
+        .center{
+            padding: 10px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+    }
+    .tools-tabbar{
+        /*.hairline(right, #c8c7cc);*/
+        border-right: 1px solid #c8c7cc;
+        
+        .tab-link{
+            display: block;
+            width: 60px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            border-bottom: 1px solid #c8c7cc;
+            &.active{
+                background: #fff;
+                margin-left: 1px;
+                .hairline(right, #fff);
+            }
+
+        }
+    }
+
+    .tool-block{
+        margin-bottom: 8px;
+        .tool-name{
+            width: 100%;
+            font-size: 12px;
+            font-color: #c8c7cc;
+        }
+        .tool-buttons{
+            border: 1px solid #c8c7cc;
+            border-radius: 5px;
+            .flexbox();
+            .justify-content(space-between);
+            .tool-buttons-inner{
+                width: 100%;
+            }
+
+            .btn{
+                display: block;
+                position: relative;
+                color: #272636;
+                border-radius: 5px;
+                text-align: center;
+                height: @rowHeight;
+                line-height: @rowHeight;
+                .fit(1);
+                input[type="checkbox"], input[type="radio"] {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    z-index: 10;
+
+                }
+            }
+
+            .common-btn{
+                
+                &.active{
+                    color: @themeColor;
+                    background: #f7f7f8;
+
+                }
+            }
+
+
+            .font-color-col{
+                padding: 2px;
+                box-sizing: border-box;
+                overflow: hidden;
+                border: 1px solid transparent;
+                &.active {
+                    border: 1px solid @themeColor;
+                    border-radius: 5px;
+                }
+            }
+            .font-color-btn{
+               
+                height: 30px;
+                box-sizing: border-box;
+            }
+
+        }
+
+        .tool-buttons-row{
+            height: @rowHeight;
+        }
+
+         
+
+        
+    }
+}
+.editor-toolbar-modal, .editor-toolbar-modal.picker-modal.modal-out {
+    -webkit-transform: translate3d(0, calc(~"100% - 44px"), 0);
+    transform: translate3d(0, calc(~"100% - 44px"), 0);
+    display: block;
+    .icon-picker-switch{
+        width: 25px;
+        height: 25px;
+        .encoded-svg-background('<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g><g transform="scale(0.1953125, 0.1953125)"><path d="M832.132 651.046l-35.36 38.887-283.563-271.819-280.739 259.086-38.186-39.606 318.925-297.693z" fill="#000"></path></g></g></svg>');
+
+    }
+     
+}
+
+.editor-toolbar-modal.picker-modal.modal-in{
+    .icon-picker-switch{
+        width: 25px;
+        height: 25px;
+        .encoded-svg-background('<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g><g transform="scale(0.1953125, 0.1953125)"><path d="M187.679 340.063c-3.994 3.994-6.001 9.236-6.001 14.479s2.007 10.486 6.001 14.479l307.2 307.2c8.008 8.008 20.951 8.008 28.959 0l307.2-307.2c8.008-8.008 8.008-20.951 0-28.959s-20.951-8.008-28.959 0l-292.721 292.721-292.721-292.721c-8.008-8.008-20.972-8.008-28.959 0z" fill="#000"></path></g></g></svg>');
+    }
+}
+.editor-toolbar-modal .toolbar i.icon{
+    width: 20px;
+    height: 20px;
+}
+.tools-tabbar i.icon{
+    width: 20px;
+    height: 25px;
+}
+.tool-buttons i.icon{
+    width: 20px;
+    height: 30px;
+}
+
+
+
+
+

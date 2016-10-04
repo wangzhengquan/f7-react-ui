@@ -2,9 +2,9 @@
  * 自动保存草稿
  */
 /* eslint quotes : "off"*/
-import UM from '../um'
+import Plugins from './plugins'
 import browser from '../core/browser'
-UM.plugins['autosave'] = function() {
+Plugins.plugins['autosave'] = function() {
 
 
     var me = this,
@@ -20,7 +20,7 @@ UM.plugins['autosave'] = function() {
     me.setOpt('saveInterval', 500);
 
     //存储媒介封装
-    var LocalStorage = UM.LocalStorage = ( function () {
+    var LocalStorage = Plugins.LocalStorage = ( function () {
 
         var storage = window.localStorage || getUserData() || null,
             LOCAL_FILE = "localStorage";
