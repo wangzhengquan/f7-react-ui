@@ -2,24 +2,26 @@
 @import url('_colors-vars.less');
 .scroll{
 	.scrollable();
+    
+}
+.no-scrollbar {
     .no-scrollbar();
 }
 
-.xscroll{
+.x-scroll{
 	.scrollable();
     .no-scrollbar();
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
-.yscroll{
+.y-scroll{
 	.scrollable();
-    .no-scrollbar();
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
-.scroll-inner{
+.x-scroll-inner{
 	position: relative;
     width: 100%;
     box-sizing: content-box;

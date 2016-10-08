@@ -7,34 +7,34 @@ import UM from './um'
 import Selection from './core/Selection'
 // import dtd from './core/dtd'
 // import Range from './core/Range'
-// import htmlparser from './core/htmlparser'
+import htmlparser from './core/htmlparser'
 import browser from './core/browser'
 import $ from '../dom'
 import MicroEvent from '../microevent'
 
-require('./plugins/inserthtml.js')
-require('./plugins/image.js')
-require('./plugins/justify.js')
-require('./plugins/font.js')
-require('./plugins/link.js')
-require('./plugins/print.js')
-require('./plugins/paragraph.js')
-require('./plugins/horizontal.js')
-require('./plugins/cleardoc.js')
-// require('./plugins/undo.js')
-require('./plugins/paste.js')
-require('./plugins/list.js')
-// require('./plugins/source.js')
-// require('./plugins/enterkey.js')
-// require('./plugins/preview.js')
-require('./plugins/basestyle.js')
-// require('./plugins/video.js')
-require('./plugins/selectall.js')
-// require('./plugins/removeformat.js')
-// require('./plugins/keystrokes.js')
-// require('./plugins/autosave.js')
-// require('./plugins/autoupload.js')
-// require('./plugins/formula.js')
+
+
+// require('./plugins/justify.js')
+
+
+// require('./plugins/print.js')
+// require('./plugins/paragraph.js')
+// require('./plugins/horizontal.js')
+// require('./plugins/cleardoc.js')
+// // require('./plugins/undo.js')
+// require('./plugins/paste.js')
+// require('./plugins/list.js')
+// // require('./plugins/source.js')
+// // require('./plugins/enterkey.js')
+// // require('./plugins/preview.js')
+// require('./plugins/basestyle.js')
+// // require('./plugins/video.js')
+// require('./plugins/selectall.js')
+// // require('./plugins/removeformat.js')
+// // require('./plugins/keystrokes.js')
+// // require('./plugins/autosave.js')
+// // require('./plugins/autoupload.js')
+// // require('./plugins/formula.js')
 
 
 
@@ -55,10 +55,10 @@ class Editor extends React.Component{
     this.loadPlugins()
     this.mfocus = () => {
       this.focus(true)
-      //this.refs.editor.querySelector('.umeditor-area').focus()
+      //this.refs.editor.querySelector('.rich-editor-area').focus()
     }
     // this.mfocus = () => this.focus(true)
-    this.blur = () => this.refs.editor.querySelector('.umeditor-area').blur()
+    this.blur = () => this.refs.editor.querySelector('.rich-editor-area').blur()
     
     //ie6下缓存图片
     browser.ie && browser.version === 6 && document.execCommand('BackgroundImageCache', false, true);
@@ -84,7 +84,7 @@ class Editor extends React.Component{
 
   componentDidMount(){
     var me = this;
-    this.body = this.refs.editor.querySelector('.umeditor-area');
+    this.body = this.refs.editor.querySelector('.rich-editor-area');
     this.$body = $(this.body);
     this.selection = new Selection(document, this.body);
 
@@ -157,6 +157,7 @@ class Editor extends React.Component{
                   return;
               }
               if (evt.button == 2)return;
+              me.props.onChange && me.props.onChange()
               me._selectionChange(250, evt);
           });
   }
@@ -394,6 +395,62 @@ class Editor extends React.Component{
       }
   }
 
+
+   /**
+   * 检查编辑区域中是否有内容，若包含tags中的节点类型，直接返回true
+   * @name  hasContents
+   * @desc
+   * 默认有文本内容，或者有以下节点都不认为是空
+   * <code>{table:1,ul:1,ol:1,dl:1,iframe:1,area:1,base:1,col:1,hr:1,img:1,embed:1,input:1,link:1,meta:1,param:1}</code>
+   * @grammar editor.hasContents()  => (true|false)
+   * @grammar editor.hasContents(tags)  =>  (true|false)  //若文档中包含tags数组里对应的tag，直接返回true
+   * @example
+   * editor.hasContents(['span']) //如果编辑器里有这些，不认为是空
+   */
+  hasContents (tags) {
+    if (tags) {
+        for (var i = 0, ci; ci = tags[i++];) {
+            if (this.body.getElementsByTagName(ci).length > 0) {
+                return true;
+            }
+        }
+    }
+    if (!domUtils.isEmptyBlock(this.body)) {
+        return true
+    }
+    //随时添加,定义的特殊标签如果存在，不能认为是空
+    tags = ['div'];
+    for (i = 0; ci = tags[i++];) {
+        var nodes = domUtils.getElementsByTagName(this.body, ci);
+        for (var n = 0, cn; cn = nodes[n++];) {
+            if (domUtils.isCustomeNode(cn)) {
+                return true;
+            }
+        }
+    }
+    return false;
+  }
+
+
+  /**
+   * 获取编辑器内容
+   * @name getContent
+   * @grammar editor.getContent()  => String //若编辑器中只包含字符"&lt;p&gt;&lt;br /&gt;&lt;/p/&gt;"会返回空。
+   * @grammar editor.getContent(fn)  => String
+   * @example
+   * getContent默认是会现调用hasContents来判断编辑器是否为空，如果是，就直接返回空字符串
+   * 你也可以传入一个fn来接替hasContents的工作，定制判断的规则
+   * editor.getContent(function(){
+   *     return false //编辑器没有内容 ，getContent直接返回空
+   * })
+   */
+  getContent (ignoreBlank, formatter) {
+      var me = this;
+      var root = htmlparser(me.body.innerHTML,ignoreBlank);
+      me.filterOutputRule(root);
+      return  root.toHtml(formatter);
+  }
+
   addInputRule (rule,ignoreUndo) {
       rule.ignoreUndo = ignoreUndo;
       this.inputRules.push(rule);
@@ -427,7 +484,7 @@ class Editor extends React.Component{
   render(){
     return (
       <div className="umeditor" ref="editor" >
-        <ContentEditable className="umeditor-area" onClick={this.mfocus}
+        <ContentEditable className="umeditor-area"  
           html={this.state.html} // innerHTML of the editable div 
           disabled={false}       // use true to disable edition 
           onChange={this.handleChange.bind(this)} // handle innerHTML change 
@@ -451,6 +508,5 @@ class Editor extends React.Component{
    
 }
  MicroEvent.mixin(Editor)
-//ObjectHelper.inherits(Editor, EventBase);
 
 export default Editor

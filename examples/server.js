@@ -5,8 +5,8 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 const open = require('open');
-// const host = '192.168.0.100'
-const host = 'localhost'
+const host = '192.168.0.100'
+// const host = 'localhost'
 
 new WebpackDevServer(webpack(config), config.devServer)
 .listen(config.port, host, (err) => {

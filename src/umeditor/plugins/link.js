@@ -24,12 +24,14 @@ import $ from '../../dom'
 import browser from '../core/browser'
 import utils from '../core/utils'
 import domUtils from '../core/domUtils'
+
+
 Plugins.plugins['link'] = function(){
     var me = this;
-
+    
     // me.setOpt('autourldetectinie',false);
     //在ie下禁用autolink
-    if(browser.ie && this.options.autourldetectinie === false){
+    if(browser.ie && this.autourldetectinie === false){
         this.addListener('keyup',function(cmd,evt){
             var me = this,keyCode = evt.keyCode;
             if(keyCode == 13 || keyCode == 32){
@@ -80,7 +82,11 @@ Plugins.plugins['link'] = function(){
     });
     me.commands['link'] = {
         execCommand : function( cmdName, opt ) {
-
+            if(typeof opt === 'string'){
+                opt = {
+                    href: opt
+                }
+            }
             var me = this;
             var rng = me.selection.getRange();
             if(rng.collapsed){

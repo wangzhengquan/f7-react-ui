@@ -78,7 +78,7 @@ function androidNeedsBlur(el) {
 }
 function targetNeedsFastClick(el) {
     var $el = $(el);
-console.log('targetNeedsFastClick==', el)
+// console.log('targetNeedsFastClick==', el)
     if (el.nodeName.toLowerCase() === 'input' && el.type === 'file') return false;
     if ($el.hasClass('no-fastclick') || $el.parents('.no-fastclick').length > 0) return false;
     if($el.closest('[contenteditable=true]').length > 0) return false

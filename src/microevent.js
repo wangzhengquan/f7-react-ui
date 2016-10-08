@@ -11,11 +11,14 @@
 
 var MicroEvent	= function(){};
 MicroEvent.prototype	= {
-	on : function(event, fct){
-		this._events = this._events || {};
-		this._events[event] = this._events[event]	|| [];
-		this._events[event].push(fct);
-		// console.log('on', this._events)
+	on : function(types, listener){
+		types = types.trim().split(/\s+/)
+		types.forEach((type) => {
+			this._listeners = this._listeners || {};
+			this._listeners[type] = this._listeners[type]	|| [];
+			this._listeners[type].push(listener);
+		})
+		
 	},
 	 
 	addListener: function(){
@@ -25,23 +28,23 @@ MicroEvent.prototype	= {
 		return this.on.apply(this, arguments)
 	},
 
-	onece: function(eventName, listener){
+	onece: function(type, listener){
 		function proxy() {
             listener.apply(this, arguments);
-            this.off.call(this, eventName, proxy);
+            this.off.call(this, type, proxy);
         }
-        return this.on.call(this, eventName, proxy)
+        return this.on.call(this, type, proxy)
 	},
 
 	off	: function(types, listener){
-		this._events = this._events || {};
-		types = types.trim().split(' ')
+		this._listeners = this._listeners || {};
+		types = types.trim().split(/\s+/)
 		types.forEach((type) => {
-			if( type in this._events === false  )	return;
+			if( type in this._listeners === false  )	return;
 			if(!listener){
-				delete this._events[event]
+				delete this._listeners[type]
 			}else{
-				this._events[event].splice(this._events[event].indexOf(listener), 1);
+				this._listeners[type].splice(this._listeners[type].indexOf(listener), 1);
 			}
 		})
 	},
@@ -55,12 +58,12 @@ MicroEvent.prototype	= {
 
 	trigger	: function(types /* , args... */){
 		var args = Array.prototype.slice.call(arguments, 1);
-		this._events = this._events || {};
-		types = types.trim().split(' ')
+		this._listeners = this._listeners || {};
+		types = types.trim().split(/\s+/)
 		var result = []
 		types.forEach((type) => {
-			if( type in this._events === false  )	return;
-			let tevents = this._events[type]
+			if( type in this._listeners === false  )	return;
+			let tevents = this._listeners[type]
 			for(var i = 0, len=tevents.length; i <len ; i++){
 				let res = tevents[i].apply(this, args);
 				if (res !== undefined) 

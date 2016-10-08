@@ -11,15 +11,6 @@ export default {
 			 dType = 'pc';
 		 }
 		 return dType;
-	},
-	/**
-	 * 是否是微信
-	 */
-	isMicroMessenger () {
-		return (navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger");
-	},
-
-	isWeiXin(){
-		return this.isMicroMessenger()
 	}
+	 
 }

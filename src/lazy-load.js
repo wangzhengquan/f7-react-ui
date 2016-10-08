@@ -24,7 +24,6 @@ var loadImage = (function(){
     var imageIsLoading = false;
     return function loadImage(el, imagesLazyLoadSequential) {
         el = $(el);
-
         var bg = el.attr('data-background');
         var src = bg ? bg : el.attr('data-src');
         if (!src) return;
@@ -68,10 +67,11 @@ var loadImage = (function(){
 
 export default class Lazyload {
     constructor(config){
-        this.config = config;
+        this.config = config || {};
         this.initImagesLazyLoad();
     }
     initImagesLazyLoad () {
+        var me = this;
         var scrollContainer = $(this.config.scrollContainer);
         var lazyLoadImages = scrollContainer.find('.lazy');
         
@@ -81,8 +81,13 @@ export default class Lazyload {
         if (typeof this.config.placeholder === 'string') {
             placeholderSrc = this.config.placeholder;
         }
-        if (this.config.placeholder !== false) lazyLoadImages.each(function(){
-            if ($(this).attr('data-src')) $(this).attr('src', placeholderSrc);
+       lazyLoadImages.each(function(){
+            let $this = $(this)
+            // console.log('===this.src', this.src, $this.attr('data-src'))
+            if (this.src && !$this.attr('data-src')) {
+                $this.attr('data-src', this.src)
+            }
+            if (me.config.placeholder !== false)  this.src = placeholderSrc
         });
 
         this.handleLazy()

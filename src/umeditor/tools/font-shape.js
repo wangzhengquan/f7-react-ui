@@ -1,6 +1,7 @@
 import React  from 'react';
 import classnames from 'classnames'
 // var fontShapList = ['bold', 'italic', 'underline']
+require('../plugins/font.js')
 
 var fontShapList = [
   {label: 'bold', style: 'bold'},

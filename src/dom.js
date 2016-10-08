@@ -73,6 +73,9 @@ var $ = function (selector, context) {
 //methods
 
 Dom7.prototype = {
+    get: function(index) {
+        return this[index]
+    },
     // Classes and attriutes
     addClass: function (className) {
         if (typeof className === 'undefined') {

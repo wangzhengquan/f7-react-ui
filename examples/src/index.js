@@ -34,7 +34,7 @@ import ReactDOM from 'react-dom';
 import { Router} from 'react-router'
 import history from './history'
 import rootRoute from './router'
-import 'react-ui/fast-clicks'
+// import 'react-ui/fast-clicks'
 require('react-ui/resources/less/intro.less');
 require('react-ui/resources/less/icons.less');
 require('react-ui/resources/less/views.less');

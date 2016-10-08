@@ -13,6 +13,8 @@ import browser from '../core/browser'
 import utils from '../core/utils'
 import domUtils from '../core/domUtils'
 import dtd from '../core/dtd'
+import htmlparser from '../core/htmlparser'
+import filterNode from '../core/filterNode'
 UM.commands['inserthtml'] = {
     execCommand: function (command,html,notNeedFilter){
         var me = this,
@@ -29,10 +31,10 @@ UM.commands['inserthtml'] = {
         div.style.display = 'inline';
 
         if (!notNeedFilter) {
-            var root = Plugins.htmlparser(html);
+            var root = htmlparser(html);
             //如果给了过滤规则就先进行过滤
             if(me.options.filterRules){
-                Plugins.filterNode(root,me.options.filterRules);
+                filterNode(root,me.options.filterRules);
             }
             //执行默认的处理
             me.filterInputRule(root);

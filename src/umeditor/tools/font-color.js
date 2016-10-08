@@ -22,7 +22,6 @@ class FontColor extends React.Component{
 
     this.edit.addListener('selectionchange', () => {
         var state = this.edit.queryCommandState('forecolor');
-        console.log('selectionchange state', state)
         this.setState({
           value: state
         })
