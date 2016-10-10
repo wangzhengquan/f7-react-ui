@@ -1,5 +1,8 @@
 import React  from 'react';
 import classnames from 'classnames'
+require('../resources/less/forms.less')
+require('../resources/less/widget/textfield.less')
+
 class TextField extends React.Component{
     constructor(props) {
       super(props);

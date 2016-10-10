@@ -36,7 +36,6 @@ RegExpUtil.getMatches = function(regx, str, isGetDetails){
     }
     return matches.length > 0 ? matches : null;
 };
-
 //---------------------------------------------------------------------------------------
 
   
@@ -44,19 +43,24 @@ RegExpUtil.getMatches = function(regx, str, isGetDetails){
 /**
  * 判断是否是合法的密码格式. 
  */
-RegExpUtil.isPassword = function(pwd){
-    if(pwd.length < 8 || pwd.length > 20){    
+RegExpUtil.valPassword = function(pwd , cb){
+    if(pwd.length < 8 || pwd.length > 20){   
+        cb && cb(false, '密码长度为8－20个字符') 
         return false;
     }    
-    if(!/\d+/gi.getMatches(pwd)){    
+    if(!/\d+/gi.exec(pwd)){   
+        cb && cb(false, '密码应包含数字')  
         return false;
     }
-    if(!/[a-zA-Z]+/gi.getMatches(pwd)){    
+    if(!/[a-zA-Z]+/gi.exec(pwd)){  
+        cb && cb(false, '密码应包含字母')   
         return false;
     }
-    if(!/[!@#$%^&*()]+/gi.getMatches(pwd)){
+    if(!/[!@#$%^&*()]+/gi.exec(pwd)){
+        cb && cb(false, '密码不能包含!@#$%^&*()等特殊字符') 
         return false;
     }   
+    cb && cb(true) 
     return true;
 }; 
 
@@ -85,7 +89,7 @@ RegExpUtil.patterns = {
     chinesePostCode : /[1-9]\d{5}(?!\d)/,    //中国邮政编码        
     identityCard : /\d{15}|\d{18}/,    //身份证        
     telphoneNumber : /(\d{3}-|\d{4}-)?(\d{8}|\d{7})?/,  //国内电话号码
-    mobileNumber : /^0*(13|15)\d{9}$/,  //手机号
+    mobile : /^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\d{8}$/,  //手机号
             
     trimChar : /^\s*|\s*$/,   //首尾空白字符        
     emptyRow : /\n\s*\r/,   //空白行

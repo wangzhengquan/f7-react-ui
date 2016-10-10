@@ -1,6 +1,6 @@
 import React  from 'react';
 import classnames from 'classnames'
-import TextFieldEditor from '../../widget/text-field-editor'
+import TextFieldEditor from '../../widget/textfield-editor'
 require('../plugins/link.js')
 class CreateLink extends React.Component{
   constructor(props) {

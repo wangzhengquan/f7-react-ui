@@ -4,7 +4,7 @@
 import React  from 'react';
 import $ from './dom'
 import MicroEvent from './microevent'
-require('./resources/less/preloader.less');
+import InfiniteScrollPreloader from './preloader'
 
 class InfiniteScroll{
 
@@ -71,15 +71,10 @@ MicroEvent.mixin(InfiniteScroll)
 
 
  
-let InfiniteScrollPreloader = (props) => (
-  <div className="infinite-scroll-preloader">
-    <div className="preloader"></div>
-  </div>
-);
 
 export {
     InfiniteScroll,
-    InfiniteScrollPreloader
+    InfiniteScrollPreloader 
 }
 
 export default InfiniteScroll

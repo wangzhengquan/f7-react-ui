@@ -1,0 +1,28 @@
+@import url('../_mixins.less');
+@import url('../_colors-vars.less');
+@hscroll-item-padding: 5px;
+.hscroll-container{
+	margin: 0 auto;
+    position: relative;
+    overflow: auto;
+    z-index: 0;
+    background: #fff;
+    .no-scrollbar();
+}
+
+.hscroll-content{
+	position: relative;
+    width: 100%;
+    box-sizing: content-box;
+    .flexbox();
+    padding: 0 @hscroll-item-padding;
+}
+
+.hscroll-item {
+    .flex-shrink(0);
+    width: 40%;
+    height: 100%;
+    position: relative;
+	box-sizing: border-box;
+    padding: 0 @hscroll-item-padding;
+}

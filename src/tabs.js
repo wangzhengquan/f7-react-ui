@@ -4,8 +4,9 @@
 import $ from './dom'
 import Swiper from './swiper'
 import MicroEvent from './microevent'
-require('./resources/less/tabs.less')
 require('./resources/less/forms.less')
+require('./resources/less/tabs.less')
+
 class Tabs {
 	/**
 	 * [constructor description]
@@ -42,8 +43,12 @@ class Tabs {
 			else {
 			    params = swiperContainer.dataset();
 			}
+
 			params.onSlideChangeStart = function (s) {
 		        me.showTab(s.slides.eq(s.activeIndex));
+		    };
+		    params.onSlideChangeEnd = function (s) {
+		        s.slides.eq(s.activeIndex).trigger('show')
 		    };
 			var slider = this.slider = new Swiper(swiperContainer[0], params);
 			this.destroyList.push(function(){slider.destroy(); })
@@ -127,17 +132,21 @@ class Tabs {
 	   
 	    newTab.addClass('active');
 	    // Trigger 'show' event on new tab
-	    newTab.trigger('show');
 	    // Animated tabs
 	    if (this.isAnimatedTabs) {
 	    	
 	        var tabTranslate = (this.rtl ? newTab.index() : -newTab.index()) * 100;
 	        tabs.transform('translate3d(' + tabTranslate + '%,0,0)');
+	        tabs.transitionEnd(function () {
+		       newTab.trigger('show');
+		    });
 	    }
-
-	    // Swipeable tabs
-	    if (this.isSwipeableTabs) {
-	    	if (this.slider.activeIndex !== newTab.index()) this.slider.slideTo(newTab.index(), undefined, false);
+	    else if (this.isSwipeableTabs) {
+	    	// Swipeable tabs
+	    	if (this.slider.activeIndex !== newTab.index()) this.slider.slideTo(newTab.index(), undefined, true);
+	    	 
+	    } else {
+	    	 newTab.trigger('show');
 	    }
 
 	    // Find related link for new tab

@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import Views from '../views'
 import $ from '../dom'
 import t7 from '../template'
-import TextField from './text-field'
+import TextField from './textfield'
 import Modals from '../modals'
 import Navbars from '../navbars'
-require('../resources/less/widget/textfield.less')
-require('../resources/less/forms.less')
+
 var hideNavbar = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger'
 
 var TextfieldEditor = {

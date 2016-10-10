@@ -1,6 +1,13 @@
  /* eslint no-console: 0 */
+ // import $ from './dom'
 import { browserHistory } from 'react-router'
-import $ from './dom'
+// import { useRouterHistory } from 'react-router'
+// import { createHistory } from 'history'
+
+
+// const browserHistory = useRouterHistory(createHistory)({
+//   basename: '/'
+// })
 const PATHS_LENGTH = -1
 let paths = browserHistory.paths = browserHistory.paths || []
 
@@ -45,12 +52,13 @@ if(!browserHistory.unlisten){
   })
 
 
-  $(window).on('popstate', function () {
+  window.addEventListener('popstate', function () {
     // if(paths.length > 1){
     //   paths.pop()
     //   paths.pop()
     //   browserHistory.canBack = (paths.length > 1)
     // }
+    console.log('popstate')
 
     browserHistory.isBack = true
     

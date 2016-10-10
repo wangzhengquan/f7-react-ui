@@ -308,7 +308,7 @@ var Swiper = function (container, params) {
     if (s.container.length > 1) {
         var swipers = [];
         s.container.each(function () {
-            var container = this;
+            // var container = this;
             swipers.push(new Swiper(this, params));
         });
         return swipers;
@@ -1828,6 +1828,7 @@ var Swiper = function (container, params) {
         return s.slideTo(slideIndex, speed, true, true);
     };
     s.slideTo = function (slideIndex, speed, runCallbacks, internal) {
+        // debugger
         if (typeof runCallbacks === 'undefined') runCallbacks = true;
         if (typeof slideIndex === 'undefined') slideIndex = 0;
         if (slideIndex < 0) slideIndex = 0;
