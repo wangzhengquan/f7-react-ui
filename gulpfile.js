@@ -21,7 +21,7 @@ var paths = {
       'src/**/*.js'
        
     ],
-    lib: 'build',
+    dist: 'build'
 };
 
  
@@ -29,7 +29,7 @@ var paths = {
  
 
 gulp.task('clean', function() {
-  return del([paths.lib]);
+  return del([paths.dist]);
 });
 
 gulp.task('modules', function() {
@@ -37,14 +37,14 @@ gulp.task('modules', function() {
   //       .src(paths.react.src)
   //       .transform("babelify", {presets: ["es2015", "react"]})
   //       .bundle().pipe(flatten())
-  //       .pipe(gulp.dest(paths.react.lib));
-  copy(['package'], paths.lib)
-  copy(['src/resources'], paths.lib+'/resources')
+  //       .pipe(gulp.dest(paths.react.dist));
+  copy(['package'], paths.dist)
+  copy(['src/resources'], paths.dist+'/resources')
   return gulp
     .src(paths.src)
     .pipe(babel())
-    .pipe(flatten())
-    .pipe(gulp.dest(paths.lib));
+    //.pipe(flatten())
+    .pipe(gulp.dest(paths.dist));
 
    
 });
