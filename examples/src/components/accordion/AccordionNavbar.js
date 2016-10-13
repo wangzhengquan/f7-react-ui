@@ -1,6 +1,6 @@
 import Navbar from '../Navbar'
 
-class TmpNavbar extends Navbar{
+class AccordionNavbar extends Navbar{
 
     constructor(props) {
       super(props);
@@ -11,8 +11,8 @@ class TmpNavbar extends Navbar{
     }
 }
 
-TmpNavbar.defaultProps = {
-  title: 'title'
+AccordionNavbar.defaultProps = {
+  title: 'Accordion'
 }
 
-module.exports = TmpNavbar
+module.exports = AccordionNavbar

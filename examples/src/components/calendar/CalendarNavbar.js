@@ -1,6 +1,6 @@
 import Navbar from '../Navbar'
 
-class TmpNavbar extends Navbar{
+class CalendarNavbar extends Navbar{
 
     constructor(props) {
       super(props);
@@ -11,8 +11,8 @@ class TmpNavbar extends Navbar{
     }
 }
 
-TmpNavbar.defaultProps = {
-  title: 'title'
+CalendarNavbar.defaultProps = {
+  title: 'Calendar'
 }
 
-module.exports = TmpNavbar
+module.exports = CalendarNavbar

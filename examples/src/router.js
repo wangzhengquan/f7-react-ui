@@ -23,6 +23,71 @@ const rootRoute = {
     },
 
     childRoutes: [{
+      path: 'accordion',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/accordion/AccordionNavbar'),
+              page: require('./components/accordion/AccordionPage')
+            })
+            document.querySelector('title').innerHTML='Accordion'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
+      path: 'autocomplete',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/autocomplete/AutocompleteNavbar'),
+              page: require('./components/autocomplete/AutocompletePage')
+            })
+            document.querySelector('title').innerHTML='Autocomplete'
+            Modals.hideIndicator()
+        })
+      }
+    },{
+      path: 'calendar',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/calendar/CalendarNavbar'),
+              page: require('./components/calendar/CalendarPage')
+            })
+            document.querySelector('title').innerHTML='Calendar'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
+      path: 'cards',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/cards/CardsNavbar'),
+              page: require('./components/cards/CardsPage')
+            })
+            document.querySelector('title').innerHTML='Cards'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
+      path: 'contacts',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/contacts/ContactsNavbar'),
+              page: require('./components/contacts/ContactsPage')
+            })
+            document.querySelector('title').innerHTML='Contacts List'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
       path: 'modals',
       getComponents(nextState, cb) {
         Modals.showIndicator()

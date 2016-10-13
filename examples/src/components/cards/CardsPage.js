@@ -2,7 +2,7 @@ import React  from 'react';
 import AnimationPage from '../Page'
 import classnames from 'classnames';
 
-class TmpPage extends AnimationPage{
+class CardsPage extends AnimationPage{
   constructor(props) {
     super(props);
   }
@@ -21,4 +21,4 @@ class TmpPage extends AnimationPage{
   }
 }
 
-module.exports = TmpPage
+module.exports = CardsPage
