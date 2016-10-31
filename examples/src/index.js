@@ -20,7 +20,7 @@
 //     <Route path="/" component={App}>
 //       /* add it here, as a child of `/` */
 //       <IndexRoute component={HomeView}/>
-//       /*no used*/ 
+//       /*no used*/
 //       <Route path="setting" component={SettingView}/>
 //       <Route path="anim" component={AnimationView}/>
 //     </Route>
@@ -28,13 +28,13 @@
 //   </Router>, document.getElementById('my-app'));
 
 
-
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router} from 'react-router'
 import history from './history'
 import rootRoute from './router'
-// import 'react-ui/fast-clicks'
+import 'react-ui/fast-clicks'
 require('react-ui/resources/less/intro.less');
 require('react-ui/resources/less/icons.less');
 require('react-ui/resources/less/views.less');

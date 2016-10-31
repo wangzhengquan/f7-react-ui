@@ -1212,7 +1212,7 @@ var Swiper = function (container, params) {
             s.paginationContainer[actionDom]('click', '.' + s.params.bulletClass, s.onClickIndex);
             if (s.params.a11y && s.a11y) s.paginationContainer[actionDom]('keydown', '.' + s.params.bulletClass, s.a11y.onEnterKey);
         }
-    
+        // console.log('touchEventsTarget', touchEventsTarget)
         // Prevent Links Clicks
         if (s.params.preventClicks || s.params.preventClicksPropagation) touchEventsTarget[action]('click', s.preventClicks, true);
     };

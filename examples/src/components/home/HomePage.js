@@ -11,7 +11,7 @@ import LeftPanelContent from '../panels/LeftPanel'
 require('react-ui/resources/less/content-block.less')
 require('react-ui/resources/less/forms.less')
 
-class AboutPage extends AnimationPage{
+class HomePage extends AnimationPage{
   constructor(props) {
     super(props);
     this.dynamicPageIndex = 0;
@@ -328,6 +328,17 @@ class AboutPage extends AnimationPage{
               </div>
             </div>
           </Link>
+
+          <Link to="slider" className="item-link">
+            <div className="item-content">
+              <div className="item-media"><i className="icon icon-f7"></i></div>
+              <div className="item-inner">
+                <div className="item-title">Slider</div>
+                <div className="item-after"><span className="badge bg-green">NEW</span></div>
+              </div>
+            </div>
+          </Link>
+
           <Link to="tabs" className="item-link">
             <div className="item-content">
               <div className="item-media"><i className="icon icon-f7"></i></div>
@@ -441,4 +452,4 @@ class AboutPage extends AnimationPage{
   
 }
 
-module.exports = AboutPage
+module.exports = HomePage

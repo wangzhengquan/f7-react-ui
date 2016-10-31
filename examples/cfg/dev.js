@@ -9,7 +9,7 @@ let defaultSettings = require('./defaults');
 let BowerWebpackPlugin = require('bower-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 // let host = '127.0.0.1'
-let host = '192.168.0.100'
+let host = '192.168.1.13'
 let config = Object.assign({}, baseConfig, {
   entry: [
     'webpack-dev-server/client?http://'+host+':' + defaultSettings.port,

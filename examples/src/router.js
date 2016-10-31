@@ -335,6 +335,19 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
+    }, {
+      path: 'slider',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/slider/SliderNavbar'),
+              page: require('./components/slider/SliderPage')
+            })
+            document.querySelector('title').innerHTML='Slider'
+            Modals.hideIndicator()
+        })
+      }
     },  {
       path: 'swiper-pagination-progress',
       getComponents(nextState, cb) {
