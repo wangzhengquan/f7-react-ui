@@ -12,7 +12,7 @@ require('react-ui/resources/less/content-block.less')
 
 require('react-ui/resources/less/forms.less')
 require('react-ui/resources/less/grid.less')
-
+console.log('Modals', Modals)
 var dynamicPageIndex = 1;
 
 class ModalPage extends AnimationPage{
@@ -59,24 +59,24 @@ class ModalPage extends AnimationPage{
 
   handleAlertClick(event) {
     event.preventDefault()
-    Modals.alert('Hello', 'ReactUI')
+    MessageBox.alert('Hello', 'ReactUI')
   }
 
 
 
   handleConfirmClick(event) {
     event.preventDefault()
-    Modals.confirm('Are you feel good today?', 'ReactUI', function () {
-        Modals.alert('Great!');
+    MessageBox.confirm('Are you feel good today?', 'ReactUI', function () {
+        MessageBox.alert('Great!');
     })
   }
 
   handlePromptClick(event) {
     event.preventDefault()
-    Modals.prompt('What is your name?', 'ReactUI', function (data) {
+    MessageBox.prompt('What is your name?', 'ReactUI', function (data) {
         // @data contains input value
-        Modals.confirm('Are you sure that your name is ' + data + '?', function () {
-            Modals.alert('Ok, your name is ' + data + ' ;)');
+        MessageBox.confirm('Are you sure that your name is ' + data + '?', function () {
+            MessageBox.alert('Ok, your name is ' + data + ' ;)');
         });
     })
   }

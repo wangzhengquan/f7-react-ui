@@ -12,6 +12,7 @@ console.log('========__dirname', __dirname)
 module.exports = {
   additionalPaths: additionalPaths,
   port: defaultSettings.port,
+  host: defaultSettings.host,
   debug: true,
   devtool: 'eval',
   output: {

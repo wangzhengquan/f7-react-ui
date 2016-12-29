@@ -69,11 +69,14 @@ export default class Lazyload {
             }
         }
         var callback = function(el, image) {
-            if(image.width <= image.height){
-                el.css('width',  '100%')
-            } else {
-                el.css('height',  '100%')
+            if(el.data('autosize')!== 'false'){
+                if(image.width <= image.height){
+                    el.css('width',  '100%')
+                } else {
+                    el.css('height',  '100%')
+                }
             }
+            
             config.callback &&  config.callback(el, image)
         }
 

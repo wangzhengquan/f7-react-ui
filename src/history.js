@@ -1,13 +1,16 @@
  /* eslint no-console: 0 */
- // import $ from './dom'
+ //hashHistory
+// import { hashHistory } from 'react-router'
 import { browserHistory } from 'react-router'
 // import { useRouterHistory } from 'react-router'
 // import { createHistory } from 'history'
 
-
 // const browserHistory = useRouterHistory(createHistory)({
 //   basename: '/'
 // })
+// 
+
+// var browserHistory = hashHistory
 const PATHS_LENGTH = -1
 let paths = browserHistory.paths = browserHistory.paths || []
 
@@ -36,19 +39,9 @@ if(!browserHistory.unlisten){
       }
     }
     
-    // if (len === 0 || paths[len-1] !== pathname){
-    //   if(PATHS_LENGTH === -1 || len < PATHS_LENGTH)
-    //     paths.push(pathname)
-    //   else{
-    //     for(let i = 0; i < len - 1; i++){
-    //       paths[i] = paths[i+1]
-    //     }
-    //     paths[len - 1] = pathname
-    //   }
-    // }
+     
 
     browserHistory.canBack = (paths.length > 1)
-    //console.log('paths', paths, browserHistory)
   })
 
 

@@ -126,5 +126,5 @@ var Panels = {
 $(document).on('click', '.panel-overlay', function(event){
     Panels.closePanel()
 })
-
-export default Panels;
+module.exports = Panels
+// export default Panels;

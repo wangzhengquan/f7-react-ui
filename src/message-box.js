@@ -63,9 +63,11 @@ var MessageBox = {
 	    });
 	}
 }
+
 Object.assign(Modals, {
 	alert: MessageBox.alert.bind(MessageBox),
 	confirm: MessageBox.confirm.bind(MessageBox),
-	prompt: MessageBox.prompt.bind(MessageBox),
+	prompt: MessageBox.prompt.bind(MessageBox)
 })
-export default MessageBox;
+console.log('modals modals==',Modals)
+module.exports = MessageBox;

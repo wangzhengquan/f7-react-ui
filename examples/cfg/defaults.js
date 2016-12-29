@@ -2,6 +2,7 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const distPath = path.join(__dirname, '/../dist');
+const host = '192.168.1.6'
 const dfltPort = 9000;
 const reactUIPath = path.join(__dirname, '/../../src')
 function getDefaultModules() {
@@ -49,6 +50,7 @@ module.exports = {
   publicPath: '/assets/',
   reactUIPath: reactUIPath,
   // publicPath: '//hlj-img.b0.upaiyun.com/upload/pre311/',
+  host: host,
   port: dfltPort,
   getDefaultModules: getDefaultModules,
   postcss: function () {

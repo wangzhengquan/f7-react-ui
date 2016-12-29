@@ -543,6 +543,4 @@ $(document).on('click', '.modal-overlay, .popup-overlay, .picker-modal-overlay, 
     }
 });
 
-
-
-export default Modals
+module.exports = Modals

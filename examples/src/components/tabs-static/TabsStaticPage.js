@@ -13,7 +13,7 @@ class TabsPage extends AnimationPage{
   
   render(){
   	return (
-  	<div className={classNames( "page", this.props.className)}>
+  	<div className={classNames( 'page', this.props.className)}>
       <div className="tabs">
         <div id="tab1" className="page-content with-subnavbar tab active">
           <div className="content-block">

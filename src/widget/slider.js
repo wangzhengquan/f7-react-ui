@@ -275,7 +275,8 @@ export default class Slider extends React.Component {
             fun()
         })
         this.destroyList = []
-        this.detachEvents()
+        //this.detachEvents()
+        this.stop()
     }
 
     componentWillUnmount() {
@@ -284,11 +285,11 @@ export default class Slider extends React.Component {
     attachEvents(){
     	this.initEvents(false)
     }
-    detachEvents(){
-    	this.initEvents(true)
-    }
+    // detachEvents(){
+    // 	this.initEvents(true)
+    // }
     initEvents(detach){
-    	var action = detach ? 'off' : 'on';
+    	var action =  'on';
 		var me = this;
 		var supportTouch = SupportEvents.touch
 		var touchEvents = SupportEvents.touchEvents
@@ -329,8 +330,8 @@ export default class Slider extends React.Component {
 		var onTouchMove = function(e){
 			console.log('touch move')
 			if(!me.touching) return;
-			e.preventDefault()
-			e.stopPropagation();
+			// e.preventDefault()
+			// e.stopPropagation();
 			me.allowClick = false;
 			var slideSize = me.slideSize;
 			// 确保单手指滑动，而不是多点触碰
@@ -354,8 +355,8 @@ export default class Slider extends React.Component {
 
 			if(!isScrolling){
 				// 阻止默认上下滑动事件
-				//e.stopPropagation();
-				//e.preventDefault();
+				e.stopPropagation();
+				e.preventDefault();
 				me.stop();
 				var dic = me.delta - me.state.activeIndex * slideSize;
 				 
@@ -438,33 +439,51 @@ export default class Slider extends React.Component {
 		 
 		}
 
+        var preventClicks = function(e){
+            if (!me.allowClick) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+            }
+        }
+
+        var onResize = function(){
+            me.slideSize = me.swiperContainer.width()
+            me.go(me.state.activeIndex, 'none');
+        }
+
 		if (supportTouch) {
             touchEventsTarget[action](touchEvents.start, onTouchStart, false);
             touchEventsTarget[action](touchEvents.move, onTouchMove, true);
             touchEventsTarget[action](touchEvents.end, onTouchEnd, false);
+
+            me.destroyList.push(() => {
+                touchEventsTarget['off'](touchEvents.start, onTouchStart, false);
+                touchEventsTarget['off'](touchEvents.move, onTouchMove, true);
+                touchEventsTarget['off'](touchEvents.end, onTouchEnd, false);
+            })
         }
         else {
             touchEventsTarget[action]('mousedown', onTouchStart, false);
             $(document)[action]('mousemove', onTouchMove, true);
             $(document)[action]('mouseup', onTouchEnd, false);
+
+            me.destroyList.push(() => {
+                touchEventsTarget['off']('mousedown', onTouchStart, false);
+                $(document)['off']('mousemove', onTouchMove, true);
+                $(document)['off']('mouseup', onTouchEnd, false);
+            })
         }
 
-		var preventClicks = function(e){
-			if (!me.allowClick) {
-	            e.preventDefault();
-	            e.stopPropagation();
-	            
-	        }
-		}
+		
 
 		touchEventsTarget[action]('click', preventClicks, true);
-		
-		var onResize = function(){
-			me.slideSize = me.swiperContainer.width()
-			me.go(me.state.activeIndex, 'none');
-		}
 		$(window)[action]( 'resize', onResize);
 		
+        me.destroyList.push(() => {
+            touchEventsTarget['off']('click', preventClicks, true);
+            $(window)['off']( 'resize', onResize);
+        })
 	 
 	}
 

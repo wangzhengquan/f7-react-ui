@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 const open = require('open');
-const host = '192.168.1.13'
+const host = config.host
 // const host = 'localhost'
 
 new WebpackDevServer(webpack(config), config.devServer)
@@ -13,7 +13,7 @@ new WebpackDevServer(webpack(config), config.devServer)
   if (err) {
     console.log(err);
   }
-  console.log('Listening at localhost:' + config.port);
+  console.log('Listening at '+host+':' + config.port);
   console.log('Opening your system browser...');
   open('http://'+host+':' + config.port + '/webpack-dev-server/');
 });

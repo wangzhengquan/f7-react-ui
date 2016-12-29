@@ -2,7 +2,7 @@
 ************   Tabs   ************
 =============================================================================== */
 import $ from './dom'
-import Swiper from './swiper'
+// import Swiper from './swiper'
 import MicroEvent from './microevent'
 require('./resources/less/forms.less')
 require('./resources/less/tabs.less')
@@ -34,24 +34,28 @@ class Tabs {
 		this.isAnimatedTabs = (conf.effect === 'animated') || this.tabsParent.hasClass('tabs-animated-wrap');
 		this.isSwipeableTabs = (conf.effect === 'swipeable') || this.tabsParent.hasClass('tabs-swipeable-wrap')
 		if(this.isSwipeableTabs){
-			var swiperContainer = this.tabsParent;
-			swiperContainer.addClass('swiper-container').children('.tabs').addClass('swiper-wrapper').children('.tab').addClass('swiper-slide');
-			var params;
-			if (swiperContainer.data('swiper')) {
-			    params = JSON.parse(swiperContainer.data('swiper'));
-			}
-			else {
-			    params = swiperContainer.dataset();
-			}
+			require.ensure([], (require) => {
+				var Swiper = require('./swiper')
+				var swiperContainer = this.tabsParent;
+				swiperContainer.addClass('swiper-container').children('.tabs').addClass('swiper-wrapper').children('.tab').addClass('swiper-slide');
+				var params;
+				if (swiperContainer.data('swiper')) {
+				    params = JSON.parse(swiperContainer.data('swiper'));
+				}
+				else {
+				    params = swiperContainer.dataset();
+				}
 
-			params.onSlideChangeStart = function (s) {
-		        me.showTab(s.slides.eq(s.activeIndex));
-		    };
-		    params.onSlideChangeEnd = function (s) {
-		        s.slides.eq(s.activeIndex).trigger('show')
-		    };
-			var slider = this.slider = new Swiper(swiperContainer[0], params);
-			this.destroyList.push(function(){slider.destroy(); })
+				params.onSlideChangeStart = function (s) {
+			        me.showTab(s.slides.eq(s.activeIndex));
+			    };
+			    params.onSlideChangeEnd = function (s) {
+			        s.slides.eq(s.activeIndex).trigger('show')
+			    };
+				var slider = this.slider = new Swiper(swiperContainer[0], params);
+				this.destroyList.push(function(){slider.destroy(); })
+			})
+			
 		}
 
 		var tabbar = this.tabbar = tabLink.parents('.tabbar');

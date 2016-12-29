@@ -16,14 +16,13 @@ class TabsNavBar extends Navbar{
      
     componentDidMount(){
       super.componentDidMount()
-      var tabs = new Tabs({tabbar: this.refs.tabbar})
+      new Tabs({tabbar: this.refs.tabbar})
     }
 
     handleClickOpenLeftPanel(event){
       event.preventDefault()
        //panel-reveal
       var panel = Panels.openPanel({position: 'left', className: 'layout-dark'})
-      console.log("panel===", panel)
       var onClose = (event) => {
         event.preventDefault()
         Panels.closePanel(panel)
@@ -38,7 +37,7 @@ class TabsNavBar extends Navbar{
       return  (
       <div className="navbar-inner">
         {
-        this.canBack ? 
+        this.canBack ?
         <div className="left sliding" ><a onClick={this.handleBackClick.bind(this)} className="back link"><i className="icon icon-back" ></i><span>返回</span></a></div> : ''
         }
         <div className="center sliding">Tabs Static</div>
