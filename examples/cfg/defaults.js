@@ -2,8 +2,8 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const distPath = path.join(__dirname, '/../dist');
-const host = '192.168.1.6'
-const dfltPort = 9000;
+const host = 'localhost'
+const dfltPort = 3001;
 const reactUIPath = path.join(__dirname, '/../../src')
 function getDefaultModules() {
   return {
