@@ -6,10 +6,10 @@ class AccordionPage extends AnimationPage{
   constructor(props) {
     super(props);
   }
-   
+  
   componentDidMount(){
   }
-  
+ 
   render(){
   	return (
       <div className={classnames( 'page', this.props.className)}>
@@ -28,7 +28,7 @@ class AccordionPage extends AnimationPage{
                 </div>
               </li>
               <li className="accordion-item"><a href="#" className="item-link item-content">
-                  <div className="item-inner"> 
+                  <div className="item-inner">
                     <div className="item-title">Nested List</div>
                 </div></a>
                 <div className="accordion-item-content">
@@ -37,7 +37,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 1</div>
                           </div>
                         </div>
@@ -45,7 +45,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 2</div>
                           </div>
                         </div>
@@ -53,7 +53,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 3</div>
                           </div>
                         </div>
@@ -61,7 +61,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 4</div>
                           </div>
                         </div>
@@ -71,7 +71,7 @@ class AccordionPage extends AnimationPage{
                 </div>
               </li>
               <li className="accordion-item"><a href="#" className="item-link item-content">
-                  <div className="item-inner"> 
+                  <div className="item-inner">
                     <div className="item-title">Integer semper</div>
                 </div></a>
                 <div className="accordion-item-content">
@@ -86,7 +86,7 @@ class AccordionPage extends AnimationPage{
           <div className="list-block accordion-list inset">
             <ul>
               <li className="accordion-item"><a href="#" className="item-link item-content">
-                  <div className="item-inner"> 
+                  <div className="item-inner">
                     <div className="item-title">Lorem Ipsum</div>
                 </div></a>
                 <div className="accordion-item-content">
@@ -96,7 +96,7 @@ class AccordionPage extends AnimationPage{
                 </div>
               </li>
               <li className="accordion-item"><a href="#" className="item-link item-content">
-                  <div className="item-inner"> 
+                  <div className="item-inner">
                     <div className="item-title">Nested List</div>
                 </div></a>
                 <div className="accordion-item-content">
@@ -105,7 +105,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 1</div>
                           </div>
                         </div>
@@ -113,7 +113,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 2</div>
                           </div>
                         </div>
@@ -121,7 +121,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 3</div>
                           </div>
                         </div>
@@ -129,7 +129,7 @@ class AccordionPage extends AnimationPage{
                       <li>
                         <div className="item-content">
                           <div className="item-media"><i className="icon icon-f7"></i></div>
-                          <div className="item-inner"> 
+                          <div className="item-inner">
                             <div className="item-title">Item 4</div>
                           </div>
                         </div>
@@ -139,7 +139,7 @@ class AccordionPage extends AnimationPage{
                 </div>
               </li>
               <li className="accordion-item"><a href="#" className="item-link item-content">
-                  <div className="item-inner"> 
+                  <div className="item-inner">
                     <div className="item-title">Integer semper</div>
                 </div></a>
                 <div className="accordion-item-content">
