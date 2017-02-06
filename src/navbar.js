@@ -54,14 +54,22 @@ export default  class Navbar extends React.Component{
       if (direction === 'to-left') {
           if(action === 'enter'){
             navbarInner.removeClass(removeClasses).addClass('navbar-from-right-to-center');
-            window.setTimeout(function () {
-               navbarInner.removeClass('navbar-from-right-to-center').addClass('navbar-on-center');
-               finishCallback()
-            }, transitionDuration)
+             
+           // window.setTimeout(function () {
+           //    navbarInner.removeClass('navbar-from-right-to-center').addClass('navbar-on-center');
+           //    finishCallback()
+           // }, transitionDuration)
 
-            navbarInner.find('.sliding').each(function () {
+            navbarInner.find('.sliding').each(function (index) {
+              console.log('sliding', arguments)
                 var sliding = $(this);
                 sliding.transform('translate3d(0px,0,0)');
+                if(index===0) {
+                  sliding.transitionEnd(function(){
+                    navbarInner.removeClass('navbar-from-right-to-center').addClass('navbar-on-center');
+                    finishCallback()
+                  })
+                }
                 if (PARAMS.animateNavBackIcon) {
                     if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
                         sliding.find('.back .icon').transform('translate3d(0px,0,0)');
@@ -71,13 +79,14 @@ export default  class Navbar extends React.Component{
             
           } else if (action === 'leave'){
             navbarInner.removeClass(removeClasses).addClass('navbar-from-center-to-left');
-            window.setTimeout(function (e) {
-               navbarInner.removeClass('navbar-from-center-to-left').addClass('navbar-on-left');
-               finishCallback()
-            }, transitionDuration);
+            
+           // window.setTimeout(function (e) {
+           //    navbarInner.removeClass('navbar-from-center-to-left').addClass('navbar-on-left');
+           //    finishCallback()
+           // }, transitionDuration);
 
             let rightNavbarInner = navbarInner.closest('.navbar').find('.navbar-inner:first-child')
-            navbarInner.find('.sliding').each(function () {
+            navbarInner.find('.sliding').each(function (index) {
                 var sliding = $(this);
                 var rightText;
                 if (PARAMS.animateNavBackIcon) {
@@ -91,6 +100,12 @@ export default  class Navbar extends React.Component{
                 }
                 // console.log('leave', this, this.f7NavbarLeftOffset)
                 sliding.transform('translate3d(' + (this.f7NavbarLeftOffset) + 'px,0,0)');
+                if(index === 0) {
+                  sliding.transitionEnd(function(){
+                    navbarInner.removeClass('navbar-from-center-to-left').addClass('navbar-on-left');
+                    finishCallback()
+                  })
+                }
             });
             
           }
@@ -99,12 +114,13 @@ export default  class Navbar extends React.Component{
       if (direction === 'to-right') {
         if(action === 'enter'){
           navbarInner.removeClass(removeClasses).addClass('navbar-from-left-to-center');
-          window.setTimeout(function () {
-             navbarInner.removeClass('navbar-from-left-to-center').addClass('navbar-on-center');
-             finishCallback()
-          }, transitionDuration);
+           
+          //window.setTimeout(function () {
+          //   navbarInner.removeClass('navbar-from-left-to-center').addClass('navbar-on-center');
+          //   finishCallback()
+          //}, transitionDuration);
 
-          navbarInner.find('.sliding').each(function () {
+          navbarInner.find('.sliding').each(function (index) {
               var sliding = $(this);
               sliding.transform('translate3d(0px,0,0)');
               if (PARAMS.animateNavBackIcon) {
@@ -112,15 +128,22 @@ export default  class Navbar extends React.Component{
                       sliding.find('.back .icon').transform('translate3d(0px,0,0)');
                   }
               }
+              if(index === 0) {
+                sliding.transitionEnd(function(){
+                  navbarInner.removeClass('navbar-from-left-to-center').addClass('navbar-on-center');
+                  finishCallback()
+                })
+              }
           });
           
         } else if(action === 'leave'){
           navbarInner.removeClass(removeClasses).addClass('navbar-from-center-to-right');
-          window.setTimeout(function () {
-             navbarInner.removeClass('navbar-from-center-to-right').addClass('navbar-on-right');
-             finishCallback()
-          }, transitionDuration);
-          navbarInner.find('.sliding').each(function () {
+           
+         // window.setTimeout(function () {
+         //    navbarInner.removeClass('navbar-from-center-to-right').addClass('navbar-on-right');
+         //    finishCallback()
+         // }, transitionDuration);
+          navbarInner.find('.sliding').each(function (index) {
               var sliding = $(this);
               if (PARAMS.animateNavBackIcon) {
                   if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
@@ -128,6 +151,12 @@ export default  class Navbar extends React.Component{
                   }
               }
               sliding.transform('translate3d(' + (this.f7NavbarRightOffset) + 'px,0,0)');
+              if(index === 0) {
+                sliding.transitionEnd(function(){
+                  navbarInner.removeClass('navbar-from-center-to-right').addClass('navbar-on-right');
+                  finishCallback()
+                })
+              }
           });
           
         }
@@ -174,13 +203,13 @@ export default  class Navbar extends React.Component{
       this.prepareNavbar (node, 'left')
       setTimeout( () => {
         this.animateNavbars(node, 'enter', 'to-right', done)
-      },17)
+      },0)
       
     }else{
       this.prepareNavbar (node, 'right')
       setTimeout( () => {
         this.animateNavbars(node, 'enter', 'to-left', done)
-      }, 17)
+      }, 0)
       
     }
     

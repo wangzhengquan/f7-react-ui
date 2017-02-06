@@ -1,0 +1,230 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*======================================================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ************   Image Lazy Loading   ************
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ************   Based on solution by Marc Godard, https://github.com/MarcGodard   ************
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ======================================================*/
+
+
+var _dom = require('./dom');
+
+var _dom2 = _interopRequireDefault(_dom);
+
+var _type = require('./type');
+
+var _type2 = _interopRequireDefault(_type);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// 两块区域是否相交
+function isCross(r1, r2) {
+    var r = {};
+    r.top = Math.max(r1.top, r2.top);
+    r.bottom = Math.min(r1.bottom, r2.bottom);
+    r.left = Math.max(r1.left, r2.left);
+    r.right = Math.min(r1.right, r2.right);
+    return r.bottom >= r.top && r.right >= r.left;
+}
+
+function isElementInViewport(el, threshold) {
+    var rect = el.getBoundingClientRect();
+    var threshold = threshold || 0;
+    if (_type2.default.isNumber(threshold)) {
+        threshold = {
+            top: threshold,
+            left: threshold,
+            bottom: threshold,
+            right: threshold
+        };
+    }
+    if (threshold.width) {
+        threshold.left = threshold.width;
+        threshold.right = threshold.width;
+    }
+    if (threshold.height) {
+        threshold.top = threshold.height;
+        threshold.bottom = threshold.height;
+    }
+    // console.log(rect, window.innerWidth)
+
+    return isCross({
+        top: rect.top - threshold.top || 0,
+        left: rect.left - threshold.left || 0,
+        bottom: rect.bottom + threshold.bottom || 0,
+        right: rect.right + threshold.right || 0
+    }, {
+        top: 0,
+        left: 0,
+        bottom: window.innerHeight,
+        right: window.innerWidth
+    });
+    // return (
+    //     rect.top >= (0 - threshold) &&
+    //     rect.left >= (0 - threshold) &&
+    //     rect.top <= (window.innerHeight + threshold) &&
+    //     rect.left <= (window.innerWidth + threshold)
+    // );
+    //return isi;
+}
+
+var Lazyload = function () {
+    function Lazyload(config) {
+        _classCallCheck(this, Lazyload);
+
+        this.config = config = config || {};
+        this.threshold = config.threshold;
+        if (!this.threshold) {
+            this.threshold = {
+                width: window.innerWidth,
+                height: window.innerHeight
+            };
+        }
+        var callback = function callback(el, image) {
+            if (el.data('autosize') !== 'false') {
+                if (image.width <= image.height) {
+                    el.css('width', '100%');
+                } else {
+                    el.css('height', '100%');
+                }
+            }
+
+            config.callback && config.callback(el, image);
+        };
+
+        this.loadImage = function (cb) {
+            // load image
+
+            var imagesSequence = [];
+            var imageIsLoading = false;
+            return function loadImage(el, imagesLazyLoadSequential) {
+
+                el = (0, _dom2.default)(el);
+                var bg = el.attr('data-background');
+                var src = bg ? bg : el.attr('data-src');
+                if (!src) return;
+
+                var image = new Image();
+                function onLoad() {
+                    el.removeClass('lazy');
+                    if (bg) {
+                        el.css('background-image', 'url(' + src + ')');
+                        el.removeAttr('data-background');
+                    } else {
+                        el.attr('src', src);
+                        el.removeAttr('data-src');
+                    }
+
+                    // console.log(image.width, image.height)
+                    cb && cb(el, image);
+
+                    if (imagesLazyLoadSequential) {
+                        imageIsLoading = false;
+                        if (imagesSequence.length > 0) {
+                            loadImage(imagesSequence.shift());
+                        }
+                    }
+                }
+
+                if (imagesLazyLoadSequential) {
+                    if (imageIsLoading) {
+                        if (imagesSequence.indexOf(el[0]) < 0) imagesSequence.push(el[0]);
+                        return;
+                    }
+                }
+
+                // Loading flag
+                imageIsLoading = true;
+
+                image.onload = onLoad;
+                image.onerror = onLoad;
+                image.src = src;
+            };
+        }(callback);
+
+        this.initImagesLazyLoad();
+    }
+
+    _createClass(Lazyload, [{
+        key: 'initImagesLazyLoad',
+        value: function initImagesLazyLoad() {
+            var me = this;
+            var scrollContainer = (0, _dom2.default)(this.config.scrollContainer);
+            var lazyLoadImages = this.lazyLoadImages = scrollContainer.find('.lazy');
+
+            this.scrollContainer = scrollContainer;
+            // Placeholder
+            var placeholderSrc = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXCwsK592mkAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
+            if (typeof this.config.placeholder === 'string') {
+                placeholderSrc = this.config.placeholder;
+            }
+            lazyLoadImages.each(function () {
+                var $this = (0, _dom2.default)(this);
+                // console.log('===this.src', this.src, $this.attr('data-src'))
+                if (this.src && !$this.attr('data-src')) {
+                    $this.attr('data-src', this.src);
+                }
+                if (me.config.placeholder !== false) this.src = placeholderSrc;
+            });
+
+            this.handleLazy = this._handleLazy.bind(this);
+            this.handleLazy();
+            this.attachEvents();
+        }
+    }, {
+        key: 'attachEvents',
+        value: function attachEvents(destroy) {
+            var method = destroy ? 'off' : 'on';
+            var handleLazy = this.handleLazy;
+
+            this.lazyLoadImages.parents('.tab')[method]('show', handleLazy);
+            this.scrollContainer[method]('scroll', handleLazy);
+            (0, _dom2.default)(window)[method]('resize', handleLazy);
+        }
+    }, {
+        key: 'detachEvents',
+        value: function detachEvents() {
+            this.attachEvents(true);
+        }
+        // Store detach function
+
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            this.detachEvents();
+        }
+    }, {
+        key: 'build',
+        value: function build() {
+            this.attachEvents();
+        }
+    }, {
+        key: '_handleLazy',
+        value: function _handleLazy() {
+            var _this = this;
+
+            var me = this;
+
+            var lazyLoadImages = this.scrollContainer.find('.lazy');
+            lazyLoadImages.each(function (index, el) {
+                el = (0, _dom2.default)(el);
+                if (el.parents('.tab:not(.active)').length > 0) {
+                    return;
+                }
+                // console.log(isElementInViewport(el[0]))
+                if (isElementInViewport(el[0], _this.threshold)) {
+                    me.loadImage(el);
+                }
+            });
+        }
+    }]);
+
+    return Lazyload;
+}();
+
+exports.default = Lazyload;
