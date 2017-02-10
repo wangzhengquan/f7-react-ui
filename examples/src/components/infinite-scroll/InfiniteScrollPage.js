@@ -31,7 +31,7 @@ class InfiniteScrollPage extends Page{
       })
       var loading = false;
       infiniteScroll.on('infinite', () => {
-        if (loading || this.setState.reachLastOne) return;
+        if (loading || this.state.reachLastOne) return;
         loading = true;
         this.loadMore(() => {
           loading = false

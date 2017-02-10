@@ -1,7 +1,6 @@
 /* ===============================================================================
 ************   Infinite Scroll   ************
 =============================================================================== */
-import React  from 'react';
 import $ from './dom'
 import MicroEvent from './microevent'
 import InfiniteScrollPreloader from './preloader'

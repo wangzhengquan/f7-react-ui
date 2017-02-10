@@ -85,17 +85,10 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.16.0",
     "classnames": "^2.2.4",
-    "core-js": "^2.4.0",
-    "draft-js": "^0.9.1",
-    "flux": "^2.1.1",
-    "normalize.css": "^4.0.0",
-    "quill": "^1.0.6",
-    "react": "^15.2.1",
-    "react-addons-css-transition-group": "^15.2.1",
-    "react-dom": "^15.2.1",
-    "react-quill": "^0.4.1",
+    "core-js": "^2.0.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "react-router": "^2.6.0"
   }
 }
