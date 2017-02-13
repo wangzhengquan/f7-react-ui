@@ -28,7 +28,7 @@ var params = reactUI.params = {
     activeState: true,
     activeStateElements: 'a, button, label, span',
     // Animate Nav Back Icon
-    animateNavBackIcon: false,
+    // animateNavBackIcon: false,
     // Swipe Back
     swipeBackPage: true,
     swipeBackPageThreshold: 0,

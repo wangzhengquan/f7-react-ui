@@ -3,8 +3,10 @@ import React  from 'react';
 import ReactDOM from 'react-dom';
 import $ from './dom'
 import history from './history'
-import PARAMS from './params'
+// import PARAMS from './params'
 import Navbars from './navbars'
+
+const animateNavBackIcon = true
 const transitionDuration= 400;
 
 
@@ -32,7 +34,7 @@ export default  class Navbar extends React.Component{
       $(newNavbarInner).find('.sliding').each(function () {
           var sliding = $(this);
           var slidingOffset = newNavbarPosition === 'right' ? this.f7NavbarRightOffset : this.f7NavbarLeftOffset;
-          if (PARAMS.animateNavBackIcon) {
+          if (animateNavBackIcon) {
               if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
                   sliding.find('.back .icon').transform('translate3d(' + (-slidingOffset) + 'px,0,0)');
               }
@@ -70,7 +72,7 @@ export default  class Navbar extends React.Component{
                     finishCallback()
                   })
                 }
-                if (PARAMS.animateNavBackIcon) {
+                if (animateNavBackIcon) {
                     if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
                         sliding.find('.back .icon').transform('translate3d(0px,0,0)');
                     }
@@ -89,7 +91,7 @@ export default  class Navbar extends React.Component{
             navbarInner.find('.sliding').each(function (index) {
                 var sliding = $(this);
                 var rightText;
-                if (PARAMS.animateNavBackIcon) {
+                if (animateNavBackIcon) {
                     if (sliding.hasClass('center') && rightNavbarInner.find('.sliding.left .back .icon').length > 0) {
                         rightText = rightNavbarInner.find('.sliding.left .back span');
                         if (rightText.length > 0) this.f7NavbarLeftOffset += rightText[0].offsetLeft;
@@ -123,7 +125,7 @@ export default  class Navbar extends React.Component{
           navbarInner.find('.sliding').each(function (index) {
               var sliding = $(this);
               sliding.transform('translate3d(0px,0,0)');
-              if (PARAMS.animateNavBackIcon) {
+              if (animateNavBackIcon) {
                   if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
                       sliding.find('.back .icon').transform('translate3d(0px,0,0)');
                   }
@@ -145,7 +147,7 @@ export default  class Navbar extends React.Component{
          // }, transitionDuration);
           navbarInner.find('.sliding').each(function (index) {
               var sliding = $(this);
-              if (PARAMS.animateNavBackIcon) {
+              if (animateNavBackIcon) {
                   if (sliding.hasClass('left') && sliding.find('.back .icon').length > 0) {
                       sliding.find('.back .icon').transform('translate3d(' + (-this.f7NavbarRightOffset) + 'px,0,0)');
                   }
