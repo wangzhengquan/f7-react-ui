@@ -297,6 +297,19 @@ const rootRoute = {
         })
       }
     }, {
+      path: 'pull-to-refresh',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/pull-to-refresh/PullToRefreshNavbar'),
+              page: require('./components/pull-to-refresh/PullToRefreshPage')
+            })
+            document.querySelector('title').innerHTML='pull-to-refresh'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
       path: 'clip-image',
       getComponents(nextState, cb) {
         Modals.showIndicator()
@@ -309,7 +322,7 @@ const rootRoute = {
             Modals.hideIndicator()
         })
       }
-    },{
+    }, {
       path: 'swipe-delete',
       getComponents(nextState, cb) {
         Modals.showIndicator()
