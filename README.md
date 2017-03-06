@@ -2,7 +2,7 @@
 
 npm:  [f7-react-ui](https://www.npmjs.com/package/f7-react-ui)
 
-实例演示：http://60.205.148.118:8001/
+实例演示：http://f7reactui.com
 
 运行实例：  
 cd examples  

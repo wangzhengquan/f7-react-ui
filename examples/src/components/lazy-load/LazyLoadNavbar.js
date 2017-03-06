@@ -1,19 +1,18 @@
 import Navbar from '../Navbar'
 
-class ModalsNavBar extends Navbar{
-  
+class LazyLoadNavbar extends Navbar{
 
     constructor(props) {
       super(props);
     }
-     
      
     render(){
       return  super.render();
     }
 }
 
-ModalsNavBar.defaultProps = {
-  title: 'List View'
+LazyLoadNavbar.defaultProps = {
+  title: 'lazy-load'
 }
-module.exports = ModalsNavBar
+
+module.exports = LazyLoadNavbar

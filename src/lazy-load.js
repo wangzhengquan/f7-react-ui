@@ -4,7 +4,7 @@
 ======================================================*/
 import $ from './dom'
 import Type from './type'
-
+require('./resources/less/lazy-load.less')
 // 两块区域是否相交
 function isCross(r1, r2) {
     var r = {};
@@ -94,7 +94,7 @@ export default class Lazyload {
 
                 var image = new Image();
                 function onLoad() {
-                    el.removeClass('lazy');
+                    
                     if (bg) {
                         el.css('background-image', 'url(' + src + ')');
                         el.removeAttr('data-background')
@@ -102,8 +102,8 @@ export default class Lazyload {
                     else {
                         el.attr('src', src);
                         el.removeAttr('data-src')
-
                     }
+                    el.removeClass('lazy').addClass('lazy-loaded');
 
                     // console.log(image.width, image.height)
                     cb && cb(el, image)

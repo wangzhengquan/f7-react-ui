@@ -310,6 +310,32 @@ const rootRoute = {
         })
       }
     }, {
+      path: 'lazy-load',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/lazy-load/LazyLoadNavbar'),
+              page: require('./components/lazy-load/LazyLoadPage')
+            })
+            document.querySelector('title').innerHTML='lazy-load'
+            Modals.hideIndicator()
+        })
+      }
+    },  {
+      path: 'bars',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/bars/BarsNavbar'),
+              page: require('./components/bars/BarsPage')
+            })
+            document.querySelector('title').innerHTML='Navbars And Toolbars'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
       path: 'clip-image',
       getComponents(nextState, cb) {
         Modals.showIndicator()

@@ -1,4 +1,3 @@
-import React  from 'react'
 import Navbar from '../Navbar'
 
 class ModalsNavBar extends Navbar{
