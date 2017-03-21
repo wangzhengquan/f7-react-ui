@@ -112,6 +112,11 @@ MicroEvent.mixin = function(destObject, proplist){
 	return destObject;
 }
 
+MicroEvent.createObserver = function() {
+	var Observer = {}
+	return MicroEvent.mixin(Observer)
+}
+
 export default MicroEvent
 // export in common js
 // if( typeof module !== "undefined" && ('exports' in module)){

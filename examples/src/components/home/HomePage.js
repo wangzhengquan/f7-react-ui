@@ -105,7 +105,7 @@ class HomePage extends AnimationPage{
     <div className={classNames('page', this.props.className)} data-page={this.props.pageName}>
       <div className="page-content">
         <div className="content-block-title">Welcome To ReactUI</div>
-        <div className="content-block"><Link to="about.html" className="button">About ReactUI</Link></div>
+        <div className="content-block"><a href="https://github.com/wangzhengquan/f7-react-ui" className="button">About ReactUI</a></div>
         <div className="content-block-title">ReactUI Kitchen Sink</div>
         <List>
           <Link to="accordion" className="item-link">
