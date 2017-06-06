@@ -2,8 +2,14 @@ var  URLUtil = {}
 URLUtil.parseUrlQuery = function(url) {
   var query = {},
     i, params, param;
-  if (url.indexOf('?') >= 0) url = url.split('?')[1];
-  else return query;
+    
+  url = url || window.location.toString()
+
+  if (url.indexOf('?') >= 0) url = url.split('?')[1]
+  else return query
+
+  if (url.indexOf('#') >= 0) url = url.split('#')[0];
+  
   params = url.split('&');
   for (i = 0; i < params.length; i++) {
     param = params[i].split('=');
@@ -58,7 +64,7 @@ URLUtil.serializeObject = URLUtil.param = function(obj, parents) {
         newParents.push(prop);
         toPush = URLUtil.serializeObject(obj[prop], newParents);
         if (toPush !== '') resultArray.push(toPush);
-      } else if (typeof obj[prop] !== 'undefined' && obj[prop] !== '') {
+      } else /*if (typeof obj[prop] !== 'undefined' && obj[prop] !== '')*/ {
         // Should be string or plain value
         resultArray.push(var_name(prop) + '=' + var_value(obj[prop]));
       }

@@ -5,7 +5,7 @@ var browser = {
      * 微信
      * 
      */
-    weixin : agent.match(/MicroMessenger/i) == 'micromessenger',
+    weixin : /micromessenger/i.test(agent),
     /**
      * @property {boolean} ie 检测当前浏览器是否为IE
      * @example

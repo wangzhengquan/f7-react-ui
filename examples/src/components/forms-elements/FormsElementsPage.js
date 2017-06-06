@@ -328,7 +328,6 @@ class FormsElementsPage extends AnimationPage{
         <div className="content-block-title">Inset, just inputs</div>
         <div className="list-block inset">
           <ul>
-            <ul></ul>
             <li>
               <div className="item-content">
                 <div className="item-inner">

@@ -125,6 +125,7 @@ Framework7 Color Themes
     // Bg rule
     .bg-@{colorName}, .button.button-fill.bg-@{colorName}, a.bg-@{colorName}, .list-block .swipeout-actions-left a.bg-@{colorName}, .list-block .swipeout-actions-right a.bg-@{colorName} {
         background-color: @color;
+        color: #fff;
     }
     // Border rule
     .border-@{colorName} {
@@ -141,16 +142,16 @@ Framework7 Color Themes
     	color: #fff;
     }
 }
-.theme-mixin(e('gray'), #8e8e93, '8e8e93');
-.theme-mixin(e('white'), #ffffff, 'ffffff');
-.theme-mixin(e('black'), #000000, '000000');
-.theme-mixin(e('lightblue'), #5ac8fa, '5ac8fa');
-.theme-mixin(e('yellow'), #ffcc00, 'ffcc00');
-.theme-mixin(e('orange'), #ff9500, 'ff9500');
-.theme-mixin(e('pink'), #ff2d55, 'ff2d55');
-.theme-mixin(e('blue'), #007aff, '007aff');
-.theme-mixin(e('green'), #0bb908, '0bb908');
-.theme-mixin(e('red'), #ff3b30, 'ff3b30');
+.theme-mixin(e('gray'), @gray, '8e8e93');
+.theme-mixin(e('white'), @white, 'ffffff');
+.theme-mixin(e('black'), @black, '000000');
+.theme-mixin(e('lightblue'), @lightblue, '5ac8fa');
+.theme-mixin(e('yellow'), @yellow, 'ffcc00');
+.theme-mixin(e('orange'), @orange, 'ff9500');
+.theme-mixin(e('pink'), @pink, 'ff2d55');
+.theme-mixin(e('blue'), @blue, '007aff');
+.theme-mixin(e('green'), @green, '0bb908');
+.theme-mixin(e('red'), @red, 'ff3b30');
 
 /*==========================
 Framework7 Layouts Themes

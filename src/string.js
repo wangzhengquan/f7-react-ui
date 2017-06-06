@@ -1,4 +1,33 @@
-let StringHelper = {}
+const SUBSTITUTE_REG = /\\?\$\{([^{}]+)\}/g,
+    EMPTY = ''
+
+let StringHelper = {
+    /**
+     * Substitutes keywords in a string using an object/array.
+     * Removes undefined keywords and ignores escaped keywords.
+     * 
+     * str = '{name} is {prop_1} and {prop_2}.',
+     * obj = {name: 'Jack Bauer', prop_1: 'our lord', prop_2: 'savior'};
+     * S.substitute(str, obj); // => 'Jack Bauer is our lord and savior.'
+     * 
+     * @param {String} str template string
+     * @param {Object} o json data
+     * @member KISSY
+     * @param {RegExp} [regexp] to match a piece of template string
+     */
+    substitute: function (str, o, regexp) {
+        if (typeof str !== 'string' || !o) {
+            return str;
+        }
+
+        return str.replace(regexp || SUBSTITUTE_REG, function (match, name) {
+            if (match.charAt(0) === '\\') {
+                return match.slice(1);
+            }
+            return (o[name] === undefined) ? EMPTY : o[name];
+        });
+    }
+}
 
 StringHelper.trim = function(str) {
     return str.replace(/(?:^[ \t\n\r]+)|(?:[ \t\n\r]+$)/g, '');
@@ -13,6 +42,8 @@ StringHelper.toCamelCase = function (string) {
         return group1.toUpperCase();
     });
 };
+
+
 
 
 

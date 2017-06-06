@@ -44,9 +44,9 @@ var Modals = {
     var isPickerModal = modal.hasClass('picker-modal');
     if (isModal) {
       modal.show();
-      modal.css({
-        marginTop: - Math.round(modal.outerHeight() / 2) + 'px'
-      });
+      // modal.css({
+      //   marginTop: - Math.round(modal.outerHeight() / 2) + 'px'
+      // });
     }
 
     var overlay;
