@@ -17,10 +17,13 @@ class AccordionPage extends AnimationPage{
           <div className="content-block-title">List View Accordion</div>
           <div className="list-block accordion-list">
             <ul>
-              <li className="accordion-item"><a href="#" className="item-link item-content">
+              <li className="accordion-item">
+                <a href="#" className="item-link item-content">
                   <div className="item-inner">
                     <div className="item-title">Lorem Ipsum</div>
-                </div></a>
+                    
+                  </div>
+                </a>
                 <div className="accordion-item-content">
                   <div className="content-block">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum id neque nec commodo. Sed vel justo at turpis laoreet pellentesque quis sed lorem. Integer semper arcu nibh, non mollis arcu tempor vel. Sed pharetra tortor vitae est rhoncus, vel congue dui sollicitudin. Donec eu arcu dignissim felis viverra blandit suscipit eget ipsum.</p>

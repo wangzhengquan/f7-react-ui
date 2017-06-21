@@ -58,6 +58,19 @@ export default {
   isEmpty: function(value, allowEmptyString) {
     return (value === null) || (value === undefined) || (!allowEmptyString ? value === '' : false) || (this.isArray(value) && value.length === 0);
   },
+
+  /**
+   * Checks to see if an object is empty.
+   * @member KISSY
+   */
+  isEmptyObject: function (o) {
+      for (var p in o) {
+          if (p !== undefined) {
+              return false;
+          }
+      }
+      return true;
+  },
   /**
    * Returns true if the passed value is a JavaScript 'primitive', a string, number or boolean.
    * @param {Object} value The value to test

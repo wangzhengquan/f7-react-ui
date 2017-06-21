@@ -70,20 +70,19 @@
     flex-wrap: @fw;
 }
 
-.fit(@value: 1) {
-  -webkit-box-flex: @value;
-  -webkit-flex: @value;
-  -moz-box-flex: @value;
-  -moz-flex: @value;
-  -ms-flex: @value;
-  flex: @value;
-}
-
 .flex-shrink(@fs) {
     -webkit-flex-shrink: @fs;
     -ms-flex: 0 @fs auto;
     flex-shrink: @fs;
 }
+
+.flex-direction(@direction){
+    -webkit-ms-direction: @direction;
+    -webkit-moz-direction: @direction;
+    -webkit-flex-direction: @direction;
+    flex-direction: @direction;
+}
+
 .justify-content(@jc) when (@jc = flex-start) {
     -webkit-box-pack: start;
     -ms-flex-pack: start;
@@ -130,6 +129,14 @@
     -ms-flex-line-pack: @ai;
     -webkit-align-content: @ai;
     align-content: @ai;
+}
+.fit(@value: 1) {
+  -webkit-box-flex: @value;
+  -webkit-flex: @value;
+  -moz-box-flex: @value;
+  -moz-flex: @value;
+  -ms-flex: @value;
+  flex: @value;
 }
 .align-self(@as) {
     -ms-flex-item-align: @as;
