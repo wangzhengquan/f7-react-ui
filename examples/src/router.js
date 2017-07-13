@@ -427,6 +427,19 @@ const rootRoute = {
         })
       }
     }, {
+      path: 'media-lists',
+      getComponents(nextState, cb) {
+        Modals.showIndicator()
+        require.ensure([], (require) => {
+            cb(null, {
+              navbar: hideNavbar ? null : require('./components/media-lists/MediaListsNavbar'),
+              page: require('./components/media-lists/MediaListsPage')
+            })
+            document.querySelector('title').innerHTML='Media Lists'
+            Modals.hideIndicator()
+        })
+      }
+    }, {
       path: 'umeditor',
       getComponents(nextState, cb) {
         Modals.showIndicator()

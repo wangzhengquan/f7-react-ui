@@ -48,9 +48,11 @@ export default {
     console.error('Failed to determine the type of the specified value "' + value + '". This is most likely a bug.');
     //</debug>
   },
+
   isArray: ('isArray' in Array) ? Array.isArray : function(value) {
     return toString.call(value) === '[object Array]';
   },
+  
   isDate: function(value) {
     return toString.call(value) === '[object Date]';
   },

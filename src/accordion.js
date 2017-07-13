@@ -74,7 +74,8 @@ $(document).on('click', 'a, .accordion-item-toggle', function(e){
     accordionToggle(accordionItem);
   }
 })
-export default{
+
+export default {
   accordionToggle,
   accordionOpen,
   accordionClose

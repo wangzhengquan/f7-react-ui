@@ -17,15 +17,16 @@ class PopoverPage extends AnimationPage{
 			history.push(path);
 			Modals.closeModal(modal);
 		}
+		
 		let PopoverMenu = () => (
 		<List>
 			<a onClick={function(e){e.preventDefault(); href('/modals');}} className="list-button item-link">Modals</a>
-            <Link to="/modals" className="list-button item-link">Popover</Link>
-            <a href="tabs.html" className="list-button item-link">Tabs</a>
-            <a href="panels.html" className="list-button item-link">Side Panels</a>
-            <a href="list-view.html" className="list-button item-link">List View</a>
-            <a href="forms.html" className="list-button item-link">Forms</a>
-        </List>
+      <Link to="/modals" className="list-button item-link">Popover</Link>
+      <a href="tabs.html" className="list-button item-link">Tabs</a>
+      <a href="panels.html" className="list-button item-link">Side Panels</a>
+      <a href="list-view.html" className="list-button item-link">List View</a>
+      <a href="forms.html" className="list-button item-link">Forms</a>
+    </List>
 		)
 		
 		ReactDOM.render(<PopoverMenu/>, modal.querySelector('.popover-inner'));

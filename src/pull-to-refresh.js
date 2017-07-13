@@ -148,6 +148,7 @@ PullToRefresh.initPullToRefresh = function (pageContainer) {
             return;
         }
     }
+    
     function handleTouchEnd(e) {
         if (e.type === 'touchend' && e.changedTouches && e.changedTouches.length > 0 && touchId) {
             if (e.changedTouches[0].identifier !== touchId) return;
