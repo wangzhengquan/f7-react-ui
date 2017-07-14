@@ -60,9 +60,12 @@ config.module.loaders.push({
 });
 
 config.output = Object.assign({}, config.output, {
+  publicPath: './assets/',
   //publicPath: '//hlj-img.b0.upaiyun.com/upload/pre311/',
   filename: 'app-[hash].js',
   chunkFilename: '[id].chunk-[hash].js'
 });
+
+ 
 
 module.exports = config;

@@ -1,16 +1,10 @@
  /* eslint no-console: 0 */
- //hashHistory
-// import { hashHistory } from 'react-router'
-import { browserHistory } from 'react-router'
-// import { useRouterHistory } from 'react-router'
-// import { createHistory } from 'history'
 
-// const browserHistory = useRouterHistory(createHistory)({
-//   basename: '/'
-// })
-// 
+// import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
+var browserHistory = hashHistory
 
-// var browserHistory = hashHistory
+
 const PATHS_LENGTH = -1
 let paths = browserHistory.paths = browserHistory.paths || []
 
