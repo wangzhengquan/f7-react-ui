@@ -2,7 +2,7 @@
 
 npm:  [f7-react-ui](https://www.npmjs.com/package/f7-react-ui)
 
-实例演示：http://f7reactui.com
+实例演示：http://wangzhengquan.github.io/f7-react-ui/examples/dist/index.html
 
 运行实例：  
 cd examples  
