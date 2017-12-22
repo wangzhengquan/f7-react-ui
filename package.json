@@ -91,7 +91,8 @@
     "draft-js": "^0.9.1",
     "quill": "^1.0.6",
     "react": "^15.0.0",
-    "react-addons-css-transition-group": "^15.4.2",
+    "react-contenteditable": "^2.0.5",
+    "react-addons-transition-group": "^15.6.2",
     "react-contenteditable": "^2.0.2",
     "react-dom": "^15.0.0",
     "react-router": "^2.6.0"

@@ -1,8 +1,8 @@
  /* eslint no-console: 0 */
 
-// import { browserHistory } from 'react-router'
-import { hashHistory } from 'react-router'
-var browserHistory = hashHistory
+import { browserHistory } from 'react-router'
+// import { hashHistory } from 'react-router'
+// var browserHistory = hashHistory
 
 
 const PATHS_LENGTH = -1
