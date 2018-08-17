@@ -762,16 +762,16 @@ if(!browserHistory.unlisten){
 export default browserHistory
 ```
 **7 新建router里配置的页面和导航条**   
-  src/home/HomeNavbar.js 
-  src/home/HomePage.js 
-  src/components/order/OrderNavbar.js
-  src/components/order/OrderPage.js
-  src/components/product/ProductNavbar.js
-  src/components/product/ProductPage.js  
-  具体代码参考git仓库源码
+  src/home/HomeNavbar.js   
+  src/home/HomePage.js   
+  src/components/order/OrderNavbar.js  
+  src/components/order/OrderPage.js  
+  src/components/product/ProductNavbar.js  
+  src/components/product/ProductPage.js    
+  具体代码参考git仓库源码  
   
   **8 测试**   
-  `npm start`
+  `npm start`  
   
 
 
