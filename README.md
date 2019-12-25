@@ -1,4 +1,4 @@
-
+效果图：https://wangzhengquan.github.io/f7-react-ui/examples/dist/index.html
 工程源码 `git clone -b simple-project https://github.com/wangzhengquan/react-redux-tpl`  
 
 搭建一个react工程
