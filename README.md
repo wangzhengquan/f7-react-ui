@@ -1,7 +1,8 @@
-效果图：https://wangzhengquan.github.io/f7-react-ui/examples/dist/index.html
-工程源码 `git clone -b simple-project https://github.com/wangzhengquan/react-redux-tpl`  
+先展示一些实例效果：https://wangzhengquan.github.io/f7-react-ui/examples/dist/index.html
+ 
+工程搭建说明完整代码 `git clone -b simple-project https://github.com/wangzhengquan/react-redux-tpl` 
 
-搭建一个react工程
+搭建一个react工程，并且实现如下功能
 * 实现手机的页面切换的过度效果
 * 实现代码分片的懒加载
 
@@ -772,6 +773,7 @@ export default browserHistory
   
   **8 测试**   
   `npm start`  
+  
   
 
 
