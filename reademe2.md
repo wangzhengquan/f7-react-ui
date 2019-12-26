@@ -8,3 +8,6 @@ npm:  [f7-react-ui](https://www.npmjs.com/package/f7-react-ui)
 cd examples  
 npm install  
 npm start  
+
+打包
+npm run build
