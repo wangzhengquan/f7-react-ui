@@ -1,12 +1,12 @@
 先展示一些实例效果：https://wangzhengquan.github.io/f7-react-ui/examples/dist/index.html
  
-工程搭建说明完整代码 `git clone -b simple-project https://github.com/wangzhengquan/react-redux-tpl` 
+工程搭建说明完整代码: `git clone -b simple-project https://github.com/wangzhengquan/react-redux-tpl` 
 
-搭建一个react工程，并且实现如下功能
+### 目标：搭建一个react工程，并且实现如下功能
 * 实现手机的页面切换的过度效果
 * 实现代码分片的懒加载
 
-工程搭建步骤如下
+### 实现：工程搭建步骤如下
 
 1 **下载一个脚手架**   
 `git clone -b scaff https://github.com/wangzhengquan/react-redux-tpl`,因为这个工程是从旧有的项目中抽取出来的，还是基于react15 和 react-router2，所以修改package.json,如下：
