@@ -2,7 +2,9 @@ import React  from 'react';
 import AnimationPage from '../Page'
 import classnames from 'classnames';
 import SwipeOut from 'react-ui/swipeout'
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+// var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup' ;
+
 
 require('react-ui/resources/less/lists.less')
 require('react-ui/resources/less/forms.less')
