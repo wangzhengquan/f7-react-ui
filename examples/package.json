@@ -53,8 +53,13 @@
     "react-dom": "^15.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^2.8.1",
-    "react-addons-transition-group": "^15.6.2",
     "react-transition-group": "^1.2.1",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+
+    "babel-polyfill": "^6.26.0",
+    "draft-editor": "0.0.0",
+    "draft-js": "^0.9.1",
+    "quill": "^1.0.6",
+    "react-contenteditable": "^2.0.5"
   }
 }
