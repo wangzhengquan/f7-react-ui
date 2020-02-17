@@ -29,7 +29,7 @@ export default class LeftPanel extends React.Component{
       <div className="content-block-title">Left Panel</div>
       <div className="content-block">
         <p>This is a side panel. You can close it by clicking outsite or on this link:
-          <a href="#" onClick={this.props.onClose} className="close-panel">close me</a>.
+          <a href="#" onClick={this.props.close} className="close-panel">close me</a>.
           You can put here anything, even another isolated view like in
           <a href="#" onClick={this.handleClickOpenRightPanel.bind(this)} className="open-panel">Right Panel</a>
         </p>

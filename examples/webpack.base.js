@@ -13,10 +13,6 @@ module.exports = {
 
     },
 
-    
-
-    
-
     module: {
         rules: [{
             test: /\.css$/,
@@ -32,7 +28,7 @@ module.exports = {
                 'less-loader'
             ]
         }, {
-            test: /\.(png|svg|jpg|gif)$/,
+            test: /\.(png|svg|jpg|jpeg|gif)$/,
             use: [
                 'file-loader'
             ]
@@ -50,7 +46,7 @@ module.exports = {
             ],
             include: [
                 defaultConfig.srcDir,
-                '/Users/wangzhengquan/workspace/web/react-ui/src'
+                '/Users/wangzhengquan/WK/web/f7-react-ui/src'
             ]
 
         }]
@@ -58,7 +54,7 @@ module.exports = {
 
     resolve: {
         alias: {
-            'react-ui': '/Users/wangzhengquan/workspace/web/react-ui/src',
+            //'react-ui': '/Users/wangzhengquan/WK/web/f7-react-ui/src',
             'react-ui' : 'f7-react-ui',
             styles: `${defaultConfig.srcDir}/styles/`,
             images: `${defaultConfig.srcDir}/images/`

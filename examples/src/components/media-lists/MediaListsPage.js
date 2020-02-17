@@ -5,6 +5,19 @@ import classnames from 'classnames';
 import Modals from 'react-ui/modals'
 import List from 'react-ui/lists'
 
+
+import peopleImg88_1 from '../../resources/img/people-88x88-1.jpg';
+import peopleImg88_2 from '../../resources/img/people-88x88-1.jpg';
+import peopleImg88_3 from '../../resources/img/people-88x88-1.jpg';
+
+import peopleImg160_1 from '../../resources/img/people-160x160-1.jpg';
+import peopleImg160_2 from '../../resources/img/people-160x160-2.jpg';
+import peopleImg160_3 from '../../resources/img/people-160x160-3.jpg';
+
+import fashionImg4 from '../../resources/img/fashion-88x88-4.jpg';
+import fashionImg5 from '../../resources/img/fashion-88x88-5.jpg';
+import fashionImg6 from '../../resources/img/fashion-88x88-6.jpg';
+
 class MediaListsPage extends AnimationPage{
   constructor(props) {
     super(props);
@@ -23,7 +36,7 @@ class MediaListsPage extends AnimationPage{
       <div className="list-block media-list">
         <ul>
           <li><a href="#" className="item-link item-content">
-              <div className="item-media"><img src="http://lorempixel.com/88/88/people/1" width="44"/></div>
+              <div className="item-media"><img src={peopleImg88_1} width="44"/></div>
               <div className="item-inner">
                 <div className="item-title-row">
                   <div className="item-title">Yellow Submarine</div>
@@ -31,7 +44,7 @@ class MediaListsPage extends AnimationPage{
                 <div className="item-subtitle">Beatles</div>
               </div></a></li>
           <li><a href="#" className="item-link item-content">
-              <div className="item-media"><img src="http://lorempixel.com/88/88/people/2" width="44"/></div>
+              <div className="item-media"><img src={peopleImg88_2} width="44"/></div>
               <div className="item-inner">
                 <div className="item-title-row">
                   <div className="item-title">Don't Stop Me Now</div>
@@ -39,7 +52,7 @@ class MediaListsPage extends AnimationPage{
                 <div className="item-subtitle">Queen</div>
               </div></a></li>
           <li><a href="#" className="item-link item-content">
-              <div className="item-media"><img src="http://lorempixel.com/88/88/people/3" width="44"/></div>
+              <div className="item-media"><img src={peopleImg88_3} width="44"/></div>
               <div className="item-inner">
                 <div className="item-title-row">
                   <div className="item-title">Billie Jean</div>
@@ -69,7 +82,7 @@ class MediaListsPage extends AnimationPage{
           <ul>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/160/160/people/1" width="80" /></div>
+                <div className="item-media"><img src={peopleImg160_1} width="80" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Yellow Submarine</div>
@@ -82,7 +95,7 @@ class MediaListsPage extends AnimationPage{
             </li>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/160/160/people/2" width="80" /></div>
+                <div className="item-media"><img src={peopleImg160_2} width="80" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Don't Stop Me Now</div>
@@ -95,7 +108,7 @@ class MediaListsPage extends AnimationPage{
             </li>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80" /></div>
+                <div className="item-media"><img src={peopleImg160_3} width="80" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Billie Jean</div>
@@ -182,7 +195,7 @@ class MediaListsPage extends AnimationPage{
           <ul>
             <li>
               <div className="item-content">
-                <div className="item-media"><img src="http://lorempixel.com/88/88/fashion/1" width="44" /></div>
+                <div className="item-media"><img src={fashionImg4} width="44" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Yellow Submarine</div>
@@ -193,7 +206,7 @@ class MediaListsPage extends AnimationPage{
             </li>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/88/88/fashion/2" width="44" /></div>
+                <div className="item-media"><img src={fashionImg5} width="44" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Don't Stop Me Now</div>
@@ -204,7 +217,7 @@ class MediaListsPage extends AnimationPage{
             </li>
             <li>
               <div className="item-content">
-                <div className="item-media"><img src="http://lorempixel.com/88/88/fashion/3" width="44" /></div>
+                <div className="item-media"><img src={fashionImg6} width="44" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Billie Jean</div>
@@ -220,7 +233,7 @@ class MediaListsPage extends AnimationPage{
           <ul>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/88/88/fashion/4" width="44" /></div>
+                <div className="item-media"><img src={fashionImg4} width="44" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Yellow Submarine</div>
@@ -231,7 +244,7 @@ class MediaListsPage extends AnimationPage{
             </li>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/88/88/fashion/5" width="44" /></div>
+                <div className="item-media"><img src={fashionImg5} width="44" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Don't Stop Me Now</div>
@@ -242,7 +255,7 @@ class MediaListsPage extends AnimationPage{
             </li>
             <li>
               <a href="#" className="item-link item-content">
-                <div className="item-media"><img src="http://lorempixel.com/88/88/fashion/6" width="44" /></div>
+                <div className="item-media"><img src={fashionImg6} width="44" /></div>
                 <div className="item-inner">
                   <div className="item-title-row">
                     <div className="item-title">Billie Jean</div>

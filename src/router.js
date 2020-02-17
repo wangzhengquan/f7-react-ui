@@ -426,7 +426,7 @@ router._load = function (view, options) {
 
           var pageName;
           if (!template) {
-              if (url.indexOf('#') === 0 && url !== '#')  {
+              if (url && url.indexOf('#') === 0 && url !== '#')  {
                   pageName = url.split('#')[1];
               }
               if (url === '#' && !clicked.hasClass('back')) return;

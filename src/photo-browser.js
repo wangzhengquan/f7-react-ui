@@ -93,7 +93,7 @@ var PhotoBrowser = function (params) {
         '<div class="navbar">' +
             '<div class="navbar-inner">' +
                 '<div class="left sliding">' +
-                    '<a href="#" class="link close-popup photo-browser-close-link {{#unless backLinkText}}icon-only{{/unless}} {{js "this.type === \'page\' ? \'back\' : \'\'"}}">' +
+                    '<a class="link close-popup photo-browser-close-link {{#unless backLinkText}}icon-only{{/unless}} {{js "this.type === \'page\' ? \'back\' : \'\'"}}">' +
                         '<i class="icon icon-back {{iconsColorClass}}"></i>' +
                         '{{#if backLinkText}}<span>{{backLinkText}}</span>{{/if}}' +
                     '</a>' +

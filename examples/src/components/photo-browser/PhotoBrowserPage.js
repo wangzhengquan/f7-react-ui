@@ -7,19 +7,19 @@ require('react-ui/resources/less/grid.less')
 
 var photoBrowserPhotos = [
   {
-    url: '../../resources/img/beach.jpg',
+    url: require('../../resources/img/beach.jpg'),
     caption: 'Amazing beach in Goa, India'
   },
-    'http://placekitten.com/1024/1024',
-    '../../resources/img/lock.jpg',
-    {
-        url: '../../resources/img/monkey.jpg',
-        caption: 'I met this monkey in Chinese mountains'
-    },
-    {
-        url: '../../resources/img/mountains.jpg',
-        caption: 'Beautiful mountains in Zhangjiajie, China'
-    }
+  require('../../resources/img/placekitten-1024x1024.jpg'),
+  require('../../resources/img/lock.jpg'),
+  {
+      url: require('../../resources/img/monkey.jpg'),
+      caption: 'I met this monkey in Chinese mountains'
+  },
+  {
+      url: require('../../resources/img/mountains.jpg'),
+      caption: 'Beautiful mountains in Zhangjiajie, China'
+  }
 
 ];
 class PhotoBrowserPage extends AnimationPage{

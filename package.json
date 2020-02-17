@@ -20,8 +20,7 @@
     "start": "node examples/server.js",
     "test": "npm run lint && npm run test-node && npm run test-browser",
     "test-browser": "karma start",
-    "test-node": "mocha --compilers js:babel-core/register tests.node.js",
-    "postinstall": "node ./npm-scripts/postinstall.js"
+    "test-node": "mocha --compilers js:babel-core/register tests.node.js"
   },
   "repository": {
     "type": "git",
@@ -49,6 +48,7 @@
     "chai": "^3.2.0",
     "copyfiles": "^0.2.1",
     "css-loader": "^0.23.0",
+    "del": "^5.1.0",
     "eslint": "^4.19.1",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^4.0.0",
@@ -85,16 +85,20 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
-    "classnames": "^2.2.4",
-    "core-js": "^2.0.0",
+    "classnames": "^2.2.5",
+    "f7-react-ui": "^1.2.3",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^2.8.1",
+    "react-transition-group": "^1.2.1",
+    "redux": "^3.7.2",
+    "babel-polyfill": "^6.26.0",
     "draft-editor": "0.0.0",
     "draft-js": "^0.9.1",
     "quill": "^1.0.6",
-    "react": "^15.0.0",
-    "react-contenteditable": "^2.0.5",
-    "react-addons-transition-group": "^15.6.2",
-    "react-dom": "^15.0.0",
-    "react-router": "^2.6.0"
-    
+    "react-contenteditable": "^2.0.5"
   }
 }

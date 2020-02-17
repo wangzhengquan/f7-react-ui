@@ -1,6 +1,6 @@
 {
   "name": "f7-react-ui",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "a ui framework with reactjs",
   "main": "index.js",
    
@@ -11,7 +11,7 @@
    
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangzhengquan/react-ui.git"
+    "url": "git+https://github.com/wangzhengquan/f7-react-ui.git"
   },
   "keywords": [
     "react-ui"
@@ -19,7 +19,7 @@
   "author": "wangzhengquan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wangzhengquan/react-ui/issues"
+    "url": "https://github.com/wangzhengquan/f7-react-ui/issues"
   }
    
 }

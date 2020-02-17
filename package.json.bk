@@ -1,0 +1,100 @@
+{
+  "name": "f7-react-ui",
+  "version": "1.0.0",
+  "description": "a ui framework with reactjs",
+  "main": "src/index.js",
+  "files": [
+    "src/*.js"
+  ],
+  "directories": {
+    "examples": "examples",
+    "src": "source codes"
+  },
+  "scripts": {
+    "build": "gulp",
+    "build-cjs": "rimraf lib && babel ./src -d lib --ignore '__tests__'",
+    "build-es6": "rimraf es6 && babel ./src -d es6 --blacklist=es6.modules --ignore '__tests__'",
+    "build-umd": "NODE_ENV=production webpack src/index.js umd/ReactUI.js",
+    "build-min": "NODE_ENV=production webpack -p src/index.js umd/ReactUI.min.js",
+    "lint": "eslint src examples",
+    "start": "node examples/server.js",
+    "test": "npm run lint && npm run test-node && npm run test-browser",
+    "test-browser": "karma start",
+    "test-node": "mocha --compilers js:babel-core/register tests.node.js",
+    "postinstall": "node ./npm-scripts/postinstall.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangzhengquan/react-ui.git"
+  },
+  "keywords": [
+    "react-ui"
+  ],
+  "author": "wangzhengquan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangzhengquan/react-ui/issues"
+  },
+  "homepage": "https://github.com/wangzhengquan/react-ui#readme",
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.0.0",
+    "babel-eslint": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "babelify": "^7.3.0",
+    "bower-webpack-plugin": "^0.1.9",
+    "chai": "^3.2.0",
+    "copyfiles": "^0.2.1",
+    "css-loader": "^0.23.0",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^1.0.0",
+    "eslint-plugin-react": "^4.0.0",
+    "file-loader": "^0.8.4",
+    "glob": "^7.0.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.0.0",
+    "gulp-flatten": "^0.2.0",
+    "html-webpack-plugin": "^2.8.1",
+    "isparta-instrumenter-loader": "^1.0.0",
+    "karma": "^0.13.9",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^0.5.3",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.5",
+    "karma-webpack": "^1.7.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.0.0",
+    "minimist": "^1.2.0",
+    "mocha": "^2.2.5",
+    "null-loader": "^0.1.1",
+    "open": "7.0.0",
+    "phantomjs-prebuilt": "^2.0.0",
+    "postcss": "^5.0.11",
+    "postcss-loader": "^0.8.0",
+    "react-addons-test-utils": "^15.2.1",
+    "react-hot-loader": "^1.2.9",
+    "rimraf": "^2.4.3",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.0",
+    "webpack-dev-server": "^1.12.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.4",
+    "core-js": "^2.0.0",
+    "draft-editor": "0.0.0",
+    "draft-js": "^0.9.1",
+    "quill": "^1.0.6",
+    "react": "^15.0.0",
+    "react-contenteditable": "^2.0.5",
+    "react-addons-transition-group": "^15.6.2",
+    "react-dom": "^15.0.0",
+    "react-router": "^2.6.0"
+    
+  }
+}
