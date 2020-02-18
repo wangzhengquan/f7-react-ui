@@ -86,7 +86,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "f7-react-ui": "^1.2.3",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^15.0.0",

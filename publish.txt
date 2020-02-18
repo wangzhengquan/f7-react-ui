@@ -1,6 +1,5 @@
-修改package/package.json   --- version属性
-
 编译并发布到npm
+修改package/package.json   --- version属性
 gulp 
 cd build/ 
 npm login

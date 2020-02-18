@@ -1,6 +1,7 @@
-import React from 'react'
-import ReactTransitionGroup from 'react/lib/ReactTransitionGroup'
-import ReactUI from './react-ui'
+import React from 'react';
+//import ReactTransitionGroup from 'react/lib/ReactTransitionGroup';
+import ReactTransitionGroup from 'ReactTransitionGroup'
+import ReactUI from './react-ui';
 import classNames from 'classnames';
 
 class View extends React.Component{
