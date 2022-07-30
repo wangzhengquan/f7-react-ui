@@ -1,1 +1,2 @@
 source: ./examples/dist/
+baseurl: /examples/dist/ 
