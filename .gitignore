@@ -29,3 +29,4 @@ node_modules/
 
 # Bower
 bower_components/
+examples/dist/
