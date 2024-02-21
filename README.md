@@ -1,4 +1,4 @@
-先展示一些实例效果：https://wangzhengquan.github.io/f7-react-ui/examples/dist/index.html
+先展示一些实例效果：https://wangzhengquan.github.io/f7-react-ui
  
 工程搭建说明完整代码: `git clone -b simple-project https://github.com/wangzhengquan/react-redux-tpl` 
 
